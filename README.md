@@ -57,3 +57,6 @@ public class MySQL {
 https://drive.google.com/drive/folders/1O-sHmuYiOkjf923ZMJpEG81Ht-lbuwJ1?usp=sharing
 ```
 ### 6. Now, add the library files to the project 
+
+### 7. After adding DB class and other things  there is a compile error showing and for that reapply the Home1 main frame absolute setting as below picture
+![image](https://github.com/user-attachments/assets/49e7fe48-8266-4abe-a189-200caf267f68)
