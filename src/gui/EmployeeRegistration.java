@@ -6,7 +6,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     public EmployeeRegistration() {
         initComponents();
-      
+
     }
 
     @SuppressWarnings("unchecked")
@@ -272,13 +272,12 @@ public class EmployeeRegistration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int selectedRow = jTable1.getSelectedRow();
-
         if (evt.getClickCount() == 2) {
 
             int row1 = jTable1.getSelectedRow();
+            String email1 = String.valueOf(jTable1.getValueAt(row1, 0));
 
-            AddressView view = new AddressView(this, true);
+            AddressView view = new AddressView(this, true, email1);
             view.setVisible(true);
         }
 
