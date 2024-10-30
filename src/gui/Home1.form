@@ -1250,20 +1250,18 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton3" min="-2" pref="225" max="-2" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="225" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButton6" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
+                          <Component id="jButton3" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
                           <Component id="jButton17" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="76" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton2" pref="225" max="32767" attributes="0"/>
                           <Component id="jButton15" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1403,6 +1401,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reteurn and Refund"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
