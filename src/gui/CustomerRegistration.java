@@ -9,6 +9,12 @@ public class CustomerRegistration extends javax.swing.JFrame {
     public void setinvoice(Invoice invoice) {
         this.invoice = invoice;
     }
+    
+    private Return_and_Refund raf;
+
+    public void setraf(Return_and_Refund raf) {
+        this.raf = raf;
+    }
 
     public CustomerRegistration() {
         initComponents();
