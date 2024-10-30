@@ -2,7 +2,7 @@ package gui;
 
 public class AddressView extends javax.swing.JDialog {
 
-    public AddressView(java.awt.Frame parent, boolean modal) {
+    public AddressView(java.awt.Frame parent, boolean modal, String email) {
 
         super(parent, modal);
 

@@ -3,6 +3,12 @@ package gui;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
 
 public class SupplierRegistration extends javax.swing.JFrame {
+    
+    private GRN grn;
+    
+    public void setGrn(GRN grn){
+        this.grn = grn;
+    }
 
     public SupplierRegistration() {
         initComponents();
