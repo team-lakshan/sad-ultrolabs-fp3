@@ -469,9 +469,9 @@ public class Invoice extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*Stock stock = new Stock();
+        stock_managment stock = new stock_managment();
         stock.setVisible(true);
-        stock.setinvoice(this);*/
+        stock.setinvoice(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
