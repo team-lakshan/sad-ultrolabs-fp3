@@ -451,9 +451,9 @@ public class GRN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        /*product_registration product_reg = new product_registration();
+        product_registration product_reg = new product_registration();
         product_reg.setVisible(true);
-        product_reg.setGrn(this);*/
+        product_reg.setGrn(this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
