@@ -1209,8 +1209,8 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //Invoice invoice = new Invoice();
-        //invoice.setVisible(true);
+        Invoice invoice = new Invoice();
+        invoice.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

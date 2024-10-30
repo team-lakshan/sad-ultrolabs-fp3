@@ -1086,13 +1086,14 @@ public class Home1 extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                    .addGap(382, 382, 382)
-                    .addComponent(jLabel19)
-                    .addContainerGap(384, Short.MAX_VALUE))
                 .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(39, 39, 39)
-                    .addComponent(jLabel11)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(382, 382, 382)
+                            .addComponent(jLabel19))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(39, 39, 39)
+                            .addComponent(jLabel11)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1207,8 +1208,8 @@ public class Home1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //Invoice invoice = new Invoice();
-        //invoice.setVisible(true);
+        Invoice invoice = new Invoice();
+        invoice.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

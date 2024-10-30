@@ -3,6 +3,12 @@ package gui;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
 
 public class CustomerRegistration extends javax.swing.JFrame {
+    
+    private Invoice invoice;
+
+    public void setinvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
 
     public CustomerRegistration() {
         initComponents();
