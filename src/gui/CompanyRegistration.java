@@ -1,5 +1,11 @@
 package gui;
 
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.MySQL;
+
 public class CompanyRegistration extends javax.swing.JDialog {
 
     SupplierRegistration sr;
@@ -7,8 +13,36 @@ public class CompanyRegistration extends javax.swing.JDialog {
     public CompanyRegistration(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadCompanies();
+        
+        sr = (SupplierRegistration) parent;
     }
-
+    
+    private void loadCompanies(){
+    
+        try {
+            
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `company`");
+            
+            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            model.setRowCount(0);
+            
+            while (rs.next()) {
+                Vector vector = new Vector();
+                vector.add(rs.getString("id"));
+                vector.add(rs.getString("name"));
+                vector.add(rs.getString("hotline_num"));
+                model.addRow(vector);
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
+    
+    }
+            
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,8 +74,18 @@ public class CompanyRegistration extends javax.swing.JDialog {
         jTextField2.setToolTipText("must be a valid phone number");
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -60,9 +104,19 @@ public class CompanyRegistration extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Clear All");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Company Registration");
 
@@ -141,6 +195,128 @@ public class CompanyRegistration extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = jTextField1.getText();
+        String hotline = jTextField2.getText();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Company name", "warning", JOptionPane.WARNING_MESSAGE);
+        } else if (hotline.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Company Hotline Number", "warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!hotline.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$")) {
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Hotline Number", "warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            try {
+
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `company` WHERE `name`='" + name + "' OR `hotline_num`='" + hotline + "'");
+
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "This Company Name or Hotline Already Used", "warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+
+                    MySQL.executeIUD("INSERT INTO `company` (`name`,`hotline_num`) VALUES"
+                            + "('" + name + "','" + hotline + "')");
+                    
+                    loadCompanies();
+                    reset();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        int row = jTable1.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Please Select a Row", "warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            String name = jTextField1.getText();
+            String hotline = jTextField2.getText();
+
+            String selectedID = String.valueOf(jTable1.getValueAt(row, 0));
+            String selectedName = String.valueOf(jTable1.getValueAt(row, 1));
+            String selectedHotline = String.valueOf(jTable1.getValueAt(row, 2));
+
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Company name", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (hotline.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Company Hotline", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else if (!hotline.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$")) {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Hotline Number", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else if (selectedName.equals(name) && selectedHotline.equals(hotline)) {
+                JOptionPane.showMessageDialog(this, "Please Change Comapany Name or Hotline Number", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+
+                try {
+
+                    ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `company` WHERE (`name`='" + name + "' OR `hotline_num`='" + hotline + "') AND `id` !='" + selectedID + "'");
+
+                    if (resultSet.next()) {
+                        JOptionPane.showMessageDialog(this, "This Company Name or Hotline Already Used", "warning", JOptionPane.WARNING_MESSAGE);
+                    } else {
+
+                        MySQL.executeIUD("UPDATE `company` SET `name`='" + name + "', `hotline_num`='" + hotline + "' WHERE `id`='" + selectedID + "' ");
+
+                        loadCompanies();
+                        reset();
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        int row = jTable1.getSelectedRow();
+
+        jTextField1.setText(String.valueOf(jTable1.getValueAt(row, 1)));
+        jTextField2.setText(String.valueOf(jTable1.getValueAt(row, 2)));
+
+        jButton1.setEnabled(false);
+        
+        if (evt.getClickCount() == 2) {
+            
+            String name= String.valueOf(jTable1.getValueAt(row, 1));
+            
+//            //sr.jTable2.setText(name);
+//            sr.getJlable().setText(name);
+                
+//               sr.setCompanyName(name);
+
+                 sr.setCompanyName(name);
+            
+            this.dispose();
+//            sr.getTextField().grabFocus();
+
+                sr.mobileGrabFocus();
+                
+                sr.setCompanyId(String.valueOf(jTable1.getValueAt(row, 0)));
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -158,4 +334,12 @@ public class CompanyRegistration extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
+    private void reset() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField1.grabFocus();
+        jButton1.setEnabled(true);
+        jTable1.clearSelection();
+    }
+    
 }
