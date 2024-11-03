@@ -154,9 +154,6 @@ public class SignIn extends javax.swing.JFrame {
 
                 if (resultSet.next()) {
 
-               //     String fName = resultSet.getString("first_name");
-               //     String lName = resultSet.getString("last_name");
-
                     Home1 home = new Home1();
                     home.setVisible(true);
                     this.dispose();
