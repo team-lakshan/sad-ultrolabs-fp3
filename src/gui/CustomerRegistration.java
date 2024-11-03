@@ -1,6 +1,10 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class CustomerRegistration extends javax.swing.JFrame {
     
@@ -18,7 +22,31 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     public CustomerRegistration() {
         initComponents();
+        loadCustomer("first_name","ASC",jTextField1.getText());
 
+    }
+    private void loadCustomer(String colum,String orderby,String mobile){
+        
+        try {
+            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` ORDER BY '"+colum+"' "+orderby+"");
+            
+            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            model.setRowCount(0);
+            
+            while (resultSet.next()) {    
+                Vector<String> vector = new Vector<>();
+                vector.add(resultSet.getString("mobile"));
+                vector.add(resultSet.getString("first_name"));
+                vector.add(resultSet.getString("last_name"));
+                vector.add(resultSet.getString("email"));
+                vector.add(resultSet.getString("point"));
+                
+                model.addRow(vector);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -82,12 +110,27 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton1.setText("Create Account");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton2.setText("Update Account");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         jButton3.setText("Clerar All");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,6 +212,11 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
         });
         jTable1.setGridColor(new java.awt.Color(51, 0, 255));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
@@ -176,12 +224,22 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name ACS", "Name DESC", "Points ACS", "Points DESC" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         jLabel7.setText("Total Invoice");
 
         jLabel8.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         jLabel8.setText("invoicee count");
+        jLabel8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jLabel8KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -236,6 +294,137 @@ public class CustomerRegistration extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String mobile = jTextField1.getText();
+        String firstname = jTextField2.getText();
+        String lastname = jTextField3.getText();
+        String email = jTextField4.getText();
+        
+        if (mobile.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid Mobile", "Warning", JOptionPane.WARNING_MESSAGE);    
+        } else if (firstname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (lastname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email", "warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `mobile` = '"+mobile+"' OR `email` = '"+email+"'");
+                
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "Customer already regisitered", "warning", JOptionPane.WARNING_MESSAGE);
+                    
+                } else{
+                    MySQL.executeIUD("INSERT INTO `customer`(`mobile`,`first_name`,`last_name`,`email`,`point`) "
+                            + "VALUE ('"+mobile+"','"+firstname+"','"+lastname+"','"+email+"','0') ");
+                }
+                
+                loadCustomer("first_name","ASC",jTextField1.getText());
+                reset();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String mobile = jTextField1.getText();
+        String firstname = jTextField2.getText();
+        String lastname = jTextField3.getText();
+        String email = jTextField4.getText();
+        
+       
+        if (firstname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (lastname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);  
+        } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email", "warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `email` = '"+email+"'");
+                
+                boolean canUpdate = false;
+                
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "Customer already regisitered", "warning", JOptionPane.WARNING_MESSAGE);
+                    
+                    if (resultSet.getString(mobile).equals(mobile)) {
+                        canUpdate = true;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Email already added", "warning", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else{
+                    canUpdate = true;
+                
+                
+                if (canUpdate) {
+                    MySQL.executeIUD("UPDATE `customer` SET `first_name` = '"+firstname+"',`last_name` = '"+lastname+"',`email` = '"+email+"'"
+                            + "WHERE `mobile` = '"+mobile+"'");
+                   }
+                
+                    loadCustomer("first_name","ASC",jTextField1.getText());
+                    reset();
+                }
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        reset();
+        loadCustomer("first_name","ASC",jTextField1.getText());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        search();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jLabel8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel8KeyReleased
+        search();
+    }//GEN-LAST:event_jLabel8KeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.getSelectedRow();
+        
+        String mobile = String.valueOf(jTable1.getValueAt(row, 0));
+        String fname = String.valueOf(jTable1.getValueAt(row, 1));
+        String lname = String.valueOf(jTable1.getValueAt(row, 2));
+        String email = String.valueOf(jTable1.getValueAt(row, 3));
+        
+        jTextField1.setText(mobile);
+        jTextField1.setEditable(false);
+        
+        jTextField2.setText(fname);
+        jTextField3.setText(lname);
+        jTextField4.setText(email);
+        
+        try {
+            
+            ResultSet resultSet = MySQL.executeSearch("SELECT COUNT(id) FROM `invoice` WHERE `customer_mobile` = '"+mobile+"'");
+            
+            if (resultSet.next()) {
+                jLabel8.setText(resultSet.getString(1));
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     public static void main(String args[]) {
 
         FlatGitHubDarkIJTheme.setup();
@@ -270,5 +459,34 @@ public class CustomerRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField1.grabFocus();
+        
+        jTextField1.setEditable(true);
+        jTable1.clearSelection();
+    }
+
+    private void search() {
+        int sort = jComboBox1.getSelectedIndex();
+        
+        if (sort == 0) {
+            loadCustomer("first_name","ASC",jTextField1.getText()); 
+        } else if (sort == 1) {
+            loadCustomer("first_name","ASC",jTextField1.getText());
+        
+        } else if (sort == 2) {
+            loadCustomer("first_name","ASC",jTextField1.getText());
+        
+        } else if (sort == 3) {
+            loadCustomer("first_name","ASC",jTextField1.getText());
+        
+        }
+    }
+    }
 
 }
