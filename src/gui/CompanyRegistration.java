@@ -299,7 +299,6 @@ public class CompanyRegistration extends javax.swing.JDialog {
             
 //            //sr.jTable2.setText(name);
 //            sr.getJlable().setText(name);
-                
 //               sr.setCompanyName(name);
 
                  sr.setCompanyName(name);

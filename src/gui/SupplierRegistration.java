@@ -8,14 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.MySQL;
 
+
 public class SupplierRegistration extends javax.swing.JFrame {
-    
+
     private GRN grn;
-    
-    public void setGrn(GRN grn){
+
+    public void setGrn(GRN grn) {
         this.grn = grn;
     }
-    
+
     private String companyId;
 
     public void setCompanyId(String companyId) {
@@ -26,25 +27,25 @@ public class SupplierRegistration extends javax.swing.JFrame {
         initComponents();
         loadSupplier("first_name", "ASC", "");
     }
-    
+
     public void setCompanyName(String name) {
         jLabel2.setText(name);
     }
-    
+
     public void mobileGrabFocus() {
         jTextField1.grabFocus();
     }
-    
-    private void loadSupplier(String column, String orderby, String mobile){
-    
+
+    private void loadSupplier(String column, String orderby, String mobile) {
+
         try {
-            
+
             ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `supplier` INNER JOIN `company` ON"
                     + "`supplier`.`company_id` = `company`.`id` WHERE `mobile` LIKE '" + mobile + "%' ORDER BY `" + column + "` " + orderby + " ");
-            
+
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
+
             while (resultSet.next()) {
                 Vector<String> vector = new Vector<>();
                 vector.add(resultSet.getString("mobile"));
@@ -56,12 +57,11 @@ public class SupplierRegistration extends javax.swing.JFrame {
                 model.addRow(vector);
 
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
-    
+
     }
 
     @SuppressWarnings("unchecked")
@@ -128,8 +128,18 @@ public class SupplierRegistration extends javax.swing.JFrame {
         });
 
         jButton4.setText("Clear All");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setToolTipText("enter valid mobile");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jTextField4.setToolTipText("@ and gmail.com required");
 
@@ -225,6 +235,11 @@ public class SupplierRegistration extends javax.swing.JFrame {
         jLabel7.setText("Supplier Sort By");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name ASC", "Name DESC", "Company ASC", "Company DESC" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel8.setText("Total GRN :");
 
@@ -320,12 +335,12 @@ public class SupplierRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         String mobile = jTextField1.getText();
         String fname = jTextField3.getText();
         String lname = jTextField2.getText();
         String email = jTextField4.getText();
-        
+
         if (companyId == null) {
             JOptionPane.showMessageDialog(this, "Please Select a Company", "warning", JOptionPane.WARNING_MESSAGE);
 
@@ -346,12 +361,12 @@ public class SupplierRegistration extends javax.swing.JFrame {
 
         } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
             JOptionPane.showMessageDialog(this, "Please Enter vaild Email", "warning", JOptionPane.WARNING_MESSAGE);
-        }else{
-        
+        } else {
+
             try {
-                
-                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `supplier` WHERE `mobile`='"+mobile+"' OR `email`='"+email+"'");
-                
+
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `supplier` WHERE `mobile`='" + mobile + "' OR `email`='" + email + "'");
+
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "This Supplier Already Registered", "warning", JOptionPane.WARNING_MESSAGE);
                 } else {
@@ -364,22 +379,22 @@ public class SupplierRegistration extends javax.swing.JFrame {
                     loadSupplier("first_name", "ASC", "");
                     reset();
                 }
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        
+
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         String mobile = jTextField1.getText();
         String fname = jTextField3.getText();
         String lname = jTextField2.getText();
         String email = jTextField4.getText();
-        
+
         if (companyId == null) {
             JOptionPane.showMessageDialog(this, "Please Select a Company", "warning", JOptionPane.WARNING_MESSAGE);
 
@@ -400,42 +415,42 @@ public class SupplierRegistration extends javax.swing.JFrame {
 
         } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
             JOptionPane.showMessageDialog(this, "Please Enter vaild Email", "warning", JOptionPane.WARNING_MESSAGE);
-        }else{
-        
+        } else {
+
             try {
-                
-                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `supplier` WHERE `mobile`='"+mobile+"' OR `email`='"+email+"'");
-                
+
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `supplier` WHERE `mobile`='" + mobile + "' OR `email`='" + email + "'");
+
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "This Supplier Already Registered", "warning", JOptionPane.WARNING_MESSAGE);
                 } else {
 
                     String a;
-                    
+
                     if (jLabel2.equals(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 4)))) {
                         //company update not required
                         a = "";
-                        
+
                     } else {
                         //company update required
-                        a = ", `company_id` = '"+companyId+"' ";
+                        a = ", `company_id` = '" + companyId + "' ";
                     }
-                    
+
                     MySQL.executeIUD("UPDATE `supplier` SET"
-                            + " `first_name`='"+fname+"', `last_name`='"+lname+"', `email`='"+email+"' "+a+" WHERE `mobile`='"+mobile+"' ");
-                
+                            + " `first_name`='" + fname + "', `last_name`='" + lname + "', `email`='" + email + "' " + a + " WHERE `mobile`='" + mobile + "' ");
+
                     reset();
                 }
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+
         int row = jTable1.getSelectedRow();
 
         jTextField1.setText(String.valueOf(jTable1.getValueAt(row, 0)));
@@ -445,9 +460,9 @@ public class SupplierRegistration extends javax.swing.JFrame {
         jLabel2.setText(String.valueOf(jTable1.getValueAt(row, 4)));
 
         jTextField1.setEnabled(false);
-        
+
         try {
-            
+
             ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `grn` INNER JOIN `grn_item`"
                     + "ON `grn`.`id` = `grn_item`.`grn_id` WHERE `grn`.`supplier_mobile` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
 
@@ -488,14 +503,25 @@ public class SupplierRegistration extends javax.swing.JFrame {
 
                 }
             }
-            
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
-    
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        reset();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        search();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        search();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -533,7 +559,7 @@ public class SupplierRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
-private void reset() {
+    private void reset() {
 
         jTextField1.setText("");
         jTextField2.setText("");
@@ -547,6 +573,20 @@ private void reset() {
         jTextField1.grabFocus();
         loadSupplier("first_name", "ASC", "");
         jTextField1.setEnabled(true);
+    }
+
+    private void search() {
+        String mobile = jTextField1.getText();
+
+        if (jComboBox1.getSelectedIndex() == 0) {
+            loadSupplier("first_name", "ASC", mobile);
+        } else if (jComboBox1.getSelectedIndex() == 1) {
+            loadSupplier("first_name", "DESC", mobile);
+        } else if (jComboBox1.getSelectedIndex() == 2) {
+            loadSupplier("company`.`name", "ASC", mobile);
+        } else if (jComboBox1.getSelectedIndex() == 3) {
+            loadSupplier("company`.`name", "DESC", mobile);
+        }
     }
 
 }
