@@ -1,6 +1,9 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import util.MySQL;
 
 public class SignIn extends javax.swing.JFrame {
 
@@ -130,9 +133,43 @@ public class SignIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        Home1 home = new Home1();
-        home.setVisible(true);
-        this.dispose();
+        String email = jTextField1.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your email", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
+                + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+
+            JOptionPane.showMessageDialog(this, "Invalid email", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (password.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            try {
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "'");
+
+                if (resultSet.next()) {
+
+               //     String fName = resultSet.getString("first_name");
+               //     String lName = resultSet.getString("last_name");
+
+                    Home1 home = new Home1();
+                    home.setVisible(true);
+                    this.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
