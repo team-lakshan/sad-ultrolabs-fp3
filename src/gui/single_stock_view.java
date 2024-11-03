@@ -1,9 +1,51 @@
 package gui;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import util.MySQL;
+
 public class single_stock_view extends javax.swing.JFrame {
 
     public single_stock_view(java.awt.Frame parent, boolean model, String product_id,String brand,String name,String sell_price,String quantity,String stockIn,String stockOut) {
-        initComponents();    
+        initComponents();  
+        jLabel9.setText(product_id);
+        jLabel10.setText(brand);
+        jLabel11.setText(name);
+        jLabel12.setText(sell_price);
+        jLabel13.setText(quantity);
+        jLabel14.setText(stockIn);
+        jLabel15.setText(stockOut);
+        
+        try {
+            String id = product_id;
+
+            String sql = "SELECT image_data FROM image WHERE product_id = ?";
+            PreparedStatement pstmt = MySQL.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(id));
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                byte[] imageData = rs.getBytes("image_data");
+                ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
+                Image image = ImageIO.read(bais);
+                ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(jLabel16.getWidth(), jLabel16.getHeight(), Image.SCALE_SMOOTH));
+                jLabel16.setIcon(imageIcon);
+            } else {
+                jLabel16.setText("No image found");
+            }
+
+            rs.close();
+            pstmt.close();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error loading image: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
     
     @SuppressWarnings("unchecked")

@@ -1,6 +1,12 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import util.MySQL;
 
 public class stock_managment extends javax.swing.JFrame {
 
@@ -15,9 +21,205 @@ public class stock_managment extends javax.swing.JFrame {
     public void setraf(Return_and_Refund raf) {
         this.raf = raf;
     }
+    
+    Date date = new Date();
+    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
     public stock_managment() {
         initComponents();
+        loadStock();
+        jComboBox2.grabFocus();
+        jComboBox2.setEnabled(false);
+        jLabel12.setText(newDate);
+    }
+    
+    private void loadProduct() {
+        try {
+
+            String query = "SELECT * FROM `product` INNER JOIN `stock` ON `product`.`id` = `stock`.`product_id` "
+                    + " INNER JOIN `brand` ON `brand`.`id` = `product`.`brand_id` "
+                    + " INNER JOIN `category` ON `category`.`id` = `product`.`category_id`"
+                    + " INNER JOIN `size` ON `size`.`id` = `product`.`size_id`"
+                    + " INNER JOIN `colour` ON `colour`.`id` = `product`.`colour_id`";
+
+            int row = jTable2.getSelectedRow();
+
+            if (row != -1) {
+                String pid = String.valueOf(jTable2.getValueAt(row, 1));
+                query += "WHERE `product`.`id` = '" + pid + "' ";
+            }
+
+            if (query.contains("WHERE")) {
+                query += "AND ";
+            } else {
+                query += "WHERE ";
+            }
+
+            String sort = String.valueOf(jComboBox2.getSelectedItem());
+
+            query += "ORDER BY ";
+
+            query = query.replace("WHERE ORDER BY ", "ORDER BY ");
+            query = query.replace("AND ORDER BY ", "ORDER BY ");
+
+            if (sort.equals("Product ID ASC")) {
+                query += "`product`.`id` ASC";
+            } else if (sort.equals("Product ID DESC")) {
+                query += "`product`.`id` DESC";
+            } else if (sort.equals("Brand ID ASC")) {
+                query += "`brand`.`id` ASC";
+            } else if (sort.equals("Brand ID DESC")) {
+                query += "`brand`.`id` DESC";
+            } else if (sort.equals("Brand ASC")) {
+                query += "`brand`.`name` ASC";
+            } else if (sort.equals("Brand DESC")) {
+                query += "`brand`.`name` DESC";
+            } else if (sort.equals("Product ASC")) {
+                query += "`product`.`name` ASC";
+            } else if (sort.equals("Product DESC")) {
+                query += "`product`.`name` DESC";
+            } else if (sort.equals("Category ASC")) {
+                query += "`category`.`name` ASC";
+            } else if (sort.equals("Category DESC")) {
+                query += "`category`.`name` DESC";
+            } else if (sort.equals("Size ASC")) {
+                query += "`size`.`name` ASC";
+            } else if (sort.equals("Size DESC")) {
+                query += "`size`.`name` DESC";
+            } else if (sort.equals("Colour ASC")) {
+                query += "`colour`.`name` ASC";
+            } else if (sort.equals("Colour DESC")) {
+                query += "`colour`.`name` DESC";
+            }
+
+            ResultSet rs = MySQL.executeSearch(query);
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.setRowCount(0);
+
+            while (rs.next()) {
+                Vector<String> v = new Vector<>();
+                v.add(rs.getString("product.id"));
+                v.add(rs.getString("brand.id"));
+                v.add(rs.getString("brand.name"));
+                v.add(rs.getString("product.name"));
+                v.add(rs.getString("category.name"));
+                v.add(rs.getString("size.size"));
+                v.add(rs.getString("colour.name"));
+
+                dtm.addRow(v);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadStock() {
+        try {
+
+            String query = "SELECT * FROM `stock` INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` "
+                    + " INNER JOIN `brand` ON `brand`.`id` = `product`.`brand_id` ";
+
+            if (query.contains("WHERE")) {
+                query += "AND ";
+            } else {
+                query += "WHERE ";
+            }
+
+            double min_price = 0;
+            double max_price = 0;
+
+            if (!jFormattedTextField1.getText().isEmpty()) {
+                min_price = Double.parseDouble(jFormattedTextField1.getText());
+            }
+
+            if (!jFormattedTextField2.getText().isEmpty()) {
+                max_price = Double.parseDouble(jFormattedTextField2.getText());
+            }
+
+            if (min_price > 0 && max_price == 0) {
+                query += "`stock`.`price` >= '" + min_price + "' ";
+
+            } else if (min_price == 0 && max_price > 0) {
+                query += "`stock`.`price` <= '" + max_price + "' ";
+
+            } else if (min_price > 0 && max_price > 0) {
+                query += "`stock`.`price` >= '" + min_price + "' AND `stock`.`price` <= '" + max_price + "' ";
+            }
+
+            Date start = null;
+            Date end = null;
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            if (jDateChooser1.getDate() != null) {
+                start = jDateChooser1.getDate();
+                query += "`stock`.`mfd` > '" + format.format(start) + "' AND ";
+            }
+
+            if (jDateChooser2.getDate() != null) {
+                end = jDateChooser2.getDate();
+                query += "`stock`.`exp` < '" + format.format(end) + "' ";
+            }
+
+            String sort = String.valueOf(jComboBox1.getSelectedItem());
+
+            query += "ORDER BY ";
+
+            query = query.replace("WHERE ORDER BY ", "ORDER BY ");
+            query = query.replace("AND ORDER BY ", "ORDER BY ");
+
+            if (sort.equals("Stock ID ASC")) {
+                query += "`stock`.`id` ASC";
+            } else if (sort.equals("Stock ID DESC")) {
+                query += "`stock`.`id` DESC";
+            } else if (sort.equals("Product ID ASC")) {
+                query += "`product`.`id` ASC";
+            } else if (sort.equals("Product ID DESC")) {
+                query += "`product`.`id` DESC";
+            } else if (sort.equals("Brand ASC")) {
+                query += "`brand`.`id` ASC";
+            } else if (sort.equals("Brand DESC")) {
+                query += "`brand`.`id` DESC";
+            } else if (sort.equals("Name ASC")) {
+                query += "`product`.`name` ASC";
+            } else if (sort.equals("Name DESC")) {
+                query += "`product`.`name` DESC";
+            } else if (sort.equals("Selling Price ASC")) {
+                query += "`stock`.`price` ASC";
+            } else if (sort.equals("Selling Price DESC")) {
+                query += "`stock`.`price` DESC";
+            } else if (sort.equals("Quantity ASC")) {
+                query += "`stock`.`qty` ASC";
+            } else if (sort.equals("Quantity DESC")) {
+                query += "`stock`.`qty` DESC";
+            }
+
+            ResultSet rs = MySQL.executeSearch(query);
+
+            DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
+            dtm.setRowCount(0);
+
+            while (rs.next()) {
+                Vector<String> v = new Vector<>();
+                v.add(rs.getString("stock.id"));
+                v.add(rs.getString("product.id"));
+                v.add(rs.getString("brand.name"));
+                v.add(rs.getString("product.name"));
+                v.add(rs.getString("stock.price"));
+                v.add(rs.getString("qty"));
+                v.add(rs.getString("mfd"));
+                v.add(rs.getString("exp"));
+
+                dtm.addRow(v);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -65,12 +267,27 @@ public class stock_managment extends javax.swing.JFrame {
         jFormattedTextField2.setText("0");
 
         jButton5.setText("Find");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Stock in");
 
         jButton6.setText("Find");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Clear All");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +323,11 @@ public class stock_managment extends javax.swing.JFrame {
         jLabel2.setText("Sort By");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stock ID ASC", "Stock ID DESC", "Product ID ASC", "Product ID DESC", "Brand ASC", "Brand DESC", "Name ASC", "Name DESC", "Selling Price ASC", "Selling Price DESC", "Quantity ASC", "Quantity DESC" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,8 +427,18 @@ public class stock_managment extends javax.swing.JFrame {
         jLabel6.setText("Sort By");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product ID ASC", "Product ID DESC", "Brand ID ASC", "Brand ID DESC", "Brand ASC", "Brand DESC", "Product ASC", "Product DESC", "Category ASC", "Category DESC", "Size ASC", "Size DESC", "Colour ASC", "Colour DESC" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jButton3.setText("Clear All");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Related Products");
@@ -268,6 +500,37 @@ public class stock_managment extends javax.swing.JFrame {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
 
+        loadProduct();
+        jComboBox2.setEnabled(true);
+
+        /*if (evt.getClickCount() == 1) {
+            if (raf != null) {
+                int selectedRow = jTable2.getSelectedRow();
+                raf.getjLabel10().setText(String.valueOf(jTable2.getValueAt(selectedRow, 0)));
+                raf.getjLabel13().setText(String.valueOf(jTable2.getValueAt(selectedRow, 2)));
+                raf.getjLabel17().setText(String.valueOf(jTable2.getValueAt(selectedRow, 3)));
+                raf.getjLabel15().setText(String.valueOf(jTable2.getValueAt(selectedRow, 4)));
+                raf.getjLabel19().setText(String.valueOf(jTable2.getValueAt(selectedRow, 6)));
+                raf.getjLabel21().setText(String.valueOf(jTable2.getValueAt(selectedRow, 7)));
+                raf.getjLabel27().setText(String.valueOf(jTable2.getValueAt(selectedRow, 5)));
+                this.dispose();
+            }
+        }*/
+
+        /*if (evt.getClickCount() == 2) {
+            if (invoice != null) {
+                int selectedRow2 = jTable2.getSelectedRow();
+                invoice.getjLabel10().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 0)));
+                invoice.getjLabel13().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 2)));
+                invoice.getjLabel17().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 3)));
+                invoice.getjLabel15().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 4)));
+                invoice.getjLabel19().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 6)));
+                invoice.getjLabel21().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 7)));
+                invoice.getjLabel27().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 5)));
+                this.dispose();
+            }
+        }*/
+        
         if (evt.getClickCount() == 3) {
 
             int selectedRow1 = jTable2.getSelectedRow();
@@ -284,6 +547,31 @@ public class stock_managment extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        loadStock();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        loadStock();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        reset();
+        loadStock();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        resetProductUI();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        loadProduct();
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        loadStock();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
@@ -323,4 +611,21 @@ public class stock_managment extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 
+        private void resetProductUI() {
+        jComboBox2.setSelectedIndex(0);
+        DefaultTableModel model2 = (DefaultTableModel) jTable1.getModel();
+        model2.setRowCount(0);
+        jComboBox2.setEnabled(false);
+    }
+
+    private void reset() {
+        jComboBox1.setSelectedIndex(0);
+        jComboBox1.grabFocus();
+        jTable2.clearSelection();
+        jFormattedTextField1.setText("0");
+        jFormattedTextField2.setText("0");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+        jComboBox2.setEnabled(false);
+    }
 }
