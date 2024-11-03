@@ -5,15 +5,16 @@ import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import util.MySQL;
 
 public class CustomerRegistration extends javax.swing.JFrame {
-    
+
     private Invoice invoice;
 
     public void setinvoice(Invoice invoice) {
         this.invoice = invoice;
     }
-    
+
     private Return_and_Refund raf;
 
     public void setraf(Return_and_Refund raf) {
@@ -22,28 +23,29 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     public CustomerRegistration() {
         initComponents();
-        loadCustomer("first_name","ASC",jTextField1.getText());
+        loadCustomer("first_name", "ASC", jTextField1.getText());
 
     }
-    private void loadCustomer(String colum,String orderby,String mobile){
-        
+
+    private void loadCustomer(String colum, String orderby, String mobile) {
+
         try {
-            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` ORDER BY '"+colum+"' "+orderby+"");
-            
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` ORDER BY '" + colum + "' " + orderby + "");
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
-            while (resultSet.next()) {    
+
+            while (resultSet.next()) {
                 Vector<String> vector = new Vector<>();
                 vector.add(resultSet.getString("mobile"));
                 vector.add(resultSet.getString("first_name"));
                 vector.add(resultSet.getString("last_name"));
                 vector.add(resultSet.getString("email"));
                 vector.add(resultSet.getString("point"));
-                
+
                 model.addRow(vector);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -299,35 +301,35 @@ public class CustomerRegistration extends javax.swing.JFrame {
         String firstname = jTextField2.getText();
         String lastname = jTextField3.getText();
         String email = jTextField4.getText();
-        
+
         if (mobile.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter mobile", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter mobile", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
-            JOptionPane.showMessageDialog(this, "Please enter valid Mobile", "Warning", JOptionPane.WARNING_MESSAGE);    
+            JOptionPane.showMessageDialog(this, "Please enter valid Mobile", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (firstname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (lastname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
             JOptionPane.showMessageDialog(this, "Invalid email", "warning", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                
-                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `mobile` = '"+mobile+"' OR `email` = '"+email+"'");
-                
+
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `mobile` = '" + mobile + "' OR `email` = '" + email + "'");
+
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Customer already regisitered", "warning", JOptionPane.WARNING_MESSAGE);
-                    
-                } else{
+
+                } else {
                     MySQL.executeIUD("INSERT INTO `customer`(`mobile`,`first_name`,`last_name`,`email`,`point`) "
-                            + "VALUE ('"+mobile+"','"+firstname+"','"+lastname+"','"+email+"','0') ");
+                            + "VALUE ('" + mobile + "','" + firstname + "','" + lastname + "','" + email + "','0') ");
                 }
-                
-                loadCustomer("first_name","ASC",jTextField1.getText());
+
+                loadCustomer("first_name", "ASC", jTextField1.getText());
                 reset();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -339,44 +341,42 @@ public class CustomerRegistration extends javax.swing.JFrame {
         String firstname = jTextField2.getText();
         String lastname = jTextField3.getText();
         String email = jTextField4.getText();
-        
-       
+
         if (firstname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (lastname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);  
+            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
             JOptionPane.showMessageDialog(this, "Invalid email", "warning", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                
-                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `email` = '"+email+"'");
-                
+
+                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `email` = '" + email + "'");
+
                 boolean canUpdate = false;
-                
+
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Customer already regisitered", "warning", JOptionPane.WARNING_MESSAGE);
-                    
+
                     if (resultSet.getString(mobile).equals(mobile)) {
                         canUpdate = true;
                     } else {
                         JOptionPane.showMessageDialog(this, "Email already added", "warning", JOptionPane.WARNING_MESSAGE);
                     }
-                } else{
+                } else {
                     canUpdate = true;
-                
-                
-                if (canUpdate) {
-                    MySQL.executeIUD("UPDATE `customer` SET `first_name` = '"+firstname+"',`last_name` = '"+lastname+"',`email` = '"+email+"'"
-                            + "WHERE `mobile` = '"+mobile+"'");
-                   }
-                
-                    loadCustomer("first_name","ASC",jTextField1.getText());
+
+                    if (canUpdate) {
+                        MySQL.executeIUD("UPDATE `customer` SET `first_name` = '" + firstname + "',`last_name` = '" + lastname + "',`email` = '" + email + "'"
+                                + "WHERE `mobile` = '" + mobile + "'");
+                    }
+
+                    loadCustomer("first_name", "ASC", jTextField1.getText());
                     reset();
                 }
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -385,7 +385,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         reset();
-        loadCustomer("first_name","ASC",jTextField1.getText());
+        loadCustomer("first_name", "ASC", jTextField1.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -398,28 +398,28 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.getSelectedRow();
-        
+
         String mobile = String.valueOf(jTable1.getValueAt(row, 0));
         String fname = String.valueOf(jTable1.getValueAt(row, 1));
         String lname = String.valueOf(jTable1.getValueAt(row, 2));
         String email = String.valueOf(jTable1.getValueAt(row, 3));
-        
+
         jTextField1.setText(mobile);
         jTextField1.setEditable(false);
-        
+
         jTextField2.setText(fname);
         jTextField3.setText(lname);
         jTextField4.setText(email);
-        
+
         try {
-            
-            ResultSet resultSet = MySQL.executeSearch("SELECT COUNT(id) FROM `invoice` WHERE `customer_mobile` = '"+mobile+"'");
-            
+
+            ResultSet resultSet = MySQL.executeSearch("SELECT COUNT(id) FROM `invoice` WHERE `customer_mobile` = '" + mobile + "'");
+
             if (resultSet.next()) {
                 jLabel8.setText(resultSet.getString(1));
-                
+
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -466,27 +466,25 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField1.grabFocus();
-        
+
         jTextField1.setEditable(true);
         jTable1.clearSelection();
     }
 
     private void search() {
         int sort = jComboBox1.getSelectedIndex();
-        
+
         if (sort == 0) {
-            loadCustomer("first_name","ASC",jTextField1.getText()); 
+            loadCustomer("first_name", "ASC", jTextField1.getText());
         } else if (sort == 1) {
-            loadCustomer("first_name","ASC",jTextField1.getText());
-        
+            loadCustomer("first_name", "ASC", jTextField1.getText());
+
         } else if (sort == 2) {
-            loadCustomer("first_name","ASC",jTextField1.getText());
-        
+            loadCustomer("first_name", "ASC", jTextField1.getText());
+
         } else if (sort == 3) {
-            loadCustomer("first_name","ASC",jTextField1.getText());
-        
+            loadCustomer("first_name", "ASC", jTextField1.getText());
+
         }
     }
-    }
-
 }
