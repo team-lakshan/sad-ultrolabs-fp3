@@ -212,13 +212,13 @@ public class product_registration extends javax.swing.JFrame {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-            if (jDateChooser1.getDate() != null) {
-                start = jDateChooser1.getDate();
+            if (jDateChooser3.getDate() != null) {
+                start = jDateChooser3.getDate();
                 query += "`stock`.`mfd` > '" + format.format(start) + "' AND ";
             }
 
-            if (jDateChooser2.getDate() != null) {
-                end = jDateChooser2.getDate();
+            if (jDateChooser4.getDate() != null) {
+                end = jDateChooser4.getDate();
                 query += "`stock`.`exp` < '" + format.format(end) + "' ";
             }
 
@@ -1290,8 +1290,8 @@ public class product_registration extends javax.swing.JFrame {
         model2.setRowCount(0);
         jFormattedTextField1.setText("0");
         jFormattedTextField2.setText("0");
-        jDateChooser1.setDate(null);
-        jDateChooser2.setDate(null);
+        jDateChooser3.setDate(null);
+        jDateChooser4.setDate(null);
         jComboBox2.setEnabled(false);
         jButton5.setEnabled(false);
         jButton6.setEnabled(false);
