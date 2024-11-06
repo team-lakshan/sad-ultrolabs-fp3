@@ -1,15 +1,106 @@
 package gui;
 
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import util.MYSQL;
+
 public class AddressView extends javax.swing.JDialog {
+
+    private String email;
+    private HashMap<String, String> cityMap = new HashMap<>();
+    private HashMap<String, String> provinceMap = new HashMap<>();
+    private HashMap<String, String> districtMap = new HashMap<>();
 
     public AddressView(java.awt.Frame parent, boolean modal, String email) {
 
         super(parent, modal);
-
         initComponents();
-        
+        jLabel5.setText(email);
+        this.email = email;
+        loardProvince();
+        loardCity();
+        loardDistric();
+        loardAddtess();
+
     }
-    
+
+    private void loardAddtess() {
+        try {
+
+            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee_address` INNER JOIN `city` ON `employee_address`.`city_id` = `city`.`id` INNER JOIN `district` ON `employee_address`.`district_id` = `district`.`id` INNER JOIN `province` ON `employee_address`.`province_id` = `province`.`id` WHERE `employee_email` = '" + this.email + "'");
+
+            DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+            tableModel.setRowCount(0);
+
+            while (rs.next()) {
+                Vector<String> vector = new Vector<>();
+                vector.add(rs.getString("id"));
+                vector.add(rs.getString("line1"));
+                vector.add(rs.getString("line2"));
+                vector.add(rs.getString("city.name"));
+                vector.add(rs.getString("district.name"));
+                vector.add(rs.getString("province.name"));
+
+                tableModel.addRow(vector);
+            }
+            jTable2.setModel(tableModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loardProvince() {
+        try {
+            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `province`");
+
+            Vector<String> vector = new Vector<>();
+            vector.add("Select");
+            while (rs.next()) {
+                vector.add(rs.getString("name"));
+                provinceMap.put(rs.getString("name"), rs.getString("id"));
+            }
+            DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
+            jComboBox3.setModel(comboModel);
+        } catch (Exception e) {
+        }
+    }
+
+    private void loardDistric() {
+        try {
+            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `district`");
+
+            Vector<String> vector = new Vector<>();
+            vector.add("Select");
+            while (rs.next()) {
+                vector.add(rs.getString("name"));
+                districtMap.put(rs.getString("name"), rs.getString("id"));
+            }
+            DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
+            jComboBox2.setModel(comboModel);
+        } catch (Exception e) {
+        }
+    }
+
+    private void loardCity() {
+        try {
+            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `city`");
+
+            Vector<String> vector = new Vector<>();
+            vector.add("Select");
+            while (rs.next()) {
+                vector.add(rs.getString("name"));
+                cityMap.put(rs.getString("name"), rs.getString("id"));
+            }
+            DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
+            jComboBox1.setModel(comboModel);
+        } catch (Exception e) {
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,10 +140,25 @@ public class AddressView extends javax.swing.JDialog {
         jLabel4.setText("City");
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTable2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,6 +177,11 @@ public class AddressView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -85,8 +196,18 @@ public class AddressView extends javax.swing.JDialog {
 
         jComboBox3.setMaximumRowCount(9);
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Clear");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,6 +301,146 @@ public class AddressView extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String line1 = jTextField1.getText();
+        String line2 = jTextField2.getText();
+        String province = String.valueOf(jComboBox3.getSelectedItem());
+        String distric = String.valueOf(jComboBox2.getSelectedItem());
+        String city = String.valueOf(jComboBox1.getSelectedItem());
+
+        if (line1.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fill Line1 Reqest...", "Waring", JOptionPane.WARNING_MESSAGE);
+        } else if (line2.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fill Line2 Reques...", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (city.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select City...", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (province.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select province...", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (distric.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Select distric...", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            boolean isFound = false;
+
+            for (int i = 0; i < jTable2.getRowCount(); i++) {
+                String getLine1 = String.valueOf(jTable2.getValueAt(i, 1));
+                String getLine2 = String.valueOf(jTable2.getValueAt(i, 2));
+                String getCity = String.valueOf(jTable2.getValueAt(i, 3));
+                String getdistric = String.valueOf(jTable2.getValueAt(i, 3));
+                String getprovince = String.valueOf(jTable2.getValueAt(i, 3));
+
+                if (getLine1.equals(line1) && getLine2.equals(line2) && getCity.equals(city) && getdistric.equals(distric) && getprovince.equals(province)) {
+                    JOptionPane.showMessageDialog(this, "Address Already Added...", "Warning", JOptionPane.WARNING_MESSAGE);
+                    isFound = true;
+                    break;
+                }
+            }
+
+            if (!isFound) {
+                try {
+
+                    MYSQL.executeIUD("INSERT INTO `employee_address` (`line1`,`line2`,`city_id`,`employee_email`,`district_id`,`province_id`) VALUES ('" + line1 + "','" + line2 + "','" + cityMap.get(city) + "','" + this.email + "','" + districtMap.get(distric) + "','" + provinceMap.get(province) + "')");
+                    loardAddtess();
+                    reset();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        int row = jTable2.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Plese Select A Row", "Waring", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String line1 = jTextField1.getText();
+            String line2 = jTextField2.getText();
+            String province = String.valueOf(jComboBox3.getSelectedItem());
+            String distric = String.valueOf(jComboBox2.getSelectedItem());
+            String city = String.valueOf(jComboBox1.getSelectedItem());
+
+            if (line1.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Fill Line1 Reqest...", "Waring", JOptionPane.WARNING_MESSAGE);
+            } else if (line2.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Fill Line2 Reques...", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else if (city.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Select City...", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else if (province.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Select province...", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else if (distric.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Select distric...", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                boolean isFound = false;
+
+                for (int i = 0; i < jTable2.getRowCount(); i++) {
+                    String getLine1 = String.valueOf(jTable2.getValueAt(i, 1));
+                    String getLine2 = String.valueOf(jTable2.getValueAt(i, 2));
+                    String getCity = String.valueOf(jTable2.getValueAt(i, 3));
+                    String getdistric = String.valueOf(jTable2.getValueAt(i, 3));
+                    String getprovince = String.valueOf(jTable2.getValueAt(i, 3));
+
+                    if (getLine1.equals(line1) && getLine2.equals(line2) && getCity.equals(city) && getdistric.equals(distric) && getprovince.equals(province)) {
+                        JOptionPane.showMessageDialog(this, "Address Already Added...", "Warning", JOptionPane.WARNING_MESSAGE);
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (!isFound) {
+                    try {
+
+                        MYSQL.executeIUD("UPDATE `employee_address` SET `line1` = '" + line1 + "' ,`line2`= '" + line2 + "' ,`city_id`= '" + cityMap.get(city) + "',`district_id`= '" + districtMap.get(distric) + "',`province_id`= '" + provinceMap.get(province) + "'  WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
+                        loardAddtess();
+                        reset();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        int row = jTable2.getSelectedRow();
+
+        jTextField1.setText(String.valueOf(jTable2.getValueAt(row, 1)));
+        jTextField2.setText(String.valueOf(jTable2.getValueAt(row, 2)));
+        jComboBox1.setSelectedItem(String.valueOf(jTable2.getValueAt(row, 3)));
+        jComboBox2.setSelectedItem(String.valueOf(jTable2.getValueAt(row, 4)));
+        jComboBox3.setSelectedItem(String.valueOf(jTable2.getValueAt(row, 5)));
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = jTable2.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Select Row", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                MYSQL.executeIUD("DELETE FROM `employee_address` WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
+                loardAddtess();
+                reset();
+                JOptionPane.showMessageDialog(this, "Succesfully Remove Address Data...", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        reset();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -201,5 +462,14 @@ public class AddressView extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jTable2.clearSelection();
+    }
 
 }
