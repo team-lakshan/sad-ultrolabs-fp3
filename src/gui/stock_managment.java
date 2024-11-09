@@ -517,7 +517,7 @@ public class stock_managment extends javax.swing.JFrame {
             }
         }*/
 
-        /*if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             if (invoice != null) {
                 int selectedRow2 = jTable2.getSelectedRow();
                 invoice.getjLabel10().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 0)));
@@ -529,7 +529,7 @@ public class stock_managment extends javax.swing.JFrame {
                 invoice.getjLabel27().setText(String.valueOf(jTable2.getValueAt(selectedRow2, 5)));
                 this.dispose();
             }
-        }*/
+        }
         
         if (evt.getClickCount() == 3) {
 

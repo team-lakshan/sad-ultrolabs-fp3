@@ -410,6 +410,15 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jTextField2.setText(fname);
         jTextField3.setText(lname);
         jTextField4.setText(email);
+        
+        if (evt.getClickCount() == 2) {
+            if (invoice != null) {
+                invoice.getjLabel7().setText(String.valueOf(jTable1.getValueAt(row, 0)));
+                invoice.getjLabel8().setText(String.valueOf(jTable1.getValueAt(row, 1)));
+                invoice.getjTextField1().setText(String.valueOf(jTable1.getValueAt(row, 4)));
+                this.dispose();
+            }
+        }
 
         try {
 
