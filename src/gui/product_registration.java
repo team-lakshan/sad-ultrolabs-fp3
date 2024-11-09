@@ -808,7 +808,7 @@ public class product_registration extends javax.swing.JFrame {
         }
 
 
-        /*if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             if (grn != null) {
                 grn.getjTextField4().setText(String.valueOf(jTable1.getValueAt(selectedRow, 0)));
                 grn.getjLabel21().setText(String.valueOf(jTable1.getValueAt(selectedRow, 2)));
@@ -819,7 +819,7 @@ public class product_registration extends javax.swing.JFrame {
                 this.dispose();
 
             }
-        }*/
+        }
         
         
         if (evt.getClickCount() == 3) {

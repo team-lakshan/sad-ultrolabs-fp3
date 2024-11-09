@@ -4,8 +4,10 @@ import java.awt.Color;
 
 public class Home1 extends javax.swing.JFrame {
 
-    public Home1() {
+    public Home1(String email, String fName, String lName) {
         initComponents();
+        jLabel13.setText(email);
+        jLabel12.setText(fName + " " + lName);
     }
 
     @SuppressWarnings("unchecked")

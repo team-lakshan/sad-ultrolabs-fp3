@@ -1,11 +1,111 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import util.GRNItem;
+import util.MySQL;
 
 public class GRN extends javax.swing.JFrame {
 
+    HashMap<String, GRNItem> grnItemMap = new HashMap<>();
+
     public GRN() {
         initComponents();
+        generateGRNId();
+        jLabel19.setText(SignIn.getEmployeeEmail());
+        loadGRNItems();
+    }
+
+    private void generateGRNId() {
+
+//        long id = System.currentTimeMillis();
+//        jTextField2.setText(String.valueOf(id));
+        long id = System.currentTimeMillis() % Integer.MAX_VALUE; // Ensures it fits within int range
+        jTextField2.setText(String.valueOf((int) id)); // Cast to int for safety
+    }
+
+    //mobile
+    public JTextField getjTextField3() {
+        return jTextField3;
+    }
+
+    //name
+    public JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    //product ID
+    public JTextField getjTextField4() {
+        return jTextField4;
+    }
+
+    //brand
+    public JLabel getjLabel20() {
+        return jLabel20;
+    }
+
+    //product name
+    public JLabel getjLabel21() {
+        return jLabel21;
+    }
+
+    //category
+    public JLabel getjLabel28() {
+        return jLabel28;
+    }
+
+    //color
+    public JLabel getjLabel29() {
+        return jLabel29;
+    }
+
+    //size
+    public JLabel getjLabel30() {
+        return jLabel30;
+    }
+
+    private void loadGRNItems() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        double total = 0;
+
+        for (GRNItem grnItem : grnItemMap.values()) {
+
+            Vector<String> vector = new Vector<>();
+            vector.add(grnItem.getProductId());
+            vector.add(grnItem.getBrandName());
+            vector.add(grnItem.getProductName());
+            vector.add(grnItem.getCategory());
+            vector.add(grnItem.getColor());
+            vector.add(grnItem.getSize());
+            vector.add(String.valueOf(grnItem.getQty()));
+            vector.add(String.valueOf(grnItem.getBuyingPrice()));
+            vector.add(String.valueOf(grnItem.getSellingPrice()));
+            vector.add(format.format(grnItem.getMfd()));
+            vector.add(format.format(grnItem.getExp()));
+
+            double itemTotal = grnItem.getQty() * grnItem.getBuyingPrice();
+            total += itemTotal;
+            vector.add(String.valueOf(itemTotal));
+
+            model.addRow(vector);
+        }
+
+        jLabel16.setText(String.valueOf(total));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -61,7 +161,6 @@ public class GRN extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("GRN");
@@ -104,8 +203,18 @@ public class GRN extends javax.swing.JFrame {
         jLabel12.setText("Stock out");
 
         jButton2.setText("Add New GRN");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Select a Product");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +294,11 @@ public class GRN extends javax.swing.JFrame {
         jLabel15.setText("Payment");
 
         jButton5.setText("Save GRN");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("00");
@@ -195,6 +309,11 @@ public class GRN extends javax.swing.JFrame {
 
         jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormattedTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jFormattedTextField4KeyReleased(evt);
+            }
+        });
 
         jButton6.setText("View Previous GRNs");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -247,13 +366,6 @@ public class GRN extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
-
-        jButton7.setText("Update GRN");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,7 +421,7 @@ public class GRN extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel8)
@@ -325,12 +437,8 @@ public class GRN extends javax.swing.JFrame {
                                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jFormattedTextField1)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 8, Short.MAX_VALUE))
@@ -393,8 +501,7 @@ public class GRN extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton7))
+                            .addComponent(jButton3))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -462,12 +569,200 @@ public class GRN extends javax.swing.JFrame {
         pg.setGrn(this);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Update_GRN ug = new Update_GRN();
-        ug.setVisible(true);
-        ug.setGrn(this);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
+        try {
+
+            String qty = jFormattedTextField1.getText();
+            String buy_price = jFormattedTextField2.getText();
+            String sell_price = jFormattedTextField3.getText();
+            Date mfd = jDateChooser1.getDate();
+            Date exp = jDateChooser2.getDate();
+
+            String supMobile = jTextField3.getText();
+            String supName = jLabel17.getText();
+            String pid = String.valueOf(jTextField4.getText());
+            String pname = jLabel21.getText();
+            String brand = jLabel20.getText();
+            String category = jLabel28.getText();
+            String color = jLabel29.getText();
+            String size = jLabel30.getText();
+
+            if (supMobile.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select Supplier Mobile", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (supName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select Supplier Name", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (pid.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select Product", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (pname.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select Product", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (brand.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select Brand", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (category.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select category", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (color.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select product color", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (size.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Select size", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (buy_price.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Buying Price", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (sell_price.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Selling Price", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (mfd == null) {
+                JOptionPane.showMessageDialog(this, "Please Enter Manufacture Date", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (exp == null) {
+                JOptionPane.showMessageDialog(this, "Please Enter Expired Date", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (qty.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Quantity", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+
+                //validate  here....
+                GRNItem grnItem = new GRNItem();
+                grnItem.setProductId(jTextField4.getText());
+                grnItem.setBrandName(jLabel20.getText());
+                grnItem.setProductName(jLabel21.getText());
+                grnItem.setCategory(jLabel28.getText());
+                grnItem.setColor(jLabel29.getText());
+                grnItem.setSize(jLabel30.getText());
+                grnItem.setQty(Double.parseDouble(qty));
+                grnItem.setBuyingPrice(Double.parseDouble(buy_price));
+                grnItem.setSellingPrice(Double.parseDouble(sell_price));
+                grnItem.setMfd(mfd);
+                grnItem.setExp(exp);
+
+                if (grnItemMap.get(jTextField4.getText()) == null) {
+                    grnItemMap.put(jTextField4.getText(), grnItem);
+                    loadGRNItems();
+                } else {
+
+                    GRNItem found = grnItemMap.get(jTextField4.getText());
+
+                    if (found.getExp().compareTo(exp) == 0
+                            && found.getMfd().compareTo(mfd) == 0
+                            && found.getBuyingPrice() == Double.parseDouble(buy_price)
+                            && found.getSellingPrice() == Double.parseDouble(sell_price)) {
+                        found.setQty(found.getQty() + Double.parseDouble(qty));
+                        loadGRNItems();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "GRN item already exsists with a differents and prices", "Warning", JOptionPane.ERROR_MESSAGE);
+
+                        reset();
+                    }
+
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        reset();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+//
+            String grnNumber = jTextField2.getText();
+            String supplierMobile = jTextField3.getText();
+            String employeeEmail = jLabel19.getText();
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            String paidAmount = jFormattedTextField4.getText();
+
+            String total = jLabel16.getText();
+            String payment = jFormattedTextField4.getText();
+
+            if (total.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Total is not complete", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else if (payment.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter payment ", "warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                MySQL.executeIUD("INSERT INTO `grn` VALUES ('" + grnNumber + "','" + supplierMobile + "','" + dateTime + "',"
+                        + "'" + employeeEmail + "','" + paidAmount + "')");
+
+                for (GRNItem grnItem : grnItemMap.values()) {
+
+                    ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `stock` WHERE"
+                            + "`product_id`='" + grnItem.getProductId() + "' AND"
+                            + "`price`='" + grnItem.getSellingPrice() + "' AND"
+                            + "`mfd`='" + sdf.format(grnItem.getMfd()) + "' AND"
+                            + "`exp`='" + sdf.format(grnItem.getExp()) + "'");
+
+                    String sid = "";
+
+                    if (resultSet.next()) {
+                        //existing stock
+
+                        sid = resultSet.getString("id");
+
+                        String currentQty = resultSet.getString("qty");
+                        String updateQuantity = String.valueOf(Double.parseDouble(currentQty) + grnItem.getQty());
+
+                        MySQL.executeIUD("UPDATE `stock` SET `qty` = '" + updateQuantity + "' WHERE `id` = '" + sid + "'");
+
+                    } else {
+                        // new stock
+
+                        MySQL.executeIUD("INSERT INTO `stock` (`product_id`,`qty`,`price`,`mfd`,`exp`)"
+                                + "VALUES ('" + grnItem.getProductId() + "','" + grnItem.getQty() + "','" + grnItem.getSellingPrice() + "',"
+                                + "'" + sdf.format(grnItem.getMfd()) + "','" + sdf.format(grnItem.getExp()) + "')");
+
+                        System.out.println("added");
+
+                        ResultSet resultSet2 = MySQL.executeSearch("SELECT * FROM `stock` WHERE"
+                                + "`product_id`='" + grnItem.getProductId() + "' AND"
+                                + "`price`='" + grnItem.getSellingPrice() + "' AND"
+                                + "`mfd`='" + sdf.format(grnItem.getMfd()) + "' AND"
+                                + "`exp`='" + sdf.format(grnItem.getExp()) + "'");
+
+                        if (resultSet2.next()) {
+                            sid = resultSet2.getString("id");
+                        }
+
+                    }
+
+                    MySQL.executeIUD("INSERT INTO `grn_item` (`stock_id`,`qty`,`price`,`grn_id`) "
+                            + "VALUES ('" + sid + "','" + grnItem.getQty() + "','" + grnItem.getBuyingPrice() + "','" + grnNumber + "')");
+                    reset();
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jFormattedTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField4KeyReleased
+
+        String total = jLabel16.getText();
+        String payment = jFormattedTextField4.getText();
+
+        if (payment.isEmpty()) {
+            payment = "0";
+        } else if (!payment.matches("^(0|[1-9]\\d*)?(\\.\\d+)?(?<=\\d)$")) {
+
+            jLabel18.setText("INVALID");
+            jLabel18.setForeground(Color.RED);
+
+        } else {
+
+            double balance = Double.parseDouble(payment) - Double.parseDouble(total);
+            jLabel18.setText(String.valueOf(balance));
+            jLabel18.setForeground(Color.WHITE);
+
+        }
+
+    }//GEN-LAST:event_jFormattedTextField4KeyReleased
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
@@ -486,7 +781,6 @@ public class GRN extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -531,5 +825,31 @@ public class GRN extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+
+        
+        jTextField3.setText("");
+        jLabel17.setText("");
+        jTextField4.setText("");
+        jLabel21.setText("");
+        jLabel20.setText("");
+        jFormattedTextField2.setText("");
+        jFormattedTextField3.setText("");
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+        jFormattedTextField1.setText("");
+        jLabel16.setText("");
+        jFormattedTextField4.setText("");
+        jLabel18.setText("");
+        jLabel28.setText("");
+        jLabel29.setText("");
+        jLabel30.setText("");
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+
+    }
 
 }

@@ -7,6 +7,16 @@ import util.MySQL;
 
 public class SignIn extends javax.swing.JFrame {
 
+    private static String employeeEmail;
+
+    public static String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    public static void setEmployeeEmail(String employeeEmail) {
+        SignIn.employeeEmail = employeeEmail;
+    }
+    
     public SignIn() {
         initComponents();
     }
@@ -153,10 +163,14 @@ public class SignIn extends javax.swing.JFrame {
                 ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "'");
 
                 if (resultSet.next()) {
+                    
+                    String fName = resultSet.getString("first_name");
+                        String lName = resultSet.getString("last_name");
 
-                    Home1 home = new Home1();
+                    Home1 home = new Home1(email, fName, lName);
                     home.setVisible(true);
                     this.dispose();
+                    setEmployeeEmail(email);
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
