@@ -164,6 +164,10 @@ public class SignIn extends javax.swing.JFrame {
 
                 if (rs.next()) {
 
+
+                if (resultSet.next()) {
+                    
+
                     ResultSet rs1 = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' AND `employee_type_id` = '2' ");
 
                     if (rs1.next()) {
@@ -186,6 +190,7 @@ public class SignIn extends javax.swing.JFrame {
                         this.dispose();
                         setEmployeeEmail(email);
                     }
+
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid email or Password", "Error", JOptionPane.ERROR_MESSAGE);

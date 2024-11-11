@@ -432,6 +432,11 @@ public class stock_managment extends javax.swing.JFrame {
                 jComboBox2ItemStateChanged(evt);
             }
         });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Clear All");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -572,6 +577,10 @@ public class stock_managment extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         loadStock();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
