@@ -1,11 +1,252 @@
 package gui;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Color;
+import java.io.InputStream;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import util.InvoiceItem;
+import util.MySQL;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Invoice extends javax.swing.JFrame {
 
+    HashMap<String, InvoiceItem> invoiceItemMap = new HashMap<>();
+    HashMap<String, String> paymentMethodMap = new HashMap<>();
+
+    private void loadPaymentMethod() {
+
+        try {
+            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `payment_method`");
+
+            Vector<String> vector = new Vector<>();
+
+            while (resultSet.next()) {
+                vector.add(resultSet.getString("name"));
+                paymentMethodMap.put(resultSet.getString("name"), resultSet.getString("id"));
+            }
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
+            jComboBox1.setModel(model);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadInvoice() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        total = 0;
+
+        for (InvoiceItem invoiceItem : invoiceItemMap.values()) {
+
+            Vector<String> vector = new Vector<>();
+            vector.add(invoiceItem.getStockID());
+            vector.add(invoiceItem.getBrand());
+            vector.add(invoiceItem.getName());
+            vector.add(String.valueOf(invoiceItem.getQty()));
+            vector.add(invoiceItem.getSellingPrice());
+            vector.add(invoiceItem.getMfd());
+            vector.add(invoiceItem.getExp());
+
+            double itemTotal = invoiceItem.getQty() * Double.parseDouble(invoiceItem.getSellingPrice());
+            total += itemTotal;
+            vector.add(String.valueOf(itemTotal));
+
+            model.addRow(vector);
+        }
+
+        totalField.setText(String.valueOf(total));
+
+        //2
+        calculate();
+
+    }
+
+    //mobile
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    //name
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    //stock id
+    public JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    //brand
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
+    //product Name
+    public JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    //selling price
+    public JLabel getjLabel15() {
+        return jLabel15;
+    }
+
+    //MFD
+    public JLabel getjLabel19() {
+        return jLabel19;
+    }
+
+    //EXP
+    public JLabel getjLabel21() {
+        return jLabel21;
+    }
+
+    //qty
+    public JFormattedTextField getjFormattedTextField1() {
+        return jFormattedTextField1;
+    }
+
+    //AvalableQty
+    public JLabel getjLabel27() {
+        return jLabel27;
+    }
+
+    //points
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
     public Invoice() {
         initComponents();
+        generateInvoiceID();
+        loadPaymentMethod();
+        jLabel32.setText(newDate);
+        jLabel3.setText(SignIn.getEmployeeEmail());
+    }
+
+    Date date = new Date();
+    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+
+
+
+    private void generateInvoiceID() {
+        
+        long id = System.currentTimeMillis() % Integer.MAX_VALUE; // Ensures it fits within int range
+        jLabel5.setText(String.valueOf((int) id)); // Cast to int for safety
+    }
+
+    private double total = 0;
+    private double discount = 0;
+    private double payment = 0;
+    private boolean withdrawPoints = false;
+    private double balance = 0;
+    private String paymentMethod = "Select";
+    private double newPoints = 0;
+
+    private void calculate() {
+
+        if (jTable1.getRowCount() <= 0) {
+            JOptionPane.showMessageDialog(this, "Please add items to the invoice first", "Information", JOptionPane.INFORMATION_MESSAGE);
+            totalField.setText("");
+            DiscountField.setText("");
+            jCheckBox1.setSelected(false);
+            jFormattedTextField6.setText("");
+
+        } else {
+
+            //discount
+            if (DiscountField.getText().isEmpty()) {
+                discount = 0;
+            } else {
+                discount = Double.parseDouble(DiscountField.getText());
+            }
+
+            //payment
+            if (paymentField.getText().isEmpty()) {
+                payment = 0;
+            } else {
+                payment = Double.parseDouble(paymentField.getText());
+            }
+
+            total = Double.parseDouble(totalField.getText());
+
+            if (jCheckBox1.isSelected()) {
+                withdrawPoints = true;
+            } else {
+                withdrawPoints = false;
+            }
+
+            paymentMethod = String.valueOf(jComboBox1.getSelectedItem());
+
+            total -= discount;
+
+            if (total < 0) {
+                //error
+            } else {
+
+                //discount ok
+                if (withdrawPoints) {
+
+                    if (Double.parseDouble(jTextField1.getText()) == total) {
+                        newPoints = 0;
+                        total = 0;
+                        // no payment req
+
+                    } else if (Double.parseDouble(jTextField1.getText()) < total) {
+                        newPoints = 0;
+                        total -= Double.parseDouble(jTextField1.getText());
+                        // no payment req
+
+                    } else {
+                        newPoints = Double.parseDouble(jTextField1.getText()) - total;
+                        total = 0;
+
+                    }
+
+                }
+
+            }
+
+            if (paymentMethod.equals("cash")) {
+                //cash
+                paymentField.setEditable(true);
+                balance = payment - total;
+
+                if (balance < 0) {
+                    printInvoiceButton.setEnabled(false);
+                } else {
+                    printInvoiceButton.setEnabled(true);
+                }
+
+            } else {
+                //card
+                payment = total;
+                balance = 0;
+                paymentField.setText(String.valueOf(payment));
+                paymentField.setEditable(false);
+                printInvoiceButton.setEnabled(true);
+            }
+
+            jFormattedTextField6.setText(String.valueOf(balance));
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -62,8 +303,10 @@ public class Invoice extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         printInvoiceButton = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Invoice");
 
         jPanel1.setEnabled(false);
 
@@ -107,6 +350,11 @@ public class Invoice extends javax.swing.JFrame {
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
         jButton2.setText("Clear All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Product");
 
@@ -121,6 +369,11 @@ public class Invoice extends javax.swing.JFrame {
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton3.setText("Add To Invoice");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Select Customer");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -342,19 +595,45 @@ public class Invoice extends javax.swing.JFrame {
 
         DiscountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         DiscountField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        DiscountField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                DiscountFieldKeyReleased(evt);
+            }
+        });
 
         paymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         paymentField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        paymentField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                paymentFieldKeyReleased(evt);
+            }
+        });
 
         jFormattedTextField6.setEditable(false);
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel29.setText("Withdow Points");
 
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox1ItemStateChanged(evt);
+            }
+        });
+
         printInvoiceButton.setText("print");
+        printInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printInvoiceButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -385,7 +664,7 @@ public class Invoice extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jCheckBox1)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(printInvoiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(printInvoiceButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -420,25 +699,41 @@ public class Invoice extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton5.setText("Previous Invoices");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -462,19 +757,210 @@ public class Invoice extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
         CustomerRegistration cr = new CustomerRegistration();
         cr.setVisible(true);
         cr.setinvoice(this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         stock_managment stock = new stock_managment();
         stock.setVisible(true);
         stock.setinvoice(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String stockID = jLabel10.getText();
+        String brand = jLabel13.getText();
+        String productName = jLabel17.getText();
+        double qty = Double.parseDouble(jFormattedTextField1.getText());
+        String mfd = jLabel19.getText();
+        String exp = jLabel21.getText();
+        String sellingPrice = jLabel15.getText();
+        String cnum = jLabel17.getText();
+        String cname = jLabel8.getText();
+        double avqty = Double.parseDouble(jLabel27.getText());
+
+
+        if (cnum.isEmpty() && cname.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a customer", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (stockID.isEmpty() && brand.isEmpty() && productName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a stock", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (qty == 0) {
+            JOptionPane.showMessageDialog(this, "Please enter the quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (avqty < qty) {
+            JOptionPane.showMessageDialog(this, "stock limit breached", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+
+            if (qty <= 0) {
+                JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+            InvoiceItem invoiceItem = new InvoiceItem();
+            invoiceItem.setBrand(brand);
+            invoiceItem.setExp(exp);
+            invoiceItem.setMfd(mfd);
+            invoiceItem.setName(productName);
+            invoiceItem.setQty(qty);
+            invoiceItem.setSellingPrice(sellingPrice);
+            invoiceItem.setStockID(stockID);
+
+            if (invoiceItemMap.get(stockID) == null) {
+                invoiceItemMap.put(stockID, invoiceItem);
+                loadInvoice();
+                JOptionPane.showMessageDialog(this, "Item added to invoice successfully ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+
+                InvoiceItem found = invoiceItemMap.get(stockID);
+
+                if (found.getExp().compareTo(exp) == 0
+                        && found.getMfd().compareTo(mfd) == 0
+                        && found.getSellingPrice() == sellingPrice) {
+
+                    int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                    if (option == JOptionPane.YES_OPTION) {
+
+                        found.setQty(found.getQty() + (qty));
+                        loadInvoice();
+                        JOptionPane.showMessageDialog(this, "Item added invoice successfully ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+
+                    JOptionPane.showMessageDialog(this, "GRN item already exists with diffrent dates and prices", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+
+            invoiceItemMap.put(stockID, invoiceItem);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void DiscountFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiscountFieldKeyReleased
+
+        String dis = DiscountField.getText();
+
+        if (!dis.matches("^(0|[1-9]\\d*)?(\\.\\d+)?(?<=\\d)$")) {
+            jFormattedTextField6.setText("INVALID");
+            jFormattedTextField6.setForeground(Color.red);
+        } else {
+            calculate();
+        }
+    }//GEN-LAST:event_DiscountFieldKeyReleased
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+
+        calculate();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void paymentFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentFieldKeyReleased
+
+        String payment1 = paymentField.getText();
+
+        if (!payment1.matches("^(0|[1-9]\\d*)?(\\.\\d+)?(?<=\\d)$")) {
+            jFormattedTextField6.setText("INVALID");
+            jFormattedTextField6.setForeground(Color.red);
+        } else {
+            calculate();
+        }
+        //4
+
+    }//GEN-LAST:event_paymentFieldKeyReleased
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+
+        calculate();
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
+    private void printInvoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printInvoiceButtonActionPerformed
+
+        try {
+            String invoiceID = jLabel5.getText();
+            String customerMobile = jLabel7.getText();
+            String employeeEmail = jLabel3.getText();
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String paidAmount = paymentField.getText();
+            String paymentMethodID = paymentMethodMap.get(String.valueOf(jComboBox1.getSelectedItem()));
+            String discount = String.valueOf(DiscountField.getText());
+            String totals = String.valueOf(totalField.getText());
+
+            if (totals.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter add items to invoice first", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (discount.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Discount", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (paidAmount.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please Enter Your Payment", "warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                // insert to invoice
+                MySQL.executeIUD("INSERT INTO `invoice` VALUES('" + invoiceID + "','" + employeeEmail + "','" + customerMobile + "','"
+                        + dateTime + "','" + paidAmount + "','" + paymentMethodID + "','" + discount + "')");
+
+                for (InvoiceItem invoiceItem : invoiceItemMap.values()) {
+
+                    // insert to invoiceItem
+                    MySQL.executeIUD("INSERT INTO `invoice_item`(`qty`, `stock_id`, `invoice_id`) "
+                            + "VALUES('" + invoiceItem.getQty() + "','" + invoiceItem.getStockID() + "','" + invoiceID + "')");
+
+                    // stock update
+                    MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`-" + invoiceItem.getQty()
+                            + " WHERE `id`='" + invoiceItem.getStockID() + "'");
+                }
+
+                double points = Double.parseDouble(totalField.getText()) / 100;
+                // Withdraw Points
+                if (withdrawPoints) {
+                    newPoints += points;
+                    MySQL.executeIUD("UPDATE `customer` SET `point` ='" + newPoints + "' WHERE `mobile` = '" + customerMobile + "'");
+                } else {
+                    MySQL.executeIUD("UPDATE `customer` SET `point`=`point`+'" + points + "' WHERE `mobile` = '" + customerMobile + "'");
+                }
+
+                String path = "src/reports/invoice1.jasper";
+                //InputStream path = this.getClass().getResourceAsStream("src/reportnew/invoice1.jasper");
+
+                HashMap<String, Object> params = new HashMap<>();
+                params.put("Parameter1", totalField.getText());
+                params.put("Parameter2", DiscountField.getText());
+                params.put("Parameter3", String.valueOf(jComboBox1.getSelectedItem()));
+                params.put("Parameter4", paymentField.getText());
+                params.put("Parameter5", jFormattedTextField6.getText());
+
+                params.put("Parameter6", jLabel5.getText());
+                params.put("Parameter7", jLabel7.getText());
+                params.put("Parameter8", jLabel3.getText());
+                params.put("Parameter9", dateTime);
+
+                JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+                JasperPrint jasperPrint = JasperFillManager.fillReport(path, params, dataSource);
+
+                JasperViewer.viewReport(jasperPrint, false);
+                reset();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_printInvoiceButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        reset();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        previous_invoices pi = new previous_invoices();
+        pi.setVisible(true);
+        pi.setinvoice(this);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public static void main(String args[]) {
-        FlatGitHubDarkIJTheme.setup();
+        FlatMacLightLaf.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -490,6 +976,7 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -536,4 +1023,33 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JButton printInvoiceButton;
     private javax.swing.JFormattedTextField totalField;
     // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+
+        jLabel10.setText("");
+        jLabel13.setText("");
+        jLabel17.setText("");
+        jLabel7.setText("");
+        jLabel19.setText("");
+        jLabel21.setText("");
+        jLabel15.setText("");
+        jLabel8.setText("");
+        jLabel27.setText("");
+        jFormattedTextField1.setText("");
+        jTextField1.setText("");
+
+        totalField.setText("");
+        DiscountField.setText("");
+        jComboBox1.setSelectedIndex(0);
+        paymentField.setText("");
+        jCheckBox1.setSelected(false);
+        jFormattedTextField6.setText("");
+
+        jLabel32.setText(newDate);
+        generateInvoiceID();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+    }
+
 }

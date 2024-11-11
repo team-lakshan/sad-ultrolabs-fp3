@@ -1,6 +1,10 @@
 package gui;
 
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import util.MySQL;
 
 public class Home1 extends javax.swing.JFrame {
 
@@ -8,7 +12,84 @@ public class Home1 extends javax.swing.JFrame {
         initComponents();
         jLabel13.setText(email);
         jLabel12.setText(fName + " " + lName);
+        jLabel14.setText(newDate);
+        loadCount();
     }
+    
+    Date date = new Date();
+    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+
+    private void loadCount() {
+        try {
+            int rowCount = 0;
+            ResultSet rs = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `product`");
+
+            if (rs.next()) {
+                rowCount = rs.getInt("rowcount");
+                jLabel59.setText(String.valueOf(rowCount));
+            }
+
+            int rowCount1 = 0;
+            ResultSet rs1 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `customer`");
+
+            if (rs1.next()) {
+                rowCount1 = rs1.getInt("rowcount");
+                jLabel41.setText(String.valueOf(rowCount1));
+            }
+
+            int rowCount2 = 0;
+            ResultSet rs2 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `employee`");
+
+            if (rs2.next()) {
+                rowCount2 = rs2.getInt("rowcount");
+                jLabel58.setText(String.valueOf(rowCount2));
+            }
+
+            int rowCount3 = 0;
+            ResultSet rs3 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `supplier`");
+
+            if (rs3.next()) {
+                rowCount3 = rs3.getInt("rowcount");
+                jLabel61.setText(String.valueOf(rowCount3));
+            }
+
+            int rowCount4 = 0;
+            ResultSet rs4 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `invoice`");
+
+            if (rs4.next()) {
+                rowCount4 = rs4.getInt("rowcount");
+                jLabel56.setText(String.valueOf(rowCount4));
+            }
+
+            int rowCount5 = 0;
+            ResultSet rs5 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `company`");
+
+            if (rs5.next()) {
+                rowCount5 = rs5.getInt("rowcount");
+                jLabel62.setText(String.valueOf(rowCount5));
+            }
+
+            int rowCount6 = 0;
+            ResultSet rs6 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `grn`");
+
+            if (rs6.next()) {
+                rowCount6 = rs6.getInt("rowcount");
+                jLabel57.setText(String.valueOf(rowCount6));
+            }
+
+            int rowCount7 = 0;
+            ResultSet rs7 = MySQL.executeSearch("SELECT COUNT(*) AS rowcount FROM `stock`");
+
+            if (rs7.next()) {
+                rowCount7 = rs7.getInt("rowcount");
+                jLabel60.setText(String.valueOf(rowCount7));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+   }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

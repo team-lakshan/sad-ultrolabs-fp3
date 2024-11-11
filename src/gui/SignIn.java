@@ -16,7 +16,7 @@ public class SignIn extends javax.swing.JFrame {
     public static void setEmployeeEmail(String employeeEmail) {
         SignIn.employeeEmail = employeeEmail;
     }
-    
+
     public SignIn() {
         initComponents();
     }
@@ -160,26 +160,45 @@ public class SignIn extends javax.swing.JFrame {
 
         } else {
             try {
-                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "'");
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' ");
+
+                if (rs.next()) {
+
 
                 if (resultSet.next()) {
                     
-                    String fName = resultSet.getString("first_name");
-                        String lName = resultSet.getString("last_name");
 
-                    Home1 home = new Home1(email, fName, lName);
-                    home.setVisible(true);
-                    this.dispose();
-                    setEmployeeEmail(email);
+                    ResultSet rs1 = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' AND `employee_type_id` = '2' ");
+
+                    if (rs1.next()) {
+
+                        String fName = rs.getString("first_name");
+                        String lName = rs.getString("last_name");
+
+                        Home2 home1 = new Home2(email, fName, lName);
+                        home1.setVisible(true);
+                        this.dispose();
+                        setEmployeeEmail(email);
+
+                    } else {
+
+                        String fName = rs.getString("first_name");
+                        String lName = rs.getString("last_name");
+
+                        Home1 home2 = new Home1(email, fName, lName);
+                        home2.setVisible(true);
+                        this.dispose();
+                        setEmployeeEmail(email);
+                    }
+
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid email or password", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid email or Password", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

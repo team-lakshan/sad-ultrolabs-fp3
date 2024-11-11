@@ -3,7 +3,7 @@ package gui;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import util.MySQL;
+import util.MYSQL;
 
 public class home extends javax.swing.JFrame {
 
@@ -91,7 +91,7 @@ public class home extends javax.swing.JFrame {
         String query = "INSERT INTO test (name) VALUES ('" + name + "');";
     
         try {
-            MySQL.executeIUD(query);
+            MYSQL.executeIUD(query);
             System.out.println("record added to db");
         } catch (Exception ex) {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
