@@ -6,7 +6,8 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import util.MYSQL;
+import util.MySQL;
+
 
 public class AddressView extends javax.swing.JDialog {
 
@@ -31,7 +32,7 @@ public class AddressView extends javax.swing.JDialog {
     private void loardAddtess() {
         try {
 
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee_address` INNER JOIN `city` ON `employee_address`.`city_id` = `city`.`id` INNER JOIN `district` ON `employee_address`.`district_id` = `district`.`id` INNER JOIN `province` ON `employee_address`.`province_id` = `province`.`id` WHERE `employee_email` = '" + this.email + "'");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee_address` INNER JOIN `city` ON `employee_address`.`city_id` = `city`.`id` INNER JOIN `district` ON `employee_address`.`district_id` = `district`.`id` INNER JOIN `province` ON `employee_address`.`province_id` = `province`.`id` WHERE `employee_email` = '" + this.email + "'");
 
             DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
             tableModel.setRowCount(0);
@@ -55,7 +56,7 @@ public class AddressView extends javax.swing.JDialog {
 
     private void loardProvince() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `province`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `province`");
 
             Vector<String> vector = new Vector<>();
             vector.add("Select");
@@ -71,7 +72,7 @@ public class AddressView extends javax.swing.JDialog {
 
     private void loardDistric() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `district`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `district`");
 
             Vector<String> vector = new Vector<>();
             vector.add("Select");
@@ -87,7 +88,7 @@ public class AddressView extends javax.swing.JDialog {
 
     private void loardCity() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `city`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `city`");
 
             Vector<String> vector = new Vector<>();
             vector.add("Select");
@@ -339,7 +340,7 @@ public class AddressView extends javax.swing.JDialog {
             if (!isFound) {
                 try {
 
-                    MYSQL.executeIUD("INSERT INTO `employee_address` (`line1`,`line2`,`city_id`,`employee_email`,`district_id`,`province_id`) VALUES ('" + line1 + "','" + line2 + "','" + cityMap.get(city) + "','" + this.email + "','" + districtMap.get(distric) + "','" + provinceMap.get(province) + "')");
+                    MySQL.executeIUD("INSERT INTO `employee_address` (`line1`,`line2`,`city_id`,`employee_email`,`district_id`,`province_id`) VALUES ('" + line1 + "','" + line2 + "','" + cityMap.get(city) + "','" + this.email + "','" + districtMap.get(distric) + "','" + provinceMap.get(province) + "')");
                     loardAddtess();
                     reset();
 
@@ -398,7 +399,7 @@ public class AddressView extends javax.swing.JDialog {
                 if (!isFound) {
                     try {
 
-                        MYSQL.executeIUD("UPDATE `employee_address` SET `line1` = '" + line1 + "' ,`line2`= '" + line2 + "' ,`city_id`= '" + cityMap.get(city) + "',`district_id`= '" + districtMap.get(distric) + "',`province_id`= '" + provinceMap.get(province) + "'  WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
+                        MySQL.executeIUD("UPDATE `employee_address` SET `line1` = '" + line1 + "' ,`line2`= '" + line2 + "' ,`city_id`= '" + cityMap.get(city) + "',`district_id`= '" + districtMap.get(distric) + "',`province_id`= '" + provinceMap.get(province) + "'  WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
                         loardAddtess();
                         reset();
 
@@ -426,7 +427,7 @@ public class AddressView extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Select Row", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                MYSQL.executeIUD("DELETE FROM `employee_address` WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
+                MySQL.executeIUD("DELETE FROM `employee_address` WHERE `id` = '" + jTable2.getValueAt(row, 0) + "'");
                 loardAddtess();
                 reset();
                 JOptionPane.showMessageDialog(this, "Succesfully Remove Address Data...", "Information", JOptionPane.INFORMATION_MESSAGE);

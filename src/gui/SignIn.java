@@ -162,11 +162,7 @@ public class SignIn extends javax.swing.JFrame {
             try {
                 ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' ");
 
-                if (rs.next()) {
-
-
-                if (resultSet.next()) {
-                    
+                if (rs.next()) {              
 
                     ResultSet rs1 = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' AND `employee_type_id` = '2' ");
 
