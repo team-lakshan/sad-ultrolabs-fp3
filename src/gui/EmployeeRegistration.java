@@ -9,7 +9,8 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import util.MYSQL;
+import util.MySQL;
+
 
 public class EmployeeRegistration extends javax.swing.JFrame {
 
@@ -25,7 +26,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     private void loardType() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee_type`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee_type`");
             Vector<String> vector = new Vector<>();
             vector.add("Select");
             while (rs.next()) {
@@ -42,7 +43,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     private void loardGender() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `gender`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `gender`");
             Vector<String> vector = new Vector<>();
             vector.add("Select");
             while (rs.next()) {
@@ -59,7 +60,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     private void loardEmploye() {
         try {
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee` INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.`id` INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.`id`");
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` INNER JOIN `employee_type` ON `employee`.`employee_type_id` = `employee_type`.`id` INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.`id`");
             DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
             tableModel.setRowCount(0);
             while (rs.next()) {
@@ -442,7 +443,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         } else {
 
             try {
-                ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' OR `nic` = '" + nic + "' OR `mobile` = '" + mobile + "'");
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' OR `nic` = '" + nic + "' OR `mobile` = '" + mobile + "'");
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "Allready Registration...", "Warning", JOptionPane.WARNING_MESSAGE);
                 } else {
@@ -450,7 +451,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                     Date date = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-                    MYSQL.executeIUD("INSERT INTO `employee` (`email`,`password`,`first_name`,`last_name`,`nic`,`mobile`,`date_registerd`,`employee_type_id`,`gender_id`) VALUES ('" + email + "','" + password + "','" + firstName + "','" + lastName + "','" + nic + "','" + mobile + "','" + sdf.format(date) + "','" + emplyeTypeMap.get(type) + "','" + emplyeGenderMap.get(gender) + "')");
+                    MySQL.executeIUD("INSERT INTO `employee` (`email`,`password`,`first_name`,`last_name`,`nic`,`mobile`,`date_registerd`,`employee_type_id`,`gender_id`) VALUES ('" + email + "','" + password + "','" + firstName + "','" + lastName + "','" + nic + "','" + mobile + "','" + sdf.format(date) + "','" + emplyeTypeMap.get(type) + "','" + emplyeGenderMap.get(gender) + "')");
                     loardEmploye();
                     reset();
 
@@ -503,7 +504,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             } else {
 
                 try {
-                    ResultSet rs = MYSQL.executeSearch("SELECT * FROM `employee` WHERE `nic` = '" + nic + "' OR `mobile` = '" + mobile + "'");
+                    ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` WHERE `nic` = '" + nic + "' OR `mobile` = '" + mobile + "'");
                     boolean canUpdate = false;
 
                     if (rs.next()) {
@@ -517,7 +518,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                     }
 
                     if (canUpdate) {
-                        MYSQL.executeIUD("UPDATE `employee` SET `password` = '" + password + "',`first_name` = '" + firstName + "',`nic` = '" + nic + "',`mobile` = '" + mobile + "' ,`employee_type_id` = '" + emplyeTypeMap.get(type) + "' , `gender_id` = '" + emplyeGenderMap.get(gender) + "' WHERE `email` = '" + email + "'");
+                        MySQL.executeIUD("UPDATE `employee` SET `password` = '" + password + "',`first_name` = '" + firstName + "',`nic` = '" + nic + "',`mobile` = '" + mobile + "' ,`employee_type_id` = '" + emplyeTypeMap.get(type) + "' , `gender_id` = '" + emplyeGenderMap.get(gender) + "' WHERE `email` = '" + email + "'");
                         loardEmploye();
                         reset();
                         jButton1.setEnabled(true);
