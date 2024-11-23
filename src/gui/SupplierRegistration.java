@@ -9,13 +9,18 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.MySQL;
 
-
 public class SupplierRegistration extends javax.swing.JFrame {
 
     private GRN grn;
 
     public void setGrn(GRN grn) {
         this.grn = grn;
+    }
+
+    private Return_damaged_stock rds;
+
+    public void setrds(Return_damaged_stock rds) {
+        this.rds = rds;
     }
 
     private String companyId;
@@ -499,9 +504,18 @@ public class SupplierRegistration extends javax.swing.JFrame {
                 if (grn != null) {
                     grn.getjTextField3().setText(String.valueOf(jTable1.getValueAt(row, 0)));
                     grn.getjLabel17().setText(String.valueOf(jTable1.getValueAt(row, 1)));
+                    grn.getjLabel32().setText(String.valueOf(jTable1.getValueAt(row, 3)));
 
                     this.dispose();
+                }
 
+                if (rds != null) {
+                    rds.getjLabel7().setText(String.valueOf(jTable1.getValueAt(row, 0)));
+                    rds.getjLabel8().setText(String.valueOf(jTable1.getValueAt(row, 1)));
+                    rds.getjLabe35().setText(String.valueOf(jTable1.getValueAt(row, 3)));
+                    rds.getjLabel23().setText(String.valueOf(jTable1.getValueAt(row, 4)));
+
+                    this.dispose();
                 }
             }
 

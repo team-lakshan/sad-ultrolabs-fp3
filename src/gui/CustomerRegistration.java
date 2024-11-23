@@ -468,7 +468,17 @@ public class CustomerRegistration extends javax.swing.JFrame {
             if (invoice != null) {
                 invoice.getjLabel7().setText(String.valueOf(jTable1.getValueAt(row, 0)));
                 invoice.getjLabel8().setText(String.valueOf(jTable1.getValueAt(row, 1)));
+                invoice.getjLabe34().setText(String.valueOf(jTable1.getValueAt(row, 3)));
                 invoice.getjTextField1().setText(String.valueOf(jTable1.getValueAt(row, 4)));
+                this.dispose();
+            }
+            
+            if (raf != null) {
+                raf.getjLabel7().setText(String.valueOf(jTable1.getValueAt(row, 0)));
+                raf.getjLabel8().setText(String.valueOf(jTable1.getValueAt(row, 1)));
+                raf.getjLabe35().setText(String.valueOf(jTable1.getValueAt(row, 3)));
+                raf.getjTextField1().setText(String.valueOf(jTable1.getValueAt(row, 4)));
+                
                 this.dispose();
             }
         }

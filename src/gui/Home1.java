@@ -1,9 +1,23 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import util.MySQL;
 
 public class Home1 extends javax.swing.JFrame {
@@ -12,12 +26,23 @@ public class Home1 extends javax.swing.JFrame {
         initComponents();
         jLabel13.setText(email);
         jLabel12.setText(fName + " " + lName);
-        jLabel14.setText(newDate);
+        displayTime();
         loadCount();
     }
-    
-    Date date = new Date();
-    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+
+    public void displayTime() {
+        new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("HH:mm:ss");
+                String text_displayTime = simpleDateFormat.format(new Date());
+
+                String text_displayDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(new Date());
+
+                jLabel6.setText(text_displayTime + " " + text_displayDate);
+            }
+        }).start();
+    }
 
     private void loadCount() {
         try {
@@ -89,7 +114,7 @@ public class Home1 extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-   }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,8 +134,8 @@ public class Home1 extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -174,13 +199,14 @@ public class Home1 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
@@ -339,6 +365,10 @@ public class Home1 extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Welcome !!!");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("First  Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -350,8 +380,13 @@ public class Home1 extends javax.swing.JFrame {
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -359,7 +394,9 @@ public class Home1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addGap(31, 31, 31)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel12)
+                .addGap(13, 13, 13)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,17 +408,16 @@ public class Home1 extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 570));
 
-        jLabel12.setText("First  Name");
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("title");
+        jLabel15.setText("UL DressMart - Your Official Clothing partner");
 
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("date");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -389,27 +425,19 @@ public class Home1 extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(215, 215, 215)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(273, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(96, 96, 96)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15))
                 .addContainerGap())
         );
 
@@ -945,6 +973,34 @@ public class Home1 extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setText("Manage Product");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setText("Manage Stocks");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setText("Reteurn and Refund");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jButton18.setText("Return Stock");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
         jLabel20.setText("Home >");
 
         jLabel21.setText("navigation");
@@ -970,27 +1026,6 @@ public class Home1 extends javax.swing.JFrame {
         );
 
         jLabel17.setText("2024 name || All Rights Recieved");
-
-        jButton15.setText("Manage Product");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
-        jButton16.setText("Manage Stocks");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-
-        jButton17.setText("Reteurn and Refund");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1022,9 +1057,11 @@ public class Home1 extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                        .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
         );
         jPanel5Layout.setVerticalGroup(
@@ -1046,7 +1083,8 @@ public class Home1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                    .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel17)
                 .addGap(45, 45, 45))
@@ -1079,25 +1117,65 @@ public class Home1 extends javax.swing.JFrame {
         );
 
         jButton8.setText("Registered Companies");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Registered Suppliers");
         jButton7.setPreferredSize(new java.awt.Dimension(233, 59));
         jButton7.setVerifyInputWhenFocusTarget(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Available Products");
         jButton4.setPreferredSize(new java.awt.Dimension(233, 59));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Customer Details");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Employee Details");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Employee Addresses");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Available Stocks");
 
         jButton13.setText("GRN Summeay");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Invoice Summary");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jLabel63.setText("2024 name || All Rights Recieved");
 
@@ -1122,14 +1200,14 @@ public class Home1 extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1245,10 +1323,10 @@ public class Home1 extends javax.swing.JFrame {
         jPanel8.setBackground(Color.GRAY);
         jPanel2.setBackground(Color.GRAY);
 
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel12.setBackground(new Color(51,51,51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(51, 51, 51));
 
         jTabbedPane2.setSelectedIndex(0);
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -1258,10 +1336,10 @@ public class Home1 extends javax.swing.JFrame {
         jPanel9.setBackground(Color.GRAY);
         jPanel4.setBackground(Color.GRAY);
 
-        jPanel8.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel12.setBackground(new Color(51,51,51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(51, 51, 51));
 
         jTabbedPane2.setSelectedIndex(1);
 
@@ -1272,11 +1350,11 @@ public class Home1 extends javax.swing.JFrame {
         jPanel10.setBackground(Color.GRAY);
         jPanel5.setBackground(Color.GRAY);
 
-        jPanel12.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        
+        jPanel12.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(2);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -1285,11 +1363,11 @@ public class Home1 extends javax.swing.JFrame {
         jPanel6.setBackground(Color.GRAY);
         jPanel11.setBackground(Color.GRAY);
 
-        jPanel12.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        
+        jPanel12.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(3);
     }//GEN-LAST:event_jLabel4MouseClicked
 
@@ -1298,11 +1376,11 @@ public class Home1 extends javax.swing.JFrame {
         jPanel7.setBackground(Color.GRAY);
         jPanel12.setBackground(Color.GRAY);
 
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(4);
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -1346,6 +1424,212 @@ public class Home1 extends javax.swing.JFrame {
         raf.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        Return_damaged_stock rds = new Return_damaged_stock();
+        rds.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/product_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+            //JasperExportManager.exportReportToPdfFile(jasperPrint,"src/report_pdf/product.pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/supplier_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/company_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/customer_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/employee_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/address_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/invoice_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/Grn_new.jasper";
+
+            HashMap<String, Object> parameters = new HashMap<>();
+            parameters.put("Parameter1", jLabel12.getText());
+            parameters.put("Parameter2", jLabel13.getText());
+            parameters.put("Parameter3", dateTime);
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1356,6 +1640,7 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
