@@ -1,6 +1,7 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
@@ -524,6 +525,8 @@ public class SupplierRegistration extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
+        FlatMacLightLaf.setup();
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SupplierRegistration().setVisible(true);

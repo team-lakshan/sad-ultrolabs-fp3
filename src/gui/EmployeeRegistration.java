@@ -1,16 +1,22 @@
 package gui;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import util.MySQL;
-
 
 public class EmployeeRegistration extends javax.swing.JFrame {
 
@@ -22,7 +28,24 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         loardGender();
         loardType();
         loardEmploye();
+        jLabel10.setText(newDate);
+        header();
+        setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
+
     }
+
+    private void header() {
+        JTableHeader header = jTable1.getTableHeader();
+        header.setFont(new Font("Times New Roman", Font.BOLD, 12));
+        header.setForeground(Color.BLACK);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.setDefaultRenderer(Object.class, renderer);
+
+    }
+    Date date = new Date();
+    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
     private void loardType() {
         try {
@@ -118,64 +141,122 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         setTitle("Dreamers Clothing");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Employee Registration");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel2.setText("Email");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel3.setText("First Name");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel4.setText("Last name");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel5.setText("NIC");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel6.setText("Mobile");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel7.setText("Password");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel8.setText("Gender");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel9.setText("Type");
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField1.setToolTipText("@ and gmail.com required");
 
+        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+
+        jTextField4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+
+        jTextField5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField5.setToolTipText("enter valid mobile");
 
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jPasswordField1.setToolTipText("numbers, letters, min 8 characters");
 
+        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jComboBox2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Create Account");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update Account");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("date");
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
 
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setText("Welcome !!!");
 
-        jButton4.setText("view");
+        jButton4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8-eye-10.png"))); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton4MousePressed(evt);
@@ -293,6 +374,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -398,15 +481,6 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
-        jPasswordField1.setEchoChar((char) 0);
-    }//GEN-LAST:event_jButton4MousePressed
-
-    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
-        jPasswordField1.setEchoChar('\u2022');
-        jPasswordField1.grabFocus();
-    }//GEN-LAST:event_jButton4MouseReleased
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String email = jTextField1.getText();
         String firstName = jTextField2.getText();
@@ -467,7 +541,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         if (jTable1.getSelectedRow() == -1) {
-            
+
             JOptionPane.showMessageDialog(this, "Plese Selecect Row...", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else {
@@ -536,11 +610,52 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         reset();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        jButton3.setBackground(Color.white);
+        jButton3.setForeground(Color.black);
+
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        jButton3.setBackground(Color.black);
+        jButton3.setForeground(Color.white);
+    }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(Color.white);
+        jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(Color.black);
+        jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        jButton2.setBackground(Color.white);
+        jButton2.setForeground(Color.black);
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        jButton2.setBackground(Color.black);
+        jButton2.setForeground(Color.white);
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void jButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseReleased
+        jPasswordField1.setEchoChar('\u2022');
+        jPasswordField1.grabFocus();
+    }//GEN-LAST:event_jButton4MouseReleased
+
+    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+        jPasswordField1.setEchoChar((char) 0);
+    }//GEN-LAST:event_jButton4MousePressed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
+        FlatMacLightLaf.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
