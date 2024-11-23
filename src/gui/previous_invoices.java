@@ -6,9 +6,14 @@ import javax.swing.table.DefaultTableModel;
 import util.MySQL;
 import java.sql.ResultSet;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class previous_invoices extends javax.swing.JFrame {
 
@@ -17,16 +22,17 @@ public class previous_invoices extends javax.swing.JFrame {
     public void setinvoice(Invoice invoice) {
         this.invoice = invoice;
     }
-    
+
     Date date = new Date();
     String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-    
+
     public previous_invoices() {
         initComponents();
         loadStock();
+        jLabel12.setText(newDate);
     }
 
-        private void loadStock() {
+    private void loadStock() {
         try {
 
             String query = "SELECT * FROM `invoice` INNER JOIN `employee` ON `invoice`.`employee_email` = `employee`.`email` "
@@ -38,17 +44,16 @@ public class previous_invoices extends javax.swing.JFrame {
             } else {
                 query += "WHERE ";
             }
-            
+
             String mobile = "";
-            
+
             if (!jTextField1.getText().isEmpty()) {
                 mobile = String.valueOf(jTextField1.getText());
                 query += "`invoice`.`customer_mobile`  LIKE '%" + mobile + "%' ";
             }
-            
-            
+
             String email = "";
-            
+
             if (!jTextField2.getText().isEmpty()) {
                 email = String.valueOf(jTextField2.getText());
                 query += "`invoice`.`employee_email` LIKE '%" + email + "%' ";
@@ -96,7 +101,7 @@ public class previous_invoices extends javax.swing.JFrame {
 
             query = query.replace("WHERE ORDER BY ", "ORDER BY ");
             query = query.replace("AND ORDER BY ", "ORDER BY ");
-            
+
             if (sort.equals("Invoice ID ASC")) {
                 query += "`invoice`.`id` ASC";
             } else if (sort.equals("Invoice ID DESC")) {
@@ -133,7 +138,7 @@ public class previous_invoices extends javax.swing.JFrame {
                 v.add(rs.getString("payment_method.name"));
                 v.add(rs.getString("invoice.discount"));
                 v.add(rs.getString("invoice.employee_email"));
-                
+
                 dtm.addRow(v);
             }
 
@@ -142,7 +147,7 @@ public class previous_invoices extends javax.swing.JFrame {
         }
 
     }
-        
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -229,7 +234,7 @@ public class previous_invoices extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -263,6 +268,11 @@ public class previous_invoices extends javax.swing.JFrame {
         });
 
         jButton1.setText("Print Report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -414,11 +424,11 @@ public class previous_invoices extends javax.swing.JFrame {
                 String method = String.valueOf(jTable1.getValueAt(selectedRow1, 4));
                 String discount = String.valueOf(jTable1.getValueAt(selectedRow1, 5));
                 String email = String.valueOf(jTable1.getValueAt(selectedRow1, 6));
-                
+
                 detailed_invoices dti = new detailed_invoices(this, true, id, mobile, date, amount, method, discount, email);
                 dti.setVisible(true);
                 //this.dispose();
-                
+
             } catch (ParseException ex) {
                 Logger.getLogger(previous_invoices.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -441,6 +451,30 @@ public class previous_invoices extends javax.swing.JFrame {
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         loadStock();
     }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String path = "src/reports/PreviousInvoice.jasper";
+            //InputStream path = this.getClass().getResourceAsStream("src/reportnew/invoice1.jasper");
+
+            HashMap<String, Object> params = new HashMap<>();
+
+            params.put("Parameter9", dateTime);
+
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(path, params, dataSource);
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

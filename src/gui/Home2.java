@@ -1,9 +1,13 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import javax.swing.Timer;
 import util.MySQL;
 
 public class Home2 extends javax.swing.JFrame {
@@ -12,12 +16,23 @@ public class Home2 extends javax.swing.JFrame {
         initComponents();
         jLabel13.setText(email);
         jLabel12.setText(fName + " " + lName);
-        jLabel14.setText(newDate);
+        displayTime();
         loadCount();
     }
-    
-    Date date = new Date();
-    String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+
+    public void displayTime() {
+        new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("HH:mm:ss");
+                String text_displayTime = simpleDateFormat.format(new Date());
+
+                String text_displayDate = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(new Date());
+
+                jLabel6.setText(text_displayTime + " " + text_displayDate);
+            }
+        }).start();
+    }
 
     private void loadCount() {
         try {
@@ -109,10 +124,10 @@ public class Home2 extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -181,6 +196,7 @@ public class Home2 extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
@@ -274,6 +290,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Reports   ");
+        jLabel4.setEnabled(false);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -339,6 +356,10 @@ public class Home2 extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Welcome !!!");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("First  Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -351,7 +372,9 @@ public class Home2 extends javax.swing.JFrame {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jLabel16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -359,7 +382,9 @@ public class Home2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addGap(31, 31, 31)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,46 +396,43 @@ public class Home2 extends javax.swing.JFrame {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 570));
 
-        jLabel12.setText("First  Name");
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("date");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("title");
-
-        jLabel6.setText("date");
+        jLabel15.setText("UL DressMart - Your Official Clothing partner");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(215, 215, 215)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(724, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(278, 278, 278)
+                    .addComponent(jLabel15)
+                    .addContainerGap(279, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(jLabel15)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 940, 50));
@@ -994,6 +1016,14 @@ public class Home2 extends javax.swing.JFrame {
                     .addComponent(jLabel21)))
         );
 
+        jButton18.setText("Return Stock");
+        jButton18.setEnabled(false);
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1004,8 +1034,13 @@ public class Home2 extends javax.swing.JFrame {
                 .addGap(0, 410, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(45, 45, 45)
@@ -1030,7 +1065,9 @@ public class Home2 extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE)
+                .addGap(279, 279, 279)
+                .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel17)
                 .addGap(45, 45, 45))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1246,10 +1283,10 @@ public class Home2 extends javax.swing.JFrame {
         jPanel8.setBackground(Color.GRAY);
         jPanel2.setBackground(Color.GRAY);
 
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel12.setBackground(new Color(51,51,51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(51, 51, 51));
 
         jTabbedPane2.setSelectedIndex(0);
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -1259,10 +1296,10 @@ public class Home2 extends javax.swing.JFrame {
         jPanel9.setBackground(Color.GRAY);
         jPanel4.setBackground(Color.GRAY);
 
-        jPanel8.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel12.setBackground(new Color(51,51,51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(51, 51, 51));
 
         jTabbedPane2.setSelectedIndex(1);
 
@@ -1273,11 +1310,11 @@ public class Home2 extends javax.swing.JFrame {
         jPanel10.setBackground(Color.GRAY);
         jPanel5.setBackground(Color.GRAY);
 
-        jPanel12.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        
+        jPanel12.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(2);
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -1286,11 +1323,11 @@ public class Home2 extends javax.swing.JFrame {
         jPanel6.setBackground(Color.GRAY);
         jPanel11.setBackground(Color.GRAY);
 
-        jPanel12.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        
+        jPanel12.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(3);
     }//GEN-LAST:event_jLabel4MouseClicked
 
@@ -1299,11 +1336,11 @@ public class Home2 extends javax.swing.JFrame {
         jPanel7.setBackground(Color.GRAY);
         jPanel12.setBackground(Color.GRAY);
 
-        jPanel10.setBackground(new Color(51,51,51));
-        jPanel9.setBackground(new Color(51,51,51));
-        jPanel8.setBackground(new Color(51,51,51));
-        jPanel11.setBackground(new Color(51,51,51));
-        
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
+
         jTabbedPane2.setSelectedIndex(4);
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -1347,6 +1384,11 @@ public class Home2 extends javax.swing.JFrame {
         raf.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        Return_damaged_stock rds = new Return_damaged_stock();
+        rds.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1357,6 +1399,7 @@ public class Home2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

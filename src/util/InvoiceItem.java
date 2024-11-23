@@ -5,7 +5,7 @@ public class InvoiceItem {
     private String stockID;
     private String brand;
     private String name;
-    private double qty;
+    private String qty;
     private String sellingPrice;
     private String mfd;
     private String exp;
@@ -40,11 +40,11 @@ public class InvoiceItem {
     }
 
 
-    public double getQty() {
+    public String getQty() {
         return qty;
     }
 
-    public void setQty(double qty) {
+    public void setQty(String qty) {
         this.qty = qty;
     }
 

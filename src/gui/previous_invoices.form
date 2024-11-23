@@ -292,7 +292,7 @@
                     <Column editable="false" title="Paid Amount" type="java.lang.Object"/>
                     <Column editable="false" title="Payment Method" type="java.lang.Object"/>
                     <Column editable="false" title="Discount" type="java.lang.Object"/>
-                    <Column editable="true" title="Employee email" type="java.lang.Object"/>
+                    <Column editable="false" title="Employee email" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -389,6 +389,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Print Report"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
