@@ -1,9 +1,15 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import util.MySQL;
 
 public class CompanyRegistration extends javax.swing.JDialog {
@@ -14,35 +20,46 @@ public class CompanyRegistration extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loadCompanies();
-        
+
         sr = (SupplierRegistration) parent;
+        header();
+        setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
-    
-    private void loadCompanies(){
-    
+
+    private void header() {
+        JTableHeader header = jTable1.getTableHeader();
+        header.setFont(new Font("Times New Roman", Font.BOLD, 12));
+        header.setForeground(Color.BLACK);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.setDefaultRenderer(Object.class, renderer);
+
+    }
+
+    private void loadCompanies() {
+
         try {
-            
+
             ResultSet rs = MySQL.executeSearch("SELECT * FROM `company`");
-            
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            
+
             while (rs.next()) {
                 Vector vector = new Vector();
                 vector.add(rs.getString("id"));
                 vector.add(rs.getString("name"));
                 vector.add(rs.getString("hotline_num"));
                 model.addRow(vector);
-                
+
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
-    
+
     }
-            
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -65,22 +82,50 @@ public class CompanyRegistration extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Company Registration");
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel1.setText("Company Name");
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel2.setText("Hotline");
 
+        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField2.setToolTipText("must be a valid phone number");
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -111,13 +156,25 @@ public class CompanyRegistration extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Company Registration");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -219,7 +276,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
 
                     MySQL.executeIUD("INSERT INTO `company` (`name`,`hotline_num`) VALUES"
                             + "('" + name + "','" + hotline + "')");
-                    
+
                     loadCompanies();
                     reset();
 
@@ -233,7 +290,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         int row = jTable1.getSelectedRow();
 
         if (row == -1) {
@@ -285,36 +342,65 @@ public class CompanyRegistration extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+
         int row = jTable1.getSelectedRow();
 
         jTextField1.setText(String.valueOf(jTable1.getValueAt(row, 1)));
         jTextField2.setText(String.valueOf(jTable1.getValueAt(row, 2)));
 
         jButton1.setEnabled(false);
-        
+
         if (evt.getClickCount() == 2) {
-            
-            String name= String.valueOf(jTable1.getValueAt(row, 1));
-            
+
+            String name = String.valueOf(jTable1.getValueAt(row, 1));
+
 //            //sr.jTable2.setText(name);
 //            sr.getJlable().setText(name);
 //               sr.setCompanyName(name);
+            sr.setCompanyName(name);
 
-              sr.setCompanyName(name);
-            
             this.dispose();
 //            sr.getTextField().grabFocus();
 
-                sr.mobileGrabFocus();
-                
-                sr.setCompanyId(String.valueOf(jTable1.getValueAt(row, 0)));
+            sr.mobileGrabFocus();
+
+            sr.setCompanyId(String.valueOf(jTable1.getValueAt(row, 0)));
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(Color.white);
+        jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(Color.black);
+        jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        jButton2.setBackground(Color.white);
+        jButton2.setForeground(Color.black);
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        jButton2.setBackground(Color.black);
+        jButton2.setForeground(Color.white);
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+     jButton3.setBackground(Color.white);
+        jButton3.setForeground(Color.black);
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        jButton3.setBackground(Color.black);
+        jButton3.setForeground(Color.white);
+    }//GEN-LAST:event_jButton3MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,5 +426,5 @@ public class CompanyRegistration extends javax.swing.JDialog {
         jButton1.setEnabled(true);
         jTable1.clearSelection();
     }
-    
+
 }
