@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
@@ -102,39 +103,57 @@ public class detailed_invoices extends javax.swing.JDialog {
         jTextField8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("UL Dress Mart");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel1.setText("Invoice ID");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel2.setText("Issued Date");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel3.setText("Customer mobile");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel4.setText("Paid Amount");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel5.setText("Discount");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel6.setText("Total");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setText("Invoice Details");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel9.setText("Payment Method");
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField1.setEnabled(false);
 
+        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField2.setEnabled(false);
 
+        jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField3.setEnabled(false);
 
+        jTextField4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField4.setEnabled(false);
 
+        jTextField5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField5.setEnabled(false);
 
+        jTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField6.setEnabled(false);
 
+        jTextField7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField7.setEnabled(false);
 
+        jTable1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -153,7 +172,18 @@ public class detailed_invoices extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Print Report");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -163,6 +193,7 @@ public class detailed_invoices extends javax.swing.JDialog {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Date");
 
+        jTextField8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jTextField8.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -178,7 +209,7 @@ public class detailed_invoices extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
@@ -214,7 +245,7 @@ public class detailed_invoices extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 15, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -248,7 +279,7 @@ public class detailed_invoices extends javax.swing.JDialog {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -296,6 +327,14 @@ public class detailed_invoices extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+       jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+         jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

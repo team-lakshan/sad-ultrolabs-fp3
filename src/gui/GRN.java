@@ -265,25 +265,19 @@ public class GRN extends javax.swing.JFrame {
         setTitle("UL Dress Mart");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("GRN(Good Recieved Note)");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Employee");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("GRN Number");
 
         jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField2.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Supplier Mobile");
 
         jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -307,38 +301,30 @@ public class GRN extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Product ID");
 
         jTextField4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField4.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Quantity");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Brand");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Buying Price");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Selling Price");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Stock In");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Product Name");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Stock out");
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
@@ -432,7 +418,6 @@ public class GRN extends javax.swing.JFrame {
         });
 
         jLabel22.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Supplier Name");
 
         jLabel19.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -441,22 +426,18 @@ public class GRN extends javax.swing.JFrame {
         jLabel19.setEnabled(false);
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Supplier Details");
 
         jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel24.setText("Product Details");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Category");
 
         jLabel26.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Color");
 
         jLabel27.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Size");
 
         jLabel28.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -612,7 +593,7 @@ public class GRN extends javax.swing.JFrame {
 
         jDateChooser2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/GRN/GRN.png"))); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/GRN/icons8-note-30.png"))); // NOI18N
 
         jLabel34.setText("Supplier Email");
 
