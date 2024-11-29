@@ -25,26 +25,23 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-
-
-
 public class product_registration extends javax.swing.JFrame {
 
     private String selectedImagePath = null; // To store the selected image file path
-    
+
     private GRN grn;
 
     public void setGrn(GRN grn) {
         this.grn = grn;
-        
+
     }
-    
+
     private Invoice invoice;
 
     public void setinvoice(Invoice invoice) {
         this.invoice = invoice;
     }
-    
+
     HashMap<String, String> brandMap = new HashMap<>();
     HashMap<String, String> categoryMap = new HashMap<>();
     HashMap<String, String> sizeMap = new HashMap<>();
@@ -67,17 +64,19 @@ public class product_registration extends javax.swing.JFrame {
         header();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
+
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 12));
-        header.setForeground(Color.BLACK);
+        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.CENTER);
         jTable1.setDefaultRenderer(Object.class, renderer);
 
     }
-     public void loadBrand() {
+
+    public void loadBrand() {
 
         try {
             Vector<String> v = new Vector<>();
@@ -296,10 +295,7 @@ public class product_registration extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    
-    
-    
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -358,9 +354,10 @@ public class product_registration extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Product Registration");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -372,9 +369,11 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Brand");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Product ID");
 
         jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
@@ -385,6 +384,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Product Name");
 
         jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -397,8 +397,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add New Product");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -415,8 +415,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update Product");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -433,8 +433,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -451,8 +451,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton4.setBackground(new java.awt.Color(0, 153, 153));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("add or update");
         jButton4.setMaximumSize(new java.awt.Dimension(39, 22));
@@ -499,6 +499,7 @@ public class product_registration extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Catagory");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -511,8 +512,8 @@ public class product_registration extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
-        jButton8.setBackground(new java.awt.Color(0, 0, 0));
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton8.setBackground(new java.awt.Color(0, 153, 153));
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("add or update");
         jButton8.setMaximumSize(new java.awt.Dimension(39, 22));
@@ -537,9 +538,11 @@ public class product_registration extends javax.swing.JFrame {
         jLabel12.setText("date");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Size");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Colour");
 
         jComboBox4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -562,8 +565,8 @@ public class product_registration extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
-        jButton9.setBackground(new java.awt.Color(0, 0, 0));
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton9.setBackground(new java.awt.Color(0, 153, 153));
+        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("add or update");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -580,8 +583,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(0, 0, 0));
-        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton10.setBackground(new java.awt.Color(0, 153, 153));
+        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("add or update");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -598,8 +601,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(0, 0, 0));
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton11.setBackground(new java.awt.Color(0, 153, 153));
+        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("select image");
         jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -676,23 +679,21 @@ public class product_registration extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -715,10 +716,9 @@ public class product_registration extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton2)
-                                .addComponent(jButton1))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton1))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -745,7 +745,7 @@ public class product_registration extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -759,13 +759,14 @@ public class product_registration extends javax.swing.JFrame {
                 .addGap(87, 87, 87))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField1.setText("0");
         jFormattedTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Sort By");
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -777,17 +778,19 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Selling Price");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("To");
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField2.setText("0");
         jFormattedTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton5.setBackground(new java.awt.Color(0, 153, 153));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Find");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -805,10 +808,11 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Stock in");
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton6.setBackground(new java.awt.Color(0, 153, 153));
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Find");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -825,8 +829,8 @@ public class product_registration extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(0, 0, 0));
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton7.setBackground(new java.awt.Color(0, 153, 153));
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Clear All");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -862,9 +866,11 @@ public class product_registration extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Out");
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Related Stock");
 
         jDateChooser3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -971,7 +977,7 @@ public class product_registration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+
         jComboBox2.setEnabled(true);
         jButton5.setEnabled(true);
         jButton6.setEnabled(true);
@@ -1014,7 +1020,6 @@ public class product_registration extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-
         if (evt.getClickCount() == 2) {
             if (grn != null) {
                 grn.getjTextField4().setText(String.valueOf(jTable1.getValueAt(selectedRow, 0)));
@@ -1027,8 +1032,7 @@ public class product_registration extends javax.swing.JFrame {
 
             }
         }
-        
-        
+
         if (evt.getClickCount() == 3) {
             int selectedRow1 = jTable1.getSelectedRow();
             String pid = String.valueOf(jTable2.getValueAt(selectedRow1, 1));
@@ -1038,7 +1042,6 @@ public class product_registration extends javax.swing.JFrame {
             String category = String.valueOf(jTable2.getValueAt(selectedRow1, 4));
             String size = String.valueOf(jTable2.getValueAt(selectedRow1, 5));
             String colour = String.valueOf(jTable2.getValueAt(selectedRow1, 6));
-
 
             single_stock_view stv = new single_stock_view(this, true, pid, bid, pname, bname, category, size, colour);
             stv.setVisible(true);
@@ -1090,7 +1093,7 @@ public class product_registration extends javax.swing.JFrame {
             ImageIcon imageIcon = new ImageIcon(selectedImagePath);
             Image image = imageIcon.getImage().getScaledInstance(jLabel16.getWidth(), jLabel16.getHeight(), Image.SCALE_SMOOTH);
             jLabel16.setIcon(new ImageIcon(image));
-          jButton11.grabFocus();
+            jButton11.grabFocus();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -1415,7 +1418,7 @@ public class product_registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseEntered
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-         jTextField1.grabFocus();
+        jTextField1.grabFocus();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -1423,7 +1426,7 @@ public class product_registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-         jComboBox1.grabFocus();
+        jComboBox1.grabFocus();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -1431,127 +1434,105 @@ public class product_registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-       jComboBox4.grabFocus();
+        jComboBox4.grabFocus();
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
-       jComboBox5.grabFocus();
+        jComboBox5.grabFocus();
     }//GEN-LAST:event_jComboBox5ActionPerformed
 
     private void jButton11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseEntered
-        jButton11.setBackground(Color.white);
-       jButton11.setForeground(Color.black);
+        jButton11.setForeground(Color.black);
     }//GEN-LAST:event_jButton11MouseEntered
 
     private void jButton11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseExited
-        jButton11.setBackground(Color.black);
         jButton11.setForeground(Color.white);
     }//GEN-LAST:event_jButton11MouseExited
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-       jButton4.setBackground(Color.white);
         jButton4.setForeground(Color.black);
     }//GEN-LAST:event_jButton4MouseEntered
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        jButton4.setBackground(Color.black);
         jButton4.setForeground(Color.white);
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
-        jButton8.setBackground(Color.white);
         jButton8.setForeground(Color.black);
     }//GEN-LAST:event_jButton8MouseEntered
 
     private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
-         jButton8.setBackground(Color.black);
-         jButton8.setForeground(Color.white);
+        jButton8.setForeground(Color.white);
     }//GEN-LAST:event_jButton8MouseExited
 
     private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
-        jButton9.setBackground(Color.white);
         jButton9.setForeground(Color.black);
     }//GEN-LAST:event_jButton9MouseEntered
 
     private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
-        jButton9.setBackground(Color.black);
-         jButton9.setForeground(Color.white);
+        jButton9.setForeground(Color.white);
     }//GEN-LAST:event_jButton9MouseExited
 
     private void jButton10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseEntered
-        jButton10.setBackground(Color.white);
         jButton10.setForeground(Color.black);
     }//GEN-LAST:event_jButton10MouseEntered
 
     private void jButton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseExited
-        jButton10.setBackground(Color.black);
         jButton10.setForeground(Color.white);
     }//GEN-LAST:event_jButton10MouseExited
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-       jButton1.setBackground(Color.white);
-       jButton1.setForeground(Color.black);
+        jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setBackground(Color.black);
         jButton1.setForeground(Color.white);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-         jButton2.setBackground(Color.white);
-         jButton2.setForeground(Color.black);
+        jButton2.setForeground(Color.black);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton2.setBackground(Color.black);
         jButton2.setForeground(Color.white);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        jButton3.setBackground(Color.white);
         jButton3.setForeground(Color.black);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-      jButton3.setBackground(Color.black);
-      jButton3.setForeground(Color.white);
+        jButton3.setForeground(Color.white);
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        jButton5.setBackground(Color.white);
         jButton5.setForeground(Color.black);
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-      jButton5.setBackground(Color.black);
-      jButton5.setForeground(Color.white);
+        jButton5.setForeground(Color.white);
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        jButton6.setBackground(Color.white);
         jButton6.setForeground(Color.black);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-      jButton6.setBackground(Color.black);
-      jButton6.setForeground(Color.white);
+        jButton6.setForeground(Color.white);
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        jButton7.setBackground(Color.white);
         jButton7.setForeground(Color.black);
     }//GEN-LAST:event_jButton7MouseEntered
 
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-      jButton7.setBackground(Color.black);
-      jButton7.setForeground(Color.white);
+        jButton7.setForeground(Color.white);
     }//GEN-LAST:event_jButton7MouseExited
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
         FlatMacLightLaf.setup();
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new product_registration().setVisible(true);
@@ -1609,7 +1590,7 @@ public class product_registration extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
-    
+
     private void resetProductUI() {
         jTextField1.setText("");
         jTextField1.grabFocus();

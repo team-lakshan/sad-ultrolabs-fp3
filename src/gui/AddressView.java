@@ -35,16 +35,17 @@ public class AddressView extends javax.swing.JDialog {
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
 
-     private void header() {
+    private void header() {
         JTableHeader header = jTable2.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 12));
-        header.setForeground(Color.BLACK);
+        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.CENTER);
         jTable2.setDefaultRenderer(Object.class, renderer);
 
     }
+
     private void loardAddtess() {
         try {
 
@@ -146,29 +147,33 @@ public class AddressView extends javax.swing.JDialog {
         setTitle("Dreamers Clothing");
         setAlwaysOnTop(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Address View");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Address line 01");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Address line 02");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("City");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,8 +190,8 @@ public class AddressView extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,8 +208,8 @@ public class AddressView extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Delete");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,6 +227,7 @@ public class AddressView extends javax.swing.JDialog {
         });
 
         jTable2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -245,20 +251,24 @@ public class AddressView extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("employee email");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("District");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Province");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jComboBox2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jComboBox2.setMaximumRowCount(25);
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jComboBox3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jComboBox3.setMaximumRowCount(9);
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -267,8 +277,8 @@ public class AddressView extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton4.setBackground(new java.awt.Color(0, 153, 153));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Clear");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -518,42 +528,34 @@ public class AddressView extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        jButton1.setBackground(Color.white);
         jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setBackground(Color.black);
         jButton1.setForeground(Color.white);
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-        jButton2.setBackground(Color.white);
         jButton2.setForeground(Color.black);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton2.setBackground(Color.black);
         jButton2.setForeground(Color.white);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        jButton3.setBackground(Color.white);
         jButton3.setForeground(Color.black);
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        jButton3.setBackground(Color.black);
         jButton3.setForeground(Color.white);
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-        jButton4.setBackground(Color.white);
         jButton4.setForeground(Color.black);
     }//GEN-LAST:event_jButton4MouseEntered
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        jButton4.setBackground(Color.white);
         jButton4.setForeground(Color.black);
     }//GEN-LAST:event_jButton4MouseExited
 

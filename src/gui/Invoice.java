@@ -1,6 +1,6 @@
 package gui;
 
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -21,8 +21,13 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+import java.awt.Font;
 import java.util.Properties;
 import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperExportManager;
 
 public class Invoice extends javax.swing.JFrame {
@@ -52,7 +57,6 @@ public class Invoice extends javax.swing.JFrame {
     }
 
     private void loadInvoice() {
-
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
@@ -199,8 +203,20 @@ public class Invoice extends javax.swing.JFrame {
         loadPaymentMethod();
         jLabel32.setText(newDate);
         jLabel3.setText(SignIn.getEmployeeEmail());
+        header();
+        setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
 
+    private void header() {
+        JTableHeader header = jTable1.getTableHeader();
+        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setForeground(Color.white);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.setDefaultRenderer(Object.class, renderer);
+
+    }
     Date date = new Date();
     String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
@@ -367,97 +383,190 @@ public class Invoice extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Invoice");
+        setTitle("UL Dress Mart");
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setEnabled(false);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Invoice");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Employee");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Employee Details");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Invoice Number");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Customer Number");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Stock");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Select Stock");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Quantity");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Brand");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Selling Price");
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Clear All");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Product");
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Stock IN");
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel20.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Stock Out");
 
+        jLabel21.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Add To Invoice");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(0, 153, 153));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Select Customer");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
+        jLabel27.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel28.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Available Points");
 
         jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jTextField1.setText("0.00");
 
+        jLabel30.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Customer Name");
 
+        jLabel31.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Available quantity");
 
+        jLabel32.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel32.setText("date");
 
+        jLabel33.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Customer email");
 
+        jLabel34.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -639,6 +748,8 @@ public class Invoice extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -657,22 +768,29 @@ public class Invoice extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel22.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel22.setText("Total");
 
+        jLabel23.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel23.setText("Discount");
 
+        jLabel24.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel24.setText("Payment Method");
 
+        jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel25.setText("Payment");
 
+        jLabel26.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel26.setText("Balance");
 
         totalField.setEditable(false);
         totalField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         totalField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         DiscountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         DiscountField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        DiscountField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         DiscountField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 DiscountFieldKeyReleased(evt);
@@ -681,6 +799,7 @@ public class Invoice extends javax.swing.JFrame {
 
         paymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         paymentField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        paymentField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         paymentField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 paymentFieldKeyReleased(evt);
@@ -690,7 +809,9 @@ public class Invoice extends javax.swing.JFrame {
         jFormattedTextField6.setEditable(false);
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormattedTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
+        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -698,29 +819,56 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
 
+        jLabel29.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel29.setText("Withdow Points");
 
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCheckBox1ItemStateChanged(evt);
             }
         });
 
+        printInvoiceButton.setBackground(new java.awt.Color(0, 153, 153));
+        printInvoiceButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        printInvoiceButton.setForeground(new java.awt.Color(255, 255, 255));
         printInvoiceButton.setText("print");
+        printInvoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                printInvoiceButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                printInvoiceButtonMouseExited(evt);
+            }
+        });
         printInvoiceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printInvoiceButtonActionPerformed(evt);
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(0, 153, 153));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Previous Invoices");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
+        jLabel35.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel35.setText("App Password");
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1066,8 +1214,56 @@ public class Invoice extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
+        jButton4.setForeground(Color.black);
+    }//GEN-LAST:event_jButton4MouseEntered
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
+        jButton4.setForeground(Color.white);
+    }//GEN-LAST:event_jButton4MouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setForeground(Color.black);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setForeground(Color.white);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        jButton3.setForeground(Color.black);
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        jButton3.setForeground(Color.white);
+    }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        jButton2.setForeground(Color.black);
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        jButton2.setForeground(Color.white);
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void printInvoiceButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printInvoiceButtonMouseEntered
+        printInvoiceButton.setForeground(Color.black);
+    }//GEN-LAST:event_printInvoiceButtonMouseEntered
+
+    private void printInvoiceButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printInvoiceButtonMouseExited
+        printInvoiceButton.setForeground(Color.white);
+    }//GEN-LAST:event_printInvoiceButtonMouseExited
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        jButton5.setForeground(Color.black);
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        jButton5.setForeground(Color.white);
+    }//GEN-LAST:event_jButton5MouseExited
+
     public static void main(String args[]) {
-        FlatMacLightLaf.setup();
+        FlatGitHubDarkIJTheme.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
