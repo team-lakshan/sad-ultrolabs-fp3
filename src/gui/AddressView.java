@@ -147,18 +147,13 @@ public class AddressView extends javax.swing.JDialog {
         setTitle("Dreamers Clothing");
         setAlwaysOnTop(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Address View");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Address line 01");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Address line 02");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -167,7 +162,6 @@ public class AddressView extends javax.swing.JDialog {
         jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("City");
 
         jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -257,11 +251,9 @@ public class AddressView extends javax.swing.JDialog {
         jLabel5.setText("employee email");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("District");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Province");
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
