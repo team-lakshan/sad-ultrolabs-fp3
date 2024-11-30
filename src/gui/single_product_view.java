@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import util.MySQL;
 
 public class single_product_view extends javax.swing.JFrame {
- 
-    public single_product_view(java.awt.Frame parent, boolean model, String product_id,String brand_id,String product_name,String brand_name,String category,String size,String colour) {
+
+    public single_product_view(java.awt.Frame parent, boolean model, String product_id, String brand_id, String product_name, String brand_name, String category, String size, String colour) {
         initComponents();
         jLabel9.setText(product_id);
         jLabel10.setText(brand_id);
@@ -20,7 +20,8 @@ public class single_product_view extends javax.swing.JFrame {
         jLabel13.setText(category);
         jLabel14.setText(size);
         jLabel15.setText(colour);
-        
+        setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
+
         try {
             String id = product_id;
 
@@ -46,10 +47,9 @@ public class single_product_view extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error loading image: " + ex.getMessage());
             ex.printStackTrace();
         }
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -72,39 +72,54 @@ public class single_product_view extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("single_stock_view");
+        setTitle("UL Dress Mart");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Single Product view");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel2.setText("Product Id");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel3.setText("Brand Id");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel4.setText("Product Name");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel5.setText("Brand Name");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel6.setText("Category");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel7.setText("Size");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel8.setText("Colour");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel16.setText("add img");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,7 +149,7 @@ public class single_product_view extends javax.swing.JFrame {
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -173,7 +188,7 @@ public class single_product_view extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();

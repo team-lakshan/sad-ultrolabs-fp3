@@ -1,6 +1,7 @@
 package gui;
 
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
 import static gui.Invoice.sendEmailWithAttachment;
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
@@ -1198,7 +1199,8 @@ public class Return_damaged_stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseExited
 
     public static void main(String args[]) {
-        FlatMacLightLaf.setup();
+       FlatGitHubDarkIJTheme.setup();
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
