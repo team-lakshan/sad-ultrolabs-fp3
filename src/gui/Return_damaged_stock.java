@@ -227,7 +227,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -362,7 +362,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
 
         jPanel1.setEnabled(false);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("Return Stock Invoice");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -393,7 +393,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Select returned invoice");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -430,7 +430,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jFormattedTextField1.setPreferredSize(new java.awt.Dimension(7, 18));
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Clear All");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -466,7 +466,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Add To Return Stock");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -484,7 +484,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Select Supplier");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -526,7 +526,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Select returning stock");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -786,7 +786,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         });
 
         printInvoiceButton.setBackground(new java.awt.Color(0, 153, 153));
-        printInvoiceButton.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        printInvoiceButton.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         printInvoiceButton.setForeground(new java.awt.Color(255, 255, 255));
         printInvoiceButton.setText("print");
         printInvoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -804,7 +804,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Previous return and refund Invoices");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -854,7 +854,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                     .addComponent(jPasswordField1))))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );

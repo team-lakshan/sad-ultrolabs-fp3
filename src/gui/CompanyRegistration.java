@@ -28,7 +28,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -95,7 +95,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
         jTextField2.setToolTipText("must be a valid phone number");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,7 +113,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,7 +156,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,7 +173,7 @@ public class CompanyRegistration extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel4.setText("Company Registration");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

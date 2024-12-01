@@ -35,7 +35,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -140,7 +140,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         setTitle("Dreamers Clothing");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("Employee Registration");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -189,7 +189,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Create Account");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -207,7 +207,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update Account");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -225,7 +225,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -249,7 +249,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("DL-Paras.", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setText("Welcome !!!");
 

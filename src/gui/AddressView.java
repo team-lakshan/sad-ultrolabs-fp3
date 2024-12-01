@@ -37,7 +37,7 @@ public class AddressView extends javax.swing.JDialog {
 
     private void header() {
         JTableHeader header = jTable2.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -147,7 +147,7 @@ public class AddressView extends javax.swing.JDialog {
         setTitle("Dreamers Clothing");
         setAlwaysOnTop(true);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("Address View");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -166,8 +166,8 @@ public class AddressView extends javax.swing.JDialog {
 
         jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(40, 55, 71));
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,7 +185,7 @@ public class AddressView extends javax.swing.JDialog {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,7 +203,7 @@ public class AddressView extends javax.swing.JDialog {
         });
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Delete");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,7 +270,7 @@ public class AddressView extends javax.swing.JDialog {
         });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Clear");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,8 +321,8 @@ public class AddressView extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(68, 68, 68)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );

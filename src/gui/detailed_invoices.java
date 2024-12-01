@@ -126,7 +126,7 @@ public class detailed_invoices extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel8.setText("Invoice Details");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -173,7 +173,7 @@ public class detailed_invoices extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Print Report");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -279,7 +279,7 @@ public class detailed_invoices extends javax.swing.JDialog {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

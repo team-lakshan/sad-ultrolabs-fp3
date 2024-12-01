@@ -44,7 +44,7 @@ public class detailed_return extends javax.swing.JDialog {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -137,7 +137,7 @@ public class detailed_return extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel8.setText("Return Invoice Details");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -177,7 +177,7 @@ public class detailed_return extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Print Report");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,7 +281,7 @@ public class detailed_return extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

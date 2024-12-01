@@ -43,7 +43,7 @@ public class detailed_return_stock extends javax.swing.JDialog {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -129,7 +129,7 @@ public class detailed_return_stock extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel8.setText("Return Stock Details");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -172,7 +172,7 @@ public class detailed_return_stock extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Print Report");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,7 +221,7 @@ public class detailed_return_stock extends javax.swing.JDialog {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(125, 125, 125)
@@ -265,8 +265,8 @@ public class detailed_return_stock extends javax.swing.JDialog {
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

@@ -27,7 +27,7 @@
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="1159" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="0" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -66,8 +66,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="136" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="30" max="32767" attributes="0"/>
+                          <Component id="jLabel1" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="413" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -300,7 +300,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="24" style="1"/>
+              <Font name="DL-Paras." size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Return and Refund Invoice"/>
           </Properties>
@@ -399,7 +399,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="1"/>
+              <Font name="DL-Paras." size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -476,7 +476,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="1"/>
+              <Font name="DL-Paras." size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -550,7 +550,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="1"/>
+              <Font name="DL-Paras." size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -568,7 +568,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="1"/>
+              <Font name="DL-Paras." size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -693,7 +693,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="345" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -994,7 +994,7 @@
                   <Color blue="99" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="1"/>
+                  <Font name="DL-Paras." size="14" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1039,7 +1039,7 @@
                   <Color blue="99" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="1"/>
+                  <Font name="DL-Paras." size="14" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
