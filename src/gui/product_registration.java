@@ -66,7 +66,7 @@ public class product_registration extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -353,7 +353,7 @@ public class product_registration extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("Product Registration");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -391,7 +391,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add New Product");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -409,7 +409,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Update Product");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -427,7 +427,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear All");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -445,7 +445,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("add or update");
         jButton4.setMaximumSize(new java.awt.Dimension(39, 22));
@@ -505,7 +505,7 @@ public class product_registration extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         jButton8.setBackground(new java.awt.Color(0, 153, 153));
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("add or update");
         jButton8.setMaximumSize(new java.awt.Dimension(39, 22));
@@ -556,7 +556,7 @@ public class product_registration extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         jButton9.setBackground(new java.awt.Color(0, 153, 153));
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton9.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("add or update");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -574,7 +574,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton10.setBackground(new java.awt.Color(0, 153, 153));
-        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton10.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("add or update");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -592,7 +592,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton11.setBackground(new java.awt.Color(0, 153, 153));
-        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton11.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("select image");
         jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -677,13 +677,13 @@ public class product_registration extends javax.swing.JFrame {
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButton1)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jButton2)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -775,7 +775,7 @@ public class product_registration extends javax.swing.JFrame {
         jFormattedTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Find");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -796,7 +796,7 @@ public class product_registration extends javax.swing.JFrame {
         jLabel9.setText("Stock in");
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Find");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -814,7 +814,7 @@ public class product_registration extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(0, 153, 153));
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Clear All");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -852,7 +852,7 @@ public class product_registration extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel10.setText("Out");
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel13.setText("Related Stock");
 
         jDateChooser3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N

@@ -33,7 +33,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -254,7 +254,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
         jDateChooser1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Find");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -282,7 +282,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
         });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Clear");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -299,7 +299,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("Previous Returned Invoices");
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -348,7 +348,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
         jFormattedTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
 
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Find");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -365,7 +365,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel6.setText("Products to Return");
 
         jTable2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -431,7 +431,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
                                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                                                     .addComponent(jFormattedTextField2))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -507,7 +507,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

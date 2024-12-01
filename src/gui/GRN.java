@@ -55,7 +55,7 @@ public class GRN extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -265,7 +265,7 @@ public class GRN extends javax.swing.JFrame {
         setTitle("UL Dress Mart");
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel1.setText("GRN(Good Recieved Note)");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -283,7 +283,7 @@ public class GRN extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Select Supplier");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -328,7 +328,7 @@ public class GRN extends javax.swing.JFrame {
         jLabel12.setText("Stock out");
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Add New GRN");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -346,7 +346,7 @@ public class GRN extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Clear");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -364,7 +364,7 @@ public class GRN extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 153));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Select a Product");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -428,7 +428,7 @@ public class GRN extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel23.setText("Supplier Details");
 
-        jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("DL-Paras.", 1, 18)); // NOI18N
         jLabel24.setText("Product Details");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
@@ -481,7 +481,7 @@ public class GRN extends javax.swing.JFrame {
         jLabel15.setText("Payment");
 
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Save GRN");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -516,7 +516,7 @@ public class GRN extends javax.swing.JFrame {
         });
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("View Previous GRNs");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {

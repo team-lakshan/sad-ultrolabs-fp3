@@ -104,6 +104,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2f" green="20" red="69" type="rgb"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DL-Paras." size="14" style="1"/>
                 </Property>
@@ -340,7 +343,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="184" max="32767" attributes="0"/>
+                  <EmptySpace pref="150" max="32767" attributes="0"/>
                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" pref="218" max="-2" attributes="0"/>
@@ -365,7 +368,7 @@
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="24" style="1"/>
+              <Font name="DL-Paras." size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="UL DressMart - Your Official Clothing partner"/>
           </Properties>
@@ -373,7 +376,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="1"/>
+              <Font name="DL-Paras." size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="date"/>
@@ -496,7 +499,7 @@
                               <Component id="jLabel33" min="-2" pref="216" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="487" max="32767" attributes="0"/>
+                      <EmptySpace pref="323" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -517,7 +520,7 @@
                               <Component id="jPanel27" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel28" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="229" max="32767" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -561,9 +564,6 @@
           <SubComponents>
             <Container class="javax.swing.JPanel" name="jPanel20">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -632,6 +632,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel41">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -642,9 +645,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel21">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -712,6 +712,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel58">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -722,9 +725,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel22">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -789,6 +789,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel61">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -799,9 +802,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel27">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -866,6 +866,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel62">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -876,9 +879,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel25">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -944,6 +944,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel59">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -954,9 +957,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel23">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -1021,6 +1021,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel56">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -1031,9 +1034,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel24">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -1099,6 +1099,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel57">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -1109,9 +1112,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel26">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -1176,6 +1176,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel60">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -1186,9 +1189,6 @@
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel28">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="99" red="99" type="rgb"/>
-                </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
@@ -1253,6 +1253,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel67">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="DL-Paras." size="14" style="1"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -1308,6 +1311,9 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel33">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="DL-Paras." size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="2024 Ultron Labs || All Rights Recieved"/>
               </Properties>
             </Component>
@@ -1353,7 +1359,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="259" max="32767" attributes="0"/>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton6" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
@@ -1396,7 +1402,7 @@
                           <Component id="jButton16" pref="113" max="32767" attributes="0"/>
                           <Component id="jButton18" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="316" max="32767" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
@@ -1593,7 +1599,7 @@
                           <Component id="jButton13" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButton7" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="227" max="32767" attributes="0"/>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton8" alignment="1" pref="233" max="32767" attributes="0"/>
                           <Component id="jButton11" alignment="1" max="32767" attributes="0"/>
@@ -1784,6 +1790,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel63">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="DL-Paras." size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="2024 Ultron Labs || All Rights Recieved"/>
               </Properties>
             </Component>
@@ -1809,7 +1818,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="1059" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="895" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1826,7 +1835,7 @@
                                   <Component id="jLabel11" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="519" max="32767" attributes="0"/>
+                          <EmptySpace pref="358" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1838,7 +1847,7 @@
                       <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="329" max="-2" attributes="0"/>
-                      <EmptySpace pref="393" max="32767" attributes="0"/>
+                      <EmptySpace pref="131" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -1846,7 +1855,7 @@
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="408" max="-2" attributes="0"/>
                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="316" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1856,7 +1865,7 @@
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="18" style="1"/>
+                  <Font name="DL-Paras." size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="About Our Shop"/>
               </Properties>
@@ -1908,6 +1917,9 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="DL-Paras." size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="2024 Ultron Labs || All Rights Recieved"/>
               </Properties>
             </Component>
@@ -1922,10 +1934,10 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI Emoji" size="12" style="0"/>
+                      <Font name="DL-Paras." size="18" style="0"/>
                     </Property>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="&#xa;Welcome to UL Dress Mart, where style meets quality! We specialize in trendy and timeless clothing for all occasions. Our mission is to make fashion accessible, &#xa;comfortable, and tailored to your unique style.  At UL Dress Mart, we&#x2019;re passionate about delivering exceptional designs and a seamless shopping experience.&#xa;Thank you for choosing us to elevate your wardrobe! Let me know if you&apos;d like to customize it further."/>
+                    <Property name="text" type="java.lang.String" value="&#xa;Welcome to UL Dress Mart, where style meets quality! We specialize in trendy and timeless clothing for all&#xa;occasions. Our mission is to make fashion accessible, comfortable, and tailored to your unique style. &#xa;At UL Dress Mart, we&#x2019;re passionate about delivering exceptional designs and a seamless shopping &#xa;experience.Thank you for choosing us to elevate your wardrobe! Let me know if you&apos;d like to customize it &#xa;further."/>
                   </Properties>
                 </Component>
               </SubComponents>

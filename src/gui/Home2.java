@@ -415,11 +415,11 @@ public class Home2 extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 570));
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("DL-Paras.", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("date");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel15.setText("UL DressMart - Your Official Clothing partner");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -427,7 +427,7 @@ public class Home2 extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(78, 78, 78)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,7 +493,6 @@ public class Home2 extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("tab1", jPanel2);
 
-        jPanel20.setBackground(new java.awt.Color(153, 153, 153));
         jPanel20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -506,6 +505,7 @@ public class Home2 extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
 
+        jLabel41.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 0, 0));
         jLabel41.setText("111");
 
@@ -536,7 +536,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel21.setBackground(new java.awt.Color(153, 153, 153));
         jPanel21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -548,6 +547,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
+        jLabel58.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jLabel58.setForeground(new java.awt.Color(255, 0, 51));
         jLabel58.setText("111");
 
@@ -579,7 +579,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel22.setBackground(new java.awt.Color(153, 153, 153));
         jPanel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -591,6 +590,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
+        jLabel61.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jLabel61.setForeground(new java.awt.Color(255, 0, 51));
         jLabel61.setText("111");
 
@@ -620,7 +620,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel27.setBackground(new java.awt.Color(153, 153, 153));
         jPanel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -632,6 +631,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
+        jLabel62.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jLabel62.setForeground(new java.awt.Color(255, 0, 51));
         jLabel62.setText("111");
 
@@ -661,7 +661,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel25.setBackground(new java.awt.Color(153, 153, 153));
         jPanel25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -703,7 +702,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel23.setBackground(new java.awt.Color(153, 153, 153));
         jPanel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -744,7 +742,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel24.setBackground(new java.awt.Color(153, 153, 153));
         jPanel24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -786,7 +783,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel26.setBackground(new java.awt.Color(153, 153, 153));
         jPanel26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -827,7 +823,6 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel28.setBackground(new java.awt.Color(153, 153, 153));
         jPanel28.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -868,10 +863,10 @@ public class Home2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel25.setText("Home >");
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel26.setText("Dashboard");
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
@@ -894,6 +889,7 @@ public class Home2 extends javax.swing.JFrame {
                     .addComponent(jLabel26)))
         );
 
+        jLabel33.setFont(new java.awt.Font("DL-Paras.", 0, 12)); // NOI18N
         jLabel33.setText("2024 Ultron Labs || All Rights Recieved");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -962,6 +958,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("tab2", jPanel4);
 
+        jLabel17.setFont(new java.awt.Font("DL-Paras.", 0, 12)); // NOI18N
         jLabel17.setText("2024 Ultron Labs|| All Rights Recieved");
 
         jButton1.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
@@ -1030,10 +1027,10 @@ public class Home2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel20.setText("Home >");
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel21.setText("navigation");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
@@ -1072,7 +1069,7 @@ public class Home2 extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(356, 356, 356)
                 .addComponent(jLabel17)
-                .addGap(0, 384, Short.MAX_VALUE))
+                .addGap(0, 387, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1133,10 +1130,10 @@ public class Home2 extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("tab3", jPanel5);
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel27.setText("Home >");
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel28.setText("Reports");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -1189,6 +1186,7 @@ public class Home2 extends javax.swing.JFrame {
         jButton12.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton12.setText("Invoice Summary");
 
+        jLabel63.setFont(new java.awt.Font("DL-Paras.", 0, 12)); // NOI18N
         jLabel63.setText("2024 Ultron Labs || All Rights Recieved");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1249,13 +1247,13 @@ public class Home2 extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("tab4", jPanel6);
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("DL-Paras.", 1, 18)); // NOI18N
         jLabel11.setText("About Our Shop");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel14.setText("Home >");
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("DL-Paras.", 0, 14)); // NOI18N
         jLabel18.setText("About");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
@@ -1278,12 +1276,13 @@ public class Home2 extends javax.swing.JFrame {
                     .addComponent(jLabel18)))
         );
 
+        jLabel19.setFont(new java.awt.Font("DL-Paras.", 0, 12)); // NOI18N
         jLabel19.setText("2024 name || All Rights Recieved");
 
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("DL-Paras.", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("\nWelcome to UL Dress Mart, where style meets quality! We specialize in trendy and timeless clothing for all occasions. Our mission is to make fashion accessible, comfortable, and tailored to your unique style.  \n\nAt UL Dress Mart, we’re passionate about delivering exceptional designs and a seamless shopping experience. Thank you for choosing us to elevate your wardrobe!  \n\nLet me know if you'd like to customize it further.");
+        jTextArea1.setText("\nWelcome to UL Dress Mart, where style meets quality! We specialize in trendy and timeless clothing for all\noccasions. Our mission is to make fashion accessible, comfortable, and tailored to your unique style.  \nAt UL Dress Mart, we’re passionate about delivering exceptional designs and a seamless shopping \nexperience. Thank you for choosing us to elevate your wardrobe!  Let me know if you'd like to customize it \nfurther.");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1293,7 +1292,7 @@ public class Home2 extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(795, Short.MAX_VALUE)
+                        .addContainerGap(796, Short.MAX_VALUE)
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -1317,14 +1316,14 @@ public class Home2 extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(80, 80, 80)
                     .addComponent(jLabel11)
                     .addGap(408, 408, 408)
                     .addComponent(jLabel19)
-                    .addContainerGap(54, Short.MAX_VALUE)))
+                    .addContainerGap(51, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("tab5", jPanel7);
@@ -1336,9 +1335,9 @@ public class Home2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        jLabel1.setBackground(Color.GRAY);
-        jPanel8.setBackground(Color.GRAY);
-        jPanel2.setBackground(Color.GRAY);
+        jLabel1.setBackground(new Color(51, 51, 51));
+        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel2.setBackground(new Color(51, 51, 51));
 
         jPanel9.setBackground(new Color(0, 153, 153));
         jPanel10.setBackground(new Color(0, 153, 153));
@@ -1349,9 +1348,9 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        jLabel2.setBackground(Color.GRAY);
-        jPanel9.setBackground(Color.GRAY);
-        jPanel4.setBackground(Color.GRAY);
+        jLabel2.setBackground(new Color(51, 51, 51));
+        jPanel9.setBackground(new Color(51, 51, 51));
+        jPanel4.setBackground(new Color(51, 51, 51));
 
         jPanel8.setBackground(new Color(0, 153, 153));
         jPanel10.setBackground(new Color(0, 153, 153));
@@ -1363,22 +1362,22 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        jLabel3.setBackground(Color.GRAY);
-        jPanel10.setBackground(Color.GRAY);
-        jPanel5.setBackground(Color.GRAY);
+        jLabel3.setBackground(new Color(51, 51, 51));
+        jPanel10.setBackground(new Color(51, 51, 51));
+        jPanel5.setBackground(new Color(51, 51, 51));
 
-        jPanel12.setBackground(new Color(51, 51, 51));
-        jPanel9.setBackground(new Color(51, 51, 51));
-        jPanel11.setBackground(new Color(51, 51, 51));
-        jPanel8.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(0, 153, 153));
+        jPanel9.setBackground(new Color(0, 153, 153));
+        jPanel11.setBackground(new Color(0, 153, 153));
+        jPanel8.setBackground(new Color(0, 153, 153));
 
         jTabbedPane2.setSelectedIndex(2);
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jLabel4.setBackground(Color.GRAY);
-        jPanel6.setBackground(Color.GRAY);
-        jPanel11.setBackground(Color.GRAY);
+        jLabel4.setBackground(new Color(51, 51, 51));
+        jPanel6.setBackground(new Color(51, 51, 51));
+        jPanel11.setBackground(new Color(51, 51, 51));
 
         jPanel12.setBackground(new Color(0, 153, 153));
         jPanel9.setBackground(new Color(0, 153, 153));
@@ -1389,9 +1388,9 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        jLabel5.setBackground(Color.GRAY);
-        jPanel7.setBackground(Color.GRAY);
-        jPanel12.setBackground(Color.GRAY);
+        jLabel5.setBackground(new Color(51, 51, 51));
+        jPanel7.setBackground(new Color(51, 51, 51));
+        jPanel12.setBackground(new Color(51, 51, 51));
 
         jPanel10.setBackground(new Color(0, 153, 153));
         jPanel9.setBackground(new Color(0, 153, 153));
