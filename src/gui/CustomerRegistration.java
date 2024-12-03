@@ -352,7 +352,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
         if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter mobile", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
+        } else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
             JOptionPane.showMessageDialog(this, "Please enter valid Mobile", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (firstname.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -386,19 +386,24 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String mobile = jTextField1.getText();
-        String firstname = jTextField2.getText();
-        String lastname = jTextField3.getText();
+        String firstName = jTextField2.getText();
+        String lastName = jTextField3.getText();
         String email = jTextField4.getText();
 
-        if (firstname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter First Name", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (lastname.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Last Name", "Warning", JOptionPane.WARNING_MESSAGE);
+        if (firstName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your first name", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (lastName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your last name", "Warning", JOptionPane.WARNING_MESSAGE);
+
         } else if (email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Email", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-            JOptionPane.showMessageDialog(this, "Invalid email", "warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter your email", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+            JOptionPane.showMessageDialog(this, "Please enter valid email", "Warning", JOptionPane.WARNING_MESSAGE);
+
         } else {
+
             try {
 
                 ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `customer` WHERE `email` = '" + email + "'");
@@ -406,20 +411,21 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 boolean canUpdate = false;
 
                 if (resultSet.next()) {
-                    JOptionPane.showMessageDialog(this, "Customer already regisitered", "warning", JOptionPane.WARNING_MESSAGE);
-
-                    if (resultSet.getString(mobile).equals(mobile)) {
+                    if (resultSet.getString("mobile").equals(mobile)) {
                         canUpdate = true;
                     } else {
-                        JOptionPane.showMessageDialog(this, "Email already added", "warning", JOptionPane.WARNING_MESSAGE);
-                    }
-                } else {
-                    canUpdate = true;
 
-                    if (canUpdate) {
-                        MySQL.executeIUD("UPDATE `customer` SET `first_name` = '" + firstname + "',`last_name` = '" + lastname + "',`email` = '" + email + "'"
-                                + "WHERE `mobile` = '" + mobile + "'");
+                        JOptionPane.showMessageDialog(this, "Email already added", "Warning", JOptionPane.WARNING_MESSAGE);
                     }
+
+                } else {
+
+                    canUpdate = true;
+                }
+
+                if (canUpdate) {
+                    MySQL.executeIUD("UPDATE `customer` SET `first_name` = '" + firstName + "' , `last_name`='" + lastName + "' ,`email` = '" + email + "'"
+                            + "WHERE `mobile` = '" + mobile + "'");
 
                     loadCustomer("first_name", "ASC", jTextField1.getText());
                     reset();
