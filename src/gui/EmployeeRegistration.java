@@ -248,6 +248,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         jLabel10.setText("date");
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/eemployee/employee registration.png"))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("DL-Paras.", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
@@ -307,7 +308,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(36, 36, 36)))
@@ -323,7 +324,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,8 +332,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -505,9 +506,9 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Plese Enter Valid Mobile Number....", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Plese Enter Password....", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (password.length() < 8) {
-            JOptionPane.showMessageDialog(this, "Your Password character lessthan for 8 characters..", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (gender.equals("Select")) {
+        } else if (!password.matches("^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@$!%?&])[A-Za-z\\d@$!%?&]{8,10}$")) {
+                JOptionPane.showMessageDialog(this, "Please Enter Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character ", "warning", JOptionPane.WARNING_MESSAGE);
+            } else if (gender.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Plese Select Your Gender...", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (type.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Plese Select Your Type", "Warning", JOptionPane.WARNING_MESSAGE);
