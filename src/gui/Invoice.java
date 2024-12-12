@@ -380,8 +380,6 @@ public class Invoice extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         printInvoiceButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel35 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
@@ -852,11 +850,6 @@ public class Invoice extends javax.swing.JFrame {
             }
         });
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-        jLabel35.setText("App Password");
-
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -882,8 +875,7 @@ public class Invoice extends javax.swing.JFrame {
                             .addComponent(jLabel24)
                             .addComponent(jLabel25)
                             .addComponent(jLabel26)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel35))
+                            .addComponent(jLabel29))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(paymentField, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -891,14 +883,13 @@ public class Invoice extends javax.swing.JFrame {
                             .addComponent(jFormattedTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jCheckBox1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPasswordField1))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -923,14 +914,10 @@ public class Invoice extends javax.swing.JFrame {
                     .addComponent(jLabel26)
                     .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(printInvoiceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap())
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -947,11 +934,11 @@ public class Invoice extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1110,8 +1097,8 @@ public class Invoice extends javax.swing.JFrame {
             } else {
 
                 // insert to invoice
-                MySQL.executeIUD("INSERT INTO `invoice` VALUES('" + invoiceID + "','" + employeeEmail + "','" + customerMobile + "','"
-                        + dateTime + "','" + paidAmount + "','" + paymentMethodID + "','" + discount + "')");
+                MySQL.executeIUD("INSERT INTO `invoice` VALUES('" + invoiceID + "','" + employeeEmail + "',"
+                        + " '" + dateTime + "','" + paidAmount + "','" + paymentMethodID + "','" + discount + "', '" + customerMobile + "')");
 
                 for (InvoiceItem invoiceItem : invoiceItemMap.values()) {
 
@@ -1158,8 +1145,15 @@ public class Invoice extends javax.swing.JFrame {
             }
 
             String customerEmail = jLabel34.getText();
-            String appPassword = new String(jPasswordField1.getPassword());
+            String customermobile = jLabel7.getText();
+            String appPassword = "";
             String filePath = "src/report_pdf/invoice.pdf";
+
+            ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE `mobile` = '" + customermobile + "'");
+
+            if (rs.next()) {
+                appPassword = rs.getString("app_pass");
+            }
 
             if (!appPassword.isEmpty()) {
 
@@ -1299,7 +1293,6 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1310,7 +1303,6 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
