@@ -1482,7 +1482,8 @@ public class Home1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        stock_managment sm = new stock_managment();
+        String st = "";
+        stock_managment sm = new stock_managment(st);
         sm.setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 

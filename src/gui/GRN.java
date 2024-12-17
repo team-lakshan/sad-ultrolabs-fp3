@@ -48,7 +48,7 @@ public class GRN extends javax.swing.JFrame {
         initComponents();
         generateGRNId();
         jLabel19.setText(SignIn.getEmployeeEmail());
-        loadGRNItems();
+
         header();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
@@ -117,38 +117,21 @@ public class GRN extends javax.swing.JFrame {
         return jLabel30;
     }
 
-    private void loadGRNItems() {
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private void calculate1() {
 
         double total = 0;
 
-        for (GRNItem grnItem : grnItemMap.values()) {
+        int rowCount = jTable1.getRowCount();
 
-            Vector<String> vector = new Vector<>();
-            vector.add(grnItem.getProductId());
-            vector.add(grnItem.getBrandName());
-            vector.add(grnItem.getProductName());
-            vector.add(grnItem.getCategory());
-            vector.add(grnItem.getColor());
-            vector.add(grnItem.getSize());
-            vector.add(String.valueOf(grnItem.getQty()));
-            vector.add(String.valueOf(grnItem.getBuyingPrice()));
-            vector.add(String.valueOf(grnItem.getSellingPrice()));
-            vector.add(format.format(grnItem.getMfd()));
-            vector.add(format.format(grnItem.getExp()));
+        for (int i = 0; i < rowCount; i++) {
 
-            double itemTotal = grnItem.getQty() * grnItem.getBuyingPrice();
-            total += itemTotal;
-            vector.add(String.valueOf(itemTotal));
+            String tableTotal = String.valueOf(jTable1.getValueAt(i, 11));
 
-            model.addRow(vector);
+            total += (Double.parseDouble(tableTotal));
+
+            jLabel16.setText(String.valueOf(total));
+
         }
-
-        jLabel16.setText(String.valueOf(total));
 
     }
 
@@ -843,40 +826,53 @@ public class GRN extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please Enter Quantity", "warning", JOptionPane.WARNING_MESSAGE);
 
             } else {
+              
 
-                //validate  here....
-                GRNItem grnItem = new GRNItem();
-                grnItem.setProductId(jTextField4.getText());
-                grnItem.setBrandName(jLabel20.getText());
-                grnItem.setProductName(jLabel21.getText());
-                grnItem.setCategory(jLabel28.getText());
-                grnItem.setColor(jLabel29.getText());
-                grnItem.setSize(jLabel30.getText());
-                grnItem.setQty(Double.parseDouble(qty));
-                grnItem.setBuyingPrice(Double.parseDouble(buy_price));
-                grnItem.setSellingPrice(Double.parseDouble(sell_price));
-                grnItem.setMfd(mfd);
-                grnItem.setExp(exp);
+                int rowCount = jTable1.getRowCount();
 
-                if (grnItemMap.get(jTextField4.getText()) == null) {
-                    grnItemMap.put(jTextField4.getText(), grnItem);
-                    loadGRNItems();
-                } else {
+                boolean stockIdFound = false;
 
-                    GRNItem found = grnItemMap.get(jTextField4.getText());
+                for (int i = 0; i < rowCount; i++) {
 
-                    if (found.getExp().compareTo(exp) == 0
-                            && found.getMfd().compareTo(mfd) == 0
-                            && found.getBuyingPrice() == Double.parseDouble(buy_price)
-                            && found.getSellingPrice() == Double.parseDouble(sell_price)) {
-                        found.setQty(found.getQty() + Double.parseDouble(qty));
-                        loadGRNItems();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "GRN item already exsists with a differents and prices", "Warning", JOptionPane.ERROR_MESSAGE);
+                    String productId2 = String.valueOf(jTable1.getValueAt(i, 0));
+                    String qty2 = String.valueOf(jTable1.getValueAt(i, 6));
+                    String total2 = String.valueOf(jTable1.getValueAt(i, 11));
 
-                        reset();
+                    if (pid.equals(productId2)) {
+                        int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + pid, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                        if (option == JOptionPane.YES_OPTION) {
+                            jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 6);
+                            jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(buy_price) * Double.parseDouble(qty), i, 11);
+                            calculate1();
+                            stockIdFound = true;
+                            break;
+                        }
+
                     }
+                }
 
+                if (!stockIdFound) {
+                    Vector vector = new Vector();
+                    vector.add(pid);
+                    vector.add(pname);
+                    vector.add(brand);
+                    vector.add(category);
+                    vector.add(color);
+                    vector.add(size);
+                    vector.add(qty);
+                    vector.add(buy_price);
+                    vector.add(sell_price);
+                    vector.add(mfd);
+                    vector.add(exp);
+
+                    double itemTotal = Double.parseDouble(buy_price) * Double.parseDouble(qty);
+                    vector.add(String.valueOf(itemTotal));
+
+                    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                    dtm.addRow(vector);
+
+                    calculate1();
                 }
 
             }
@@ -894,7 +890,7 @@ public class GRN extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            
+
             String grnNumber = jTextField2.getText();
             String supplierMobile = jTextField3.getText();
             String employeeEmail = jLabel19.getText();
@@ -996,12 +992,12 @@ public class GRN extends javax.swing.JFrame {
             if (!appPassword.isEmpty()) {
 
                 if (supplierEmail.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "The Supplier does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 } else if (!supplierEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                         + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
 
-                    JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid Supplier email", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 } else if (appPassword.length() < 19 || appPassword.length() > 19) {
                     System.out.println("appPassword's length is less than 19 or larger than 19.");
