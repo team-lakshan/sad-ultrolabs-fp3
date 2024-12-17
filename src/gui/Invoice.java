@@ -56,34 +56,21 @@ public class Invoice extends javax.swing.JFrame {
 
     }
 
-    private void loadInvoice() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+    private void calculate1() {
 
         total = 0;
 
-        for (InvoiceItem invoiceItem : invoiceItemMap.values()) {
+        int rowCount = jTable1.getRowCount();
 
-            Vector<String> vector = new Vector<>();
-            vector.add(invoiceItem.getStockID());
-            vector.add(invoiceItem.getBrand());
-            vector.add(invoiceItem.getName());
-            vector.add(String.valueOf(invoiceItem.getQty()));
-            vector.add(invoiceItem.getSellingPrice());
-            vector.add(invoiceItem.getMfd());
-            vector.add(invoiceItem.getExp());
+        for (int i = 0; i < rowCount; i++) {
 
-            double itemTotal = Double.parseDouble(invoiceItem.getQty()) * Double.parseDouble(invoiceItem.getSellingPrice());
-            total += itemTotal;
-            vector.add(String.valueOf(itemTotal));
+            String tableTotal = String.valueOf(jTable1.getValueAt(i, 7));
 
-            model.addRow(vector);
+            total += (Double.parseDouble(tableTotal));
+
+            totalField.setText(String.valueOf(total));
+
         }
-
-        totalField.setText(String.valueOf(total));
-
-        //2
-        calculate();
 
     }
 
@@ -969,8 +956,8 @@ public class Invoice extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        stock_managment stock = new stock_managment();
+        String st = "";
+        stock_managment stock = new stock_managment(st);
         stock.setVisible(true);
         stock.setinvoice(this);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1000,43 +987,48 @@ public class Invoice extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
 
-            InvoiceItem invoiceItem = new InvoiceItem();
-            invoiceItem.setBrand(brand);
-            invoiceItem.setExp(exp);
-            invoiceItem.setMfd(mfd);
-            invoiceItem.setName(productName);
-            invoiceItem.setQty(qty);
-            invoiceItem.setSellingPrice(sellingPrice);
-            invoiceItem.setStockID(stockID);
+            int rowCount = jTable1.getRowCount();
 
-            if (invoiceItemMap.get(stockID) == null) {
-                invoiceItemMap.put(stockID, invoiceItem);
-                loadInvoice();
-                JOptionPane.showMessageDialog(this, "Item added to invoice successfully ", "Information", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+            boolean stockIdFound = false;
 
-                InvoiceItem found = invoiceItemMap.get(stockID);
+            for (int i = 0; i < rowCount; i++) {
 
-                if (found.getExp().compareTo(exp) == 0
-                        && found.getMfd().compareTo(mfd) == 0
-                        && found.getSellingPrice() == sellingPrice) {
+                String stockId2 = String.valueOf(jTable1.getValueAt(i, 0));
+                String qty2 = String.valueOf(jTable1.getValueAt(i, 3));
+                String total2 = String.valueOf(jTable1.getValueAt(i, 7));
 
+                if (stockID.equals(stockId2)) {
                     int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                     if (option == JOptionPane.YES_OPTION) {
-
-                        found.setQty(found.getQty() + (qty));
-                        loadInvoice();
-                        JOptionPane.showMessageDialog(this, "Item added invoice successfully ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                        jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
+                        jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
+                        calculate1();
+                        stockIdFound = true;
+                        break;
                     }
-                } else {
-
-                    JOptionPane.showMessageDialog(this, "GRN item already exists with diffrent dates and prices", "Error", JOptionPane.ERROR_MESSAGE);
 
                 }
             }
 
-            invoiceItemMap.put(stockID, invoiceItem);
+            if (!stockIdFound) {
+                Vector vector = new Vector();
+                vector.add(stockID);
+                vector.add(brand);
+                vector.add(productName);
+                vector.add(qty);
+                vector.add(sellingPrice);
+                vector.add(mfd);
+                vector.add(exp);
+
+                double itemTotal = Double.parseDouble(sellingPrice) * Double.parseDouble(qty);
+                vector.add(String.valueOf(itemTotal));
+
+                DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                dtm.addRow(vector);
+
+                calculate1();
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
