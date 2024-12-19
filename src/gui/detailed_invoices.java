@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
@@ -9,6 +10,9 @@ import util.MySQL;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
@@ -32,7 +36,19 @@ public class detailed_invoices extends javax.swing.JDialog {
         jTextField2.setText(email);
         jTextField4.setText(String.valueOf(Double.parseDouble(amount) + Double.parseDouble(discount)));
         jLabel10.setText(newDate);
+        header();
         loadInvoice();
+
+    }
+    
+    private void header() {
+        JTableHeader header = jTable1.getTableHeader();
+        header.setFont(new Font("Consolas", Font.BOLD, 14));
+        header.setForeground(Color.white);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.setDefaultRenderer(Object.class, renderer);
 
     }
 
@@ -105,53 +121,54 @@ public class detailed_invoices extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Invoice ID");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Issued Date");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Customer mobile");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Paid Amount");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("Discount");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setText("Total");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
         jLabel8.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel8.setText("Invoice Details");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Payment Method");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField1.setEnabled(false);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField2.setEnabled(false);
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField3.setEnabled(false);
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField4.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField4.setEnabled(false);
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField5.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField5.setEnabled(false);
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField6.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField6.setEnabled(false);
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField7.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField7.setEnabled(false);
 
         jTable1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
@@ -191,10 +208,11 @@ public class detailed_invoices extends javax.swing.JDialog {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Date");
 
-        jTextField8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jTextField8.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField8.setEnabled(false);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/invoice/icons8-invoice-30.png"))); // NOI18N
@@ -220,10 +238,10 @@ public class detailed_invoices extends javax.swing.JDialog {
                                             .addComponent(jLabel7)
                                             .addComponent(jLabel1))
                                         .addGap(26, 26, 26)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                            .addComponent(jTextField2))))
-                                .addGap(90, 90, 90)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField2)
+                                            .addComponent(jTextField1))))
+                                .addGap(66, 66, 66)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6)
@@ -236,24 +254,24 @@ public class detailed_invoices extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                                     .addComponent(jTextField5)
                                     .addComponent(jTextField6))
-                                .addGap(90, 90, 90)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGap(67, 67, 67)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jTextField8))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel2))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -289,7 +307,7 @@ public class detailed_invoices extends javax.swing.JDialog {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

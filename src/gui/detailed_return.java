@@ -44,7 +44,7 @@ public class detailed_return extends javax.swing.JDialog {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
+        header.setFont(new Font("Consolas", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -119,44 +119,51 @@ public class detailed_return extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
+        setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Invoice ID");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Issued Date");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Customer mobile");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Paid Amount");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("Return Method");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("Employee email");
 
         jLabel8.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel8.setText("Return Invoice Details");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Payment Method");
 
+        jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField1.setEnabled(false);
 
+        jTextField2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField2.setEnabled(false);
 
+        jTextField3.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField3.setEnabled(false);
 
+        jTextField5.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField5.setEnabled(false);
 
+        jTextField6.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField6.setEnabled(false);
 
         jDateChooser1.setEnabled(false);
-        jDateChooser1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jDateChooser1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
+        jTextField7.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField7.setEnabled(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,7 +202,7 @@ public class detailed_return extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Date");
 
@@ -206,41 +213,44 @@ public class detailed_return extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel1))
-                        .addGap(26, 26, 26)
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                            .addComponent(jTextField2))))
-                .addGap(78, 78, 78)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel1))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(jTextField2))))
+                        .addGap(63, 63, 63)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addGap(50, 50, 50)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -248,7 +258,7 @@ public class detailed_return extends javax.swing.JDialog {
                             .addGap(18, 18, 18)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -256,10 +266,11 @@ public class detailed_return extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel10))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel6)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -286,7 +297,7 @@ public class detailed_return extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

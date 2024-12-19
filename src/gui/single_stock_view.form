@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="UL Dress  Mart"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -65,7 +66,7 @@
                           <Component id="jLabel15" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel16" pref="228" max="32767" attributes="0"/>
+                      <Component id="jLabel16" pref="221" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -120,7 +121,7 @@
                   </Group>
                   <Component id="jLabel16" alignment="1" min="-2" pref="246" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="90" max="32767" attributes="0"/>
+              <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,7 +138,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Product Id"/>
       </Properties>
@@ -145,7 +146,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Brand"/>
       </Properties>
@@ -153,7 +154,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
@@ -161,7 +162,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Selling Price"/>
       </Properties>
@@ -169,7 +170,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Quantity"/>
       </Properties>
@@ -177,7 +178,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Stock In Date"/>
       </Properties>
@@ -185,7 +186,7 @@
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Century Gothic" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Stock Out Date"/>
       </Properties>
@@ -193,7 +194,7 @@
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -205,7 +206,7 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -216,6 +217,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Consolas" size="14" style="0"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>
@@ -226,7 +230,7 @@
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -238,7 +242,7 @@
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -250,7 +254,7 @@
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -262,7 +266,7 @@
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Emoji" size="14" style="0"/>
+          <Font name="Consolas" size="14" style="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -272,9 +276,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel16"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel17">
       <Properties>

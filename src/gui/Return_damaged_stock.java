@@ -33,7 +33,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperExportManager;
 //import util.Return;
-import util.Return_damaged_item;
 import util.MySQL;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -42,7 +41,6 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class Return_damaged_stock extends javax.swing.JFrame {
 
-    HashMap<String, Return_damaged_item> invoiceItemMap = new HashMap<>();
     HashMap<String, String> paymentMethodMap = new HashMap<>();
     HashMap<String, String> returnTypeMap = new HashMap<>();
 
@@ -212,7 +210,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
-        header.setFont(new Font("DL-Paras", Font.BOLD, 14));
+        header.setFont(new Font("Consolas", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -342,37 +340,39 @@ public class Return_damaged_stock extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
+        setResizable(false);
 
         jPanel1.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8-return-30.png"))); // NOI18N
         jLabel1.setText("Return Stock Invoice");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Employee");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel3.setText("Employee Details");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Invoice Number");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel6.setText("Supplier Number");
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel6.setText("Supplier Mobile");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Stock");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
@@ -393,23 +393,23 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel11.setText("Quantity");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel12.setText("Brand");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel14.setText("Selling Price");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jFormattedTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jFormattedTextField1.setPreferredSize(new java.awt.Dimension(7, 18));
 
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
@@ -430,22 +430,22 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel16.setText("Product");
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel18.setText("Stock IN");
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel20.setText("Stock Out");
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
@@ -484,28 +484,29 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             }
         });
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jLabel28.setText("Supplier's Company");
+        jLabel28.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel28.setText("Company");
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel30.setText("Supplier Name");
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel31.setText("Quantity brought");
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel32.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel32.setText("date");
 
-        jLabel34.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel34.setText("Supplier email");
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel35.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
@@ -526,10 +527,10 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             }
         });
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel29.setText("Return Invoice ID");
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel33.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -543,30 +544,34 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(42, 42, 42)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(42, 42, 42)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(42, 42, 42)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(10, 10, 10))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, Short.MAX_VALUE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel4))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
+                                                .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, 0)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -579,46 +584,44 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(64, 64, 64)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(49, 49, 49)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(0, 18, Short.MAX_VALUE)))
+                                                .addGap(10, 10, 10)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel31)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                     .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(267, 267, 267))
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(288, 288, 288)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(287, 287, 287))))
+                        .addGap(442, 442, 442)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -633,50 +636,48 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
                                 .addComponent(jLabel18)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel30)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14))))
+                                .addGap(18, 18, 18))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
-                                .addGap(26, 26, 26)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel31)))
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)))
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel28)
                                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,31 +685,30 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(28, 28, 28)
+                                    .addGap(18, 18, 18)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel14)
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(44, 44, 44))))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                                    .addGap(35, 35, 35))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel34)
-                                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton6)))
-                    .addComponent(jLabel29))
-                .addContainerGap(9, Short.MAX_VALUE))
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton6))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -729,26 +729,26 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel22.setText("Total");
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel24.setText("Payment Method");
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel25.setText("Payment");
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel26.setText("Balance");
 
         totalField.setEditable(false);
         totalField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         totalField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        totalField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        totalField.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
 
         paymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         paymentField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        paymentField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        paymentField.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         paymentField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 paymentFieldKeyReleased(evt);
@@ -758,9 +758,9 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jFormattedTextField6.setEditable(false);
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jFormattedTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jFormattedTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -771,7 +771,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         printInvoiceButton.setBackground(new java.awt.Color(0, 153, 153));
         printInvoiceButton.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         printInvoiceButton.setForeground(new java.awt.Color(255, 255, 255));
-        printInvoiceButton.setText("print");
+        printInvoiceButton.setText("Print Return Invoice");
         printInvoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 printInvoiceButtonMouseEntered(evt);
@@ -812,28 +812,27 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paymentField)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel26))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(paymentField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                    .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(printInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(printInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -858,7 +857,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 .addComponent(printInvoiceButton)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -887,15 +886,11 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1056,15 +1051,19 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 MySQL.executeIUD("INSERT INTO `return_stock` VALUES('" + invoiceID + "','" + employeeEmail + "','" + suplierMobile + "','"
                         + dateTime + "','" + paidAmount + "','" + paymentMethodID + "', '" + return_invo_id + "', '" + stockID + "')");
 
-                for (Return_damaged_item invoiceItem : invoiceItemMap.values()) {
+                int rowCount = jTable1.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+
+                    String qty = String.valueOf(jTable1.getValueAt(i, 3));
+                    String stockid = String.valueOf(jTable1.getValueAt(i, 0));
 
                     // insert to invoiceItem
                     MySQL.executeIUD("INSERT INTO `return_stock_item`(`qty`, `return_stock_id`, `stock_id`) "
-                            + "VALUES('" + invoiceItem.getQty() + "','" + invoiceID + "','" + invoiceItem.getStockID() + "')");
+                            + "VALUES('" + qty + "','" + invoiceID + "','" + stockid + "')");
 
                     // stock update
-                    MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`-" + invoiceItem.getQty()
-                            + " WHERE `id`='" + invoiceItem.getStockID() + "'");
+                    MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`-" + qty
+                            + " WHERE `id`='" + stockid + "'");
 
                 }
 

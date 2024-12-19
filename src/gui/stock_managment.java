@@ -43,7 +43,7 @@ public class stock_managment extends javax.swing.JFrame {
 
     private void header() {
         JTableHeader header = jTable2.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 14));
+        header.setFont(new Font("Consolas", Font.BOLD, 14));
         header.setForeground(Color.white);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -198,20 +198,21 @@ public class stock_managment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("UL Dress Mart");
+        setResizable(false);
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField1.setText("0");
-        jFormattedTextField1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jFormattedTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("Selling Price");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("To");
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField2.setText("0");
-        jFormattedTextField2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jFormattedTextField2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
         jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
@@ -231,7 +232,7 @@ public class stock_managment extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Stock in");
 
         jButton6.setBackground(new java.awt.Color(0, 153, 153));
@@ -294,21 +295,21 @@ public class stock_managment extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel10.setText("Out");
 
         jLabel1.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8-single stock-30.png"))); // NOI18N
         jLabel1.setText("Available Stocks");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("date");
 
-        jLabel2.setFont(new java.awt.Font("Viner Hand ITC", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Sort By");
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stock ID ASC", "Stock ID DESC", "Product ID ASC", "Product ID DESC", "Brand ASC", "Brand DESC", "Name ASC", "Name DESC", "Selling Price ASC", "Selling Price DESC", "Quantity ASC", "Quantity DESC" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -316,18 +317,21 @@ public class stock_managment extends javax.swing.JFrame {
             }
         });
 
-        jDateChooser1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jDateChooser1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
-        jDateChooser2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jDateChooser2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Find By Stock ID");
 
+        jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -345,9 +349,9 @@ public class stock_managment extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addGap(393, 393, 393)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
+                                .addGap(366, 366, 366)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -356,7 +360,7 @@ public class stock_managment extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox1, 0, 164, Short.MAX_VALUE)
                                     .addComponent(jTextField1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel9))
@@ -412,8 +416,8 @@ public class stock_managment extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
