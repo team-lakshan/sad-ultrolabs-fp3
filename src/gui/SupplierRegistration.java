@@ -614,6 +614,16 @@ public class SupplierRegistration extends javax.swing.JFrame {
                 }
             }
 
+            if (evt.getClickCount() == 3) {
+
+                int row1 = jTable1.getSelectedRow();
+                String mobile1 = String.valueOf(jTable1.getValueAt(row1, 0));
+
+                Previous_GRN_Related_Supplier pgrs = new Previous_GRN_Related_Supplier(companyId, companyId, mobile1);
+                pgrs.setVisible(true);
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

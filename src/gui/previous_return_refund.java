@@ -57,7 +57,6 @@ public class previous_return_refund extends javax.swing.JFrame {
 
             String query = "SELECT * FROM `return_invoice` INNER JOIN `employee` ON `return_invoice`.`employee_email` = `employee`.`email` "
                     + " INNER JOIN `customer` ON `return_invoice`.`customer_mobile` = `customer`.`mobile` "
-                    + " INNER JOIN `payment_method` ON `return_invoice`.`payment_method_id` = `payment_method`.`id`"
                     + " INNER JOIN `return_method` ON `return_invoice`.`return_method_id` = `return_method`.`id`";
 
             if (query.contains("WHERE")) {
@@ -158,8 +157,7 @@ public class previous_return_refund extends javax.swing.JFrame {
                 v.add(rs.getString("return_invoice.id"));
                 v.add(rs.getString("customer.mobile"));
                 v.add(rs.getString("return_invoice.date"));
-                v.add(rs.getString("return_invoice.paidamount"));
-                v.add(rs.getString("payment_method.name"));
+                v.add(rs.getString("return_invoice.total"));
                 v.add(rs.getString("return_method.name"));
                 v.add(rs.getString("return_invoice.employee_email"));
 
@@ -171,7 +169,7 @@ public class previous_return_refund extends javax.swing.JFrame {
         }
 
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -301,11 +299,11 @@ public class previous_return_refund extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Customer Mobile", "Date", "Paid Amount", "Payment Method", "Return Method", "Employee email"
+                "ID", "Customer Mobile", "Date", "Paid Amount", "Return Method", "Employee email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -534,11 +532,10 @@ public class previous_return_refund extends javax.swing.JFrame {
                 String mobile = String.valueOf(jTable1.getValueAt(selectedRow1, 1));
                 String date = String.valueOf(jTable1.getValueAt(selectedRow1, 2));
                 String amount = String.valueOf(jTable1.getValueAt(selectedRow1, 3));
-                String method = String.valueOf(jTable1.getValueAt(selectedRow1, 4));
-                String return_method = String.valueOf(jTable1.getValueAt(selectedRow1, 5));
-                String email = String.valueOf(jTable1.getValueAt(selectedRow1, 6));
+                String return_method = String.valueOf(jTable1.getValueAt(selectedRow1, 4));
+                String email = String.valueOf(jTable1.getValueAt(selectedRow1, 5));
 
-                detailed_return dtr = new detailed_return(this, true, id, mobile, date, amount, method, return_method, email);
+                detailed_return dtr = new detailed_return(this, true, id, mobile, date, amount, return_method, email);
                 dtr.setVisible(true);
                 //this.dispose();
 
