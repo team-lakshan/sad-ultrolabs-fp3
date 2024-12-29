@@ -53,6 +53,7 @@ public class attendence extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +84,7 @@ public class attendence extends javax.swing.JFrame {
                 jButton1MouseExited(evt);
             }
         });
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -101,11 +103,14 @@ public class attendence extends javax.swing.JFrame {
                 jButton2MouseExited(evt);
             }
         });
+
+        jButton2.setText("Clock Out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
 
         jTable1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,7 +122,6 @@ public class attendence extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
         jComboBox1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E1", "E2", "E3", "E4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -154,11 +158,11 @@ public class attendence extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel3.setText("Employee Email");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -263,6 +267,7 @@ public class attendence extends javax.swing.JFrame {
         double hoursWorked = millisecondsWorked / (1000.0 * 60 * 60);
 
         // Get the pay rate from the database
+
         double payRate = 500;
 //        double payRate = getPayRate(selectedEmployee);
 //        String payRateMessage = "Pay rate: $" + payRate;
@@ -437,6 +442,7 @@ public class attendence extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
