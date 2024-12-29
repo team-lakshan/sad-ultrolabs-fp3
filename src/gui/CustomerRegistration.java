@@ -375,7 +375,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String mobile = jTextField1.getText();
+        String mobile = jTextField1.getText();
         String fName = jTextField2.getText();
         String lName = jTextField3.getText();
         String email = jTextField4.getText();
@@ -422,7 +422,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                String mobile = jTextField1.getText();
+        String mobile = jTextField1.getText();
         String fname = jTextField2.getText();
         String lname = jTextField3.getText();
         String email = jTextField4.getText();
@@ -512,6 +512,21 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 raf.getjTextField1().setText(String.valueOf(jTable1.getValueAt(row, 4)));
 
                 this.dispose();
+            }
+        }
+
+        if (evt.getClickCount() == 3) {
+
+            try {
+
+                int row1 = jTable1.getSelectedRow();
+                String mobile1 = String.valueOf(jTable1.getValueAt(row1, 0));
+
+                previous_invoices_Related_customer pirc = new previous_invoices_Related_customer(mobile1);
+                pirc.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

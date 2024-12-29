@@ -46,27 +46,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
     HashMap<String, String> paymentMethodMap = new HashMap<>();
     HashMap<String, String> returnTypeMap = new HashMap<>();
 
-    private void loadPaymentMethod() {
-
-        try {
-            ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `payment_method`");
-
-            Vector<String> vector = new Vector<>();
-
-            while (resultSet.next()) {
-                vector.add(resultSet.getString("name"));
-                paymentMethodMap.put(resultSet.getString("name"), resultSet.getString("id"));
-            }
-
-            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
-            jComboBox1.setModel(model);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void loadReturnType() {
 
         try {
@@ -225,7 +204,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
     public Return_and_Refund() {
         initComponents();
         generateInvoiceID();
-        loadPaymentMethod();
         loadReturnType();
         jLabel32.setText(newDate);
         jLabel3.setText(SignIn.getEmployeeEmail());
@@ -257,7 +235,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
     private double payment = 0;
     private boolean withdrawPoints = false;
     private double balance = 0;
-    private String paymentMethod = "Select";
     private double newPoints = 0;
 
     private void calculate() {
@@ -267,58 +244,56 @@ public class Return_and_Refund extends javax.swing.JFrame {
             totalField.setText("");
             jCheckBox1.setSelected(false);
             jFormattedTextField6.setText("");
-
-        } else {
-
-            //payment
-            if (paymentField.getText().isEmpty()) {
-                payment = 0;
-            } else {
-                payment = Double.parseDouble(paymentField.getText());
-            }
-
-            total = Double.parseDouble(totalField.getText());
-
-            if (jCheckBox1.isSelected()) {
-                withdrawPoints = true;
-            } else {
-                withdrawPoints = false;
-            }
-
-            paymentMethod = String.valueOf(jComboBox1.getSelectedItem());
-
-            if (total < 0) {
-                JOptionPane.showMessageDialog(this, "Add items to the table first", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-
-                //discount ok
-                if (withdrawPoints) {
-                    total = 0;
-                }
-            }
-
-            if (paymentMethod.equals("cash")) {
-                //cash
-                paymentField.setEditable(true);
-                balance = payment - total;
-
-                if (balance < 0) {
-                    printInvoiceButton.setEnabled(false);
-                } else {
-                    printInvoiceButton.setEnabled(true);
-                }
-
-            } else {
-                //card
-                payment = total;
-                balance = 0;
-                paymentField.setText(String.valueOf(payment));
-                paymentField.setEditable(false);
-                printInvoiceButton.setEnabled(true);
-            }
-
-            jFormattedTextField6.setText(String.valueOf(balance));
+            paymentField.setEnabled(true); // Ensure payment field is enabled
+            printInvoiceButton.setEnabled(false); // Disable print button
+            return;
         }
+
+        // Get payment value
+        if (paymentField.getText().isEmpty()) {
+            payment = 0.0;
+        } else {
+            try {
+                payment = Double.parseDouble(paymentField.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Invalid payment amount", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        // Get total value
+        try {
+            total = Double.parseDouble(totalField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid total amount", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Check "Add to Points" checkbox
+        withdrawPoints = jCheckBox1.isSelected();
+
+        // Calculate balance
+        if (withdrawPoints) {
+            balance = 0.0; // Total is considered 0 when points are used
+            payment = 0.0;
+            newPoints = 0; // No new points when using points
+            paymentField.setEnabled(false);
+        } else {
+            balance = payment - total;
+            paymentField.setEnabled(false);
+        }
+
+        // Update balance field
+        jFormattedTextField6.setText(String.format("%.2f", balance));
+        paymentField.setText(String.valueOf(payment));
+
+        // Enable or disable the "Print Return Invoice" button
+        if (withdrawPoints || balance <= 0) {
+            printInvoiceButton.setEnabled(true);
+        } else {
+            printInvoiceButton.setEnabled(false);
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -367,13 +342,11 @@ public class Return_and_Refund extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         totalField = new javax.swing.JFormattedTextField();
         paymentField = new javax.swing.JFormattedTextField();
         jFormattedTextField6 = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel29 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         printInvoiceButton = new javax.swing.JButton();
@@ -563,7 +536,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
                                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -587,7 +560,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -740,9 +713,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel22.setText("Total");
 
-        jLabel24.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel24.setText("Payment Method");
-
         jLabel25.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel25.setText("Payment");
 
@@ -767,14 +737,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
         jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         jFormattedTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jFormattedTextField6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-
-        jComboBox1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
 
         jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel29.setText("Add to Points");
@@ -836,19 +798,16 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(printInvoiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
                             .addComponent(jLabel25)
                             .addComponent(jLabel26)
                             .addComponent(jLabel29)
                             .addComponent(jLabel33)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(paymentField, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -857,8 +816,10 @@ public class Return_and_Refund extends javax.swing.JFrame {
                                     .addComponent(jCheckBox1)
                                     .addGap(0, 0, Short.MAX_VALUE))
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 148, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(totalField, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(totalField, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(printInvoiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -868,15 +829,11 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(paymentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -891,11 +848,11 @@ public class Return_and_Refund extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel26)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(printInvoiceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(printInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -954,11 +911,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
         pifr.setraf(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-
-        calculate();
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
     private void paymentFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentFieldKeyReleased
 
         String payment1 = paymentField.getText();
@@ -985,8 +937,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
             String customerMobile = jLabel7.getText();
             String employeeEmail = jLabel3.getText();
             String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-            String paidAmount = paymentField.getText();
-            String paymentMethodID = paymentMethodMap.get(String.valueOf(jComboBox1.getSelectedItem()));
+            String paidAmount = jFormattedTextField6.getText();
             String returnType = returnTypeMap.get(String.valueOf(jComboBox2.getSelectedItem()));
             String totals = String.valueOf(totalField.getText());
             String return_id = jLabel37.getText();
@@ -1000,7 +951,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
             } else {
                 // insert to invoice
                 MySQL.executeIUD("INSERT INTO `return_invoice` VALUES('" + invoiceID + "','" + employeeEmail + "',"
-                        + " '" + dateTime + "','" + paidAmount + "','" + paymentMethodID + "','" + returnType + "','" + return_id + "','" + customerMobile + "')");
+                        + " '" + dateTime + "','" + paidAmount + "','" + returnType + "','" + return_id + "','" + customerMobile + "')");
 
                 int rowCount = jTable1.getRowCount();
 
@@ -1030,7 +981,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 HashMap<String, Object> params = new HashMap<>();
                 params.put("Parameter1", totalField.getText());
                 params.put("Parameter2", String.valueOf(jComboBox2.getSelectedItem()));
-                params.put("Parameter3", String.valueOf(jComboBox1.getSelectedItem()));
+                //params.put("Parameter3", String.valueOf(jComboBox1.getSelectedItem()));
                 params.put("Parameter4", paymentField.getText());
                 params.put("Parameter5", jFormattedTextField6.getText());
 
@@ -1045,40 +996,40 @@ public class Return_and_Refund extends javax.swing.JFrame {
 
                 JasperViewer.viewReport(jasperPrint, false);
                 JasperExportManager.exportReportToPdfFile(jasperPrint, "src/report_pdf/returnInvoice.pdf");
-            }
 
-            String customerEmail = jLabel35.getText();
-            String customermobile = jLabel7.getText();
-            String appPassword = "";
-            String filePath = "src/report_pdf/returnInvoice.pdf";
+                String customerEmail = jLabel35.getText();
+                String customermobile = jLabel7.getText();
+                String appPassword = "";
+                String filePath = "src/report_pdf/returnInvoice.pdf";
 
-            ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
 
-            if (rs.next()) {
-                appPassword = rs.getString("app_pass");
-            }
-
-            if (!appPassword.isEmpty()) {
-
-                if (customerEmail.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
-
-                } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
-                        + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
-
-                    JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
-
-                } else if (appPassword.length() < 19 || appPassword.length() > 19) {
-                    System.out.println("appPassword's length is less than 19 or larger than 19.");
-                } else {
-
-                    sendEmailWithAttachment(customerEmail, filePath, appPassword);
-                    reset();
+                if (rs.next()) {
+                    appPassword = rs.getString("app_pass");
                 }
 
-            } else {
+                if (!appPassword.isEmpty()) {
 
-                reset();
+                    if (customerEmail.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                    } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
+                            + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+
+                        JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                    } else if (appPassword.length() < 19 || appPassword.length() > 19) {
+                        System.out.println("appPassword's length is less than 19 or larger than 19.");
+                    } else {
+
+                        sendEmailWithAttachment(customerEmail, filePath, appPassword);
+                        reset();
+                    }
+
+                } else {
+
+                    reset();
+                }
             }
 
         } catch (Exception e) {
@@ -1153,8 +1104,14 @@ public class Return_and_Refund extends javax.swing.JFrame {
             String cnum = jLabel7.getText();
             String cname = jLabel8.getText();
             String avqty = jLabel27.getText();
+            
+            String invoid = "";
 
             ResultSet rs3 = MySQL.executeSearch("SELECT * FROM `invoice` WHERE `invoice`.`id` = '" + invoice + "'");
+            ResultSet rs4 = MySQL.executeSearch("SELECT * FROM `return_invoice`");
+            if (rs4.next()) {
+                invoid = rs4.getString("invoice_id");
+            }
 
             if (cnum.isEmpty() && cname.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please select a customer", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -1169,11 +1126,15 @@ public class Return_and_Refund extends javax.swing.JFrame {
 
             } else if (rs3.next()) {
                 String cusmo = rs3.getString("customer_mobile");
+
                 if (!cusmo.equals(cnum)) {
                     JOptionPane.showMessageDialog(this, "This invoice number is not related with supplier", "Warning", JOptionPane.WARNING_MESSAGE);
                     return;
-                } else {
+                } else if (invoid.equals(invoice1)) {
 
+                    JOptionPane.showMessageDialog(this, "This invoice is allready being refunded", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                } else {
                     int rowCount = jTable1.getRowCount();
 
                     boolean stockIdFound = false;
@@ -1185,16 +1146,20 @@ public class Return_and_Refund extends javax.swing.JFrame {
                         String total2 = String.valueOf(jTable1.getValueAt(i, 7));
 
                         if (stockID.equals(stockId2)) {
-                            int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                            int option = JOptionPane.showConfirmDialog(this,
+                                    "Do you want to update the quantity of product: " + productName + "?",
+                                    "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                             if (option == JOptionPane.YES_OPTION) {
                                 jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
                                 jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
                                 calculate1();
                                 stockIdFound = true;
-                                break;
+                                break; // Exit the loop after updating the row
+                            } else if (option == JOptionPane.NO_OPTION) {
+                                stockIdFound = true; // Set this to true to prevent adding a new row
+                                break; // Exit the loop to avoid unintended behavior
                             }
-
                         }
                     }
 
@@ -1219,6 +1184,8 @@ public class Return_and_Refund extends javax.swing.JFrame {
 
                 }
 
+            } else {
+                JOptionPane.showMessageDialog(this, "There is no invoice with thin id in invoice table", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception ex) {
             Logger.getLogger(Return_and_Refund.class.getName()).log(Level.SEVERE, null, ex);
@@ -1244,7 +1211,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField6;
@@ -1263,7 +1229,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -1312,7 +1277,6 @@ public class Return_and_Refund extends javax.swing.JFrame {
         jLabel37.setText("");
 
         totalField.setText("");
-        jComboBox1.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
         paymentField.setText("");
         jCheckBox1.setSelected(false);
