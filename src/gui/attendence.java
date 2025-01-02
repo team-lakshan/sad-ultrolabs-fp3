@@ -24,10 +24,81 @@ public class attendence extends javax.swing.JFrame {
     public attendence() {
         initComponents();
         loadDataToTable(); // Refresh table data
-        loadEmployeeNames();
+        checkUserAccess();
         header();
         jLabel3.setText(SignIn.getEmployeeEmail());
     }
+
+    // Method to get employee type based on email
+    public int getEmployeeType(String email) throws Exception {
+        String query = "SELECT employee_type_id FROM employee WHERE email = '" + email + "'";
+        ResultSet rs = MySQL.executeSearch(query);
+        if (rs.next()) {
+            return rs.getInt("employee_type_id");
+        } else {
+            throw new Exception("Employee not found");
+        }
+    }
+
+    // Method to check user type and control access
+    public void checkUserAccess() {
+        try {
+            String email = SignIn.getEmployeeEmail();
+            int employeeType = getEmployeeType(email);
+
+            if (employeeType == 1) {
+                // Admin user, allow access to all users
+                System.out.println("Admin access granted.");
+                loadEmployeeNames(true);
+            } else if (employeeType == 2) {
+                // Normal user, restrict access
+                System.out.println("Normal user access granted.");
+                loadEmployeeNames(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    private void loadEmployeeNames(boolean isAdmin) {
+        try {
+            String query = "SELECT * FROM employee";
+            ResultSet rs = MySQL.executeSearch(query);
+            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            model.addElement("Select");
+            while (rs.next()) {
+                if (isAdmin) {
+                    model.addElement(rs.getString("first_name") + " " + rs.getString("last_name"));
+                } else {
+                    // If not admin, only add the logged-in user's name
+                    String email = SignIn.getEmployeeEmail();
+                    if (rs.getString("email").equals(email)) {
+                        model.addElement(rs.getString("first_name") + " " + rs.getString("last_name"));
+                    }
+                }
+            }
+            jComboBox1.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+//    private void loadEmployeeNames() {
+//        try {
+//            String query = "SELECT * FROM employee";
+//            ResultSet rs = MySQL.executeSearch(query);
+//            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+//            model.addElement("Select");
+//            while (rs.next()) {
+//                model.addElement(rs.getString("first_name") + " " + rs.getString("last_name"));
+//            }
+//            jComboBox1.setModel(model);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
@@ -40,21 +111,6 @@ public class attendence extends javax.swing.JFrame {
 
     }
 
-    private void loadEmployeeNames() {
-        try {
-            String query = "SELECT * FROM employee";
-            ResultSet rs = MySQL.executeSearch(query);
-            DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-            model.addElement("Select");
-            while (rs.next()) {
-                model.addElement(rs.getString("first_name") + " " + rs.getString("last_name"));
-            }
-            jComboBox1.setModel(model);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,7 +140,6 @@ public class attendence extends javax.swing.JFrame {
                 jButton1MouseExited(evt);
             }
         });
-
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -103,14 +158,11 @@ public class attendence extends javax.swing.JFrame {
                 jButton2MouseExited(evt);
             }
         });
-
-        jButton2.setText("Clock Out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
 
         jTable1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,6 +174,7 @@ public class attendence extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
         jComboBox1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E1", "E2", "E3", "E4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,11 +211,11 @@ public class attendence extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLabel3.setText("Employee Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -196,11 +249,12 @@ public class attendence extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -267,7 +321,6 @@ public class attendence extends javax.swing.JFrame {
         double hoursWorked = millisecondsWorked / (1000.0 * 60 * 60);
 
         // Get the pay rate from the database
-
         double payRate = 500;
 //        double payRate = getPayRate(selectedEmployee);
 //        String payRateMessage = "Pay rate: $" + payRate;
@@ -442,7 +495,6 @@ public class attendence extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
