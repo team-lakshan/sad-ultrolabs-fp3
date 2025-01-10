@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import java.util.logging.*;
 
 public class previous_return_refund extends javax.swing.JFrame {
 
@@ -57,7 +58,6 @@ public class previous_return_refund extends javax.swing.JFrame {
 
             String query = "SELECT * FROM `return_invoice` INNER JOIN `employee` ON `return_invoice`.`employee_email` = `employee`.`email` "
                     + " INNER JOIN `customer` ON `return_invoice`.`customer_mobile` = `customer`.`mobile` "
-                    + " INNER JOIN `payment_method` ON `return_invoice`.`payment_method_id` = `payment_method`.`id`"
                     + " INNER JOIN `return_method` ON `return_invoice`.`return_method_id` = `return_method`.`id`";
 
             if (query.contains("WHERE")) {
@@ -99,13 +99,13 @@ public class previous_return_refund extends javax.swing.JFrame {
             }
 
             if (min_price > 0 && max_price == 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' ";
 
             } else if (min_price == 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` <= '" + max_price + "' ";
 
             } else if (min_price > 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
             }
 
             Date start = null;
@@ -143,9 +143,9 @@ public class previous_return_refund extends javax.swing.JFrame {
             } else if (sort.equals("Date DESC")) {
                 query += "`return_invoice`.`date` DESC";
             } else if (sort.equals("Paid amount ASC")) {
-                query += "`return_invoice`.`paidamount` ASC";
+                query += "`return_invoice`.`total` ASC";
             } else if (sort.equals("Paid amount DESC")) {
-                query += "`return_invoice`.`paidamount` DESC";
+                query += "`return_invoice`.`total` DESC";
             }
 
             ResultSet rs = MySQL.executeSearch(query);
@@ -158,8 +158,7 @@ public class previous_return_refund extends javax.swing.JFrame {
                 v.add(rs.getString("return_invoice.id"));
                 v.add(rs.getString("customer.mobile"));
                 v.add(rs.getString("return_invoice.date"));
-                v.add(rs.getString("return_invoice.paidamount"));
-                v.add(rs.getString("payment_method.name"));
+                v.add(rs.getString("return_invoice.total"));
                 v.add(rs.getString("return_method.name"));
                 v.add(rs.getString("return_invoice.employee_email"));
 
@@ -167,7 +166,8 @@ public class previous_return_refund extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -301,11 +301,11 @@ public class previous_return_refund extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Customer Mobile", "Date", "Paid Amount", "Payment Method", "Return Method", "Employee email"
+                "ID", "Customer Mobile", "Date", "Paid Amount", "Return Method", "Employee email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -534,16 +534,16 @@ public class previous_return_refund extends javax.swing.JFrame {
                 String mobile = String.valueOf(jTable1.getValueAt(selectedRow1, 1));
                 String date = String.valueOf(jTable1.getValueAt(selectedRow1, 2));
                 String amount = String.valueOf(jTable1.getValueAt(selectedRow1, 3));
-                String method = String.valueOf(jTable1.getValueAt(selectedRow1, 4));
-                String return_method = String.valueOf(jTable1.getValueAt(selectedRow1, 5));
-                String email = String.valueOf(jTable1.getValueAt(selectedRow1, 6));
+                String return_method = String.valueOf(jTable1.getValueAt(selectedRow1, 4));
+                String email = String.valueOf(jTable1.getValueAt(selectedRow1, 5));
 
-                detailed_return dtr = new detailed_return(this, true, id, mobile, date, amount, method, return_method, email);
+                detailed_return dtr = new detailed_return(this, true, id, mobile, date, amount, return_method, email);
                 dtr.setVisible(true);
                 //this.dispose();
 
-            } catch (ParseException ex) {
-                Logger.getLogger(previous_return_refund.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -583,7 +583,8 @@ public class previous_return_refund extends javax.swing.JFrame {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

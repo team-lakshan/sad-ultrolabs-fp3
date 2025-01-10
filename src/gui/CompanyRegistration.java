@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.util.logging.*;
 
 public class CompanyRegistration extends javax.swing.JDialog {
 
@@ -56,7 +57,8 @@ public class CompanyRegistration extends javax.swing.JDialog {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -308,7 +310,8 @@ public class CompanyRegistration extends javax.swing.JDialog {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
 
         }
@@ -358,7 +361,8 @@ public class CompanyRegistration extends javax.swing.JDialog {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logger logger = SignIn.getLoggerObjet();
+                    logger.log(Level.WARNING, "Wrong Operation", e);
                 }
 
             }

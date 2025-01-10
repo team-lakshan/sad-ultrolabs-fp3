@@ -21,6 +21,11 @@ import net.sf.jasperreports.view.JasperViewer;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.util.Properties;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -28,6 +33,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import java.util.logging.*;
 
 public class Invoice extends javax.swing.JFrame {
 
@@ -49,7 +56,8 @@ public class Invoice extends javax.swing.JFrame {
             jComboBox1.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -118,7 +126,8 @@ public class Invoice extends javax.swing.JFrame {
             Transport.send(message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -189,7 +198,70 @@ public class Invoice extends javax.swing.JFrame {
         jLabel32.setText(newDate);
         jLabel3.setText(SignIn.getEmployeeEmail());
         header();
+        startClipboardWatcher();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
+    }
+
+    private void startClipboardWatcher() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    // Get the system clipboard
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+                    // Check if there is clipboard data of String type
+                    if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+                        String clipboardText = (String) clipboard.getData(DataFlavor.stringFlavor);
+
+                        // If there's new clipboard text, set it to JTextField
+                        if (clipboardText != null && !clipboardText.isEmpty() && clipboardText.matches("\\d+")) {
+                            jTextField2.setText(clipboardText);
+                            String stid = jTextField2.getText();
+
+                            try {
+                                ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `stock` INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` "
+                                        + " INNER JOIN `brand` ON `brand`.`id` = `product`.`brand_id` INNER JOIN `grn_item` ON"
+                                        + " `stock`.`id` = `grn_item`.`stock_id` INNER JOIN `grn` ON "
+                                        + " `grn`.`id` = `grn_item`.`grn_id` WHERE `stock`.`barcode` = '" + stid + "' ");
+
+                                if (resultSet.next()) {
+                                    String sid = resultSet.getString("stock.id");
+                                    String bname = resultSet.getString("brand.name");
+                                    String pname = resultSet.getString("product.name");
+                                    String mfd = resultSet.getString("mfd");
+                                    String exp = resultSet.getString("exp");
+                                    String price = resultSet.getString("price");
+                                    String qty = resultSet.getString("qty");
+
+                                    jLabel10.setText(sid);
+                                    jLabel13.setText(bname);
+                                    jLabel17.setText(pname);
+                                    jLabel19.setText(mfd);
+                                    jLabel21.setText(exp);
+                                    jLabel15.setText(price);
+                                    jLabel27.setText(qty);
+                                }
+                            } catch (Exception e) {
+                                Logger logger = SignIn.getLoggerObjet();
+                                logger.log(Level.WARNING, "Wrong Operation", e);
+                            }
+
+                            // Remove the copied text from the clipboard by clearing it
+                            clipboard.setContents(new StringSelection(""), null);
+
+                            break;  // Exit loop once text is copied and assigned
+                        }
+                    }
+
+                    // Sleep for 500ms before checking again
+                    Thread.sleep(500);
+
+                } catch (UnsupportedFlavorException | java.io.IOException | InterruptedException e) {
+                    Logger logger = SignIn.getLoggerObjet();
+                    logger.log(Level.WARNING, "Wrong Operation", e);
+                }
+            }
+        }).start();
     }
 
     private void header() {
@@ -347,6 +419,8 @@ public class Invoice extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -541,6 +615,9 @@ public class Invoice extends javax.swing.JFrame {
 
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/invoice/icons8-invoice-30.png"))); // NOI18N
 
+        jLabel35.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel35.setText("Barcode");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -575,13 +652,20 @@ public class Invoice extends javax.swing.JFrame {
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(8, 8, 8)))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(50, 50, 50)
@@ -706,8 +790,13 @@ public class Invoice extends javax.swing.JFrame {
                         .addComponent(jLabel33))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4)
@@ -731,6 +820,11 @@ public class Invoice extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -799,7 +893,7 @@ public class Invoice extends javax.swing.JFrame {
         printInvoiceButton.setBackground(new java.awt.Color(0, 153, 153));
         printInvoiceButton.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         printInvoiceButton.setForeground(new java.awt.Color(255, 255, 255));
-        printInvoiceButton.setText("print");
+        printInvoiceButton.setText("Print Invoice");
         printInvoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 printInvoiceButtonMouseEntered(evt);
@@ -976,7 +1070,7 @@ public class Invoice extends javax.swing.JFrame {
         } else if (qty.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Quantity field cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
-            JOptionPane.showMessageDialog(this, "brought quantity was less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "available quantity is less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
             JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -992,16 +1086,28 @@ public class Invoice extends javax.swing.JFrame {
                 String total2 = String.valueOf(jTable1.getValueAt(i, 7));
 
                 if (stockID.equals(stockId2)) {
-                    int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    int option = JOptionPane.showConfirmDialog(this,
+                            "Do you want to update the quantity of product: " + productName + "?",
+                            "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                     if (option == JOptionPane.YES_OPTION) {
-                        jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
-                        jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
-                        calculate1();
-                        stockIdFound = true;
-                        break;
+                        if (qty.isEmpty()) {
+                            JOptionPane.showMessageDialog(this, "Quantity field cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
+                            JOptionPane.showMessageDialog(this, "available quantity is less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
+                            JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
+                            jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
+                            calculate1();
+                            stockIdFound = true;
+                            break; // Exit the loop after updating the row
+                        }
+                    } else if (option == JOptionPane.NO_OPTION) {
+                        stockIdFound = true; // Set this to true to prevent adding a new row
+                        break; // Exit the loop to avoid unintended behavior
                     }
-
                 }
             }
 
@@ -1023,6 +1129,8 @@ public class Invoice extends javax.swing.JFrame {
 
                 calculate1();
             }
+
+            startClipboardWatcher();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1131,6 +1239,7 @@ public class Invoice extends javax.swing.JFrame {
 
                 JasperViewer.viewReport(jasperPrint, false);
                 JasperExportManager.exportReportToPdfFile(jasperPrint, "src/report_pdf/invoice.pdf");
+                //JasperPrintManager.printReport(jasperPrint, false);
 
             }
 
@@ -1145,7 +1254,7 @@ public class Invoice extends javax.swing.JFrame {
                 appPassword = rs.getString("app_pass");
             }
 
-            if (!appPassword.isEmpty()) {
+            if (appPassword != null && !appPassword.isEmpty()) {
 
                 if (customerEmail.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -1169,7 +1278,8 @@ public class Invoice extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_printInvoiceButtonActionPerformed
@@ -1233,6 +1343,34 @@ public class Invoice extends javax.swing.JFrame {
         jButton5.setForeground(Color.white);
     }//GEN-LAST:event_jButton5MouseExited
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            // Get the selected row
+            int row1 = jTable1.getSelectedRow();
+
+            // Check if a valid row is selected
+            if (row1 != -1) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this row?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Get the table's model
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                    // Remove the selected row
+                    model.removeRow(row1);
+
+                    // Optional: Show a success message
+                    JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                    calculate1();
+                }
+            } else {
+                // Show a warning if no row is selected
+                JOptionPane.showMessageDialog(this, "Please select a valid row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
 
@@ -1283,6 +1421,7 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1296,6 +1435,7 @@ public class Invoice extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JFormattedTextField paymentField;
     private javax.swing.JButton printInvoiceButton;
     private javax.swing.JFormattedTextField totalField;
@@ -1327,7 +1467,7 @@ public class Invoice extends javax.swing.JFrame {
         generateInvoiceID();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-
+        startClipboardWatcher();
     }
 
 }

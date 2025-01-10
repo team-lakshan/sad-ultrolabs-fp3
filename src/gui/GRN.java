@@ -36,7 +36,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
-
+import java.util.logging.*;
 import util.MySQL;
 
 public class GRN extends javax.swing.JFrame {
@@ -48,8 +48,12 @@ public class GRN extends javax.swing.JFrame {
         jLabel35.setText(newDate);
         header();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
+        jDateChooser1.getDateEditor().getUiComponent().setForeground(Color.BLUE);
+        jDateChooser1.getDateEditor().getUiComponent().setFont(new Font("Arial", Font.BOLD, 14)); // Optional: Change font style
+        jDateChooser2.getDateEditor().getUiComponent().setForeground(Color.BLUE);
+        jDateChooser2.getDateEditor().getUiComponent().setFont(new Font("Arial", Font.BOLD, 14)); // Optional: Change font style
     }
-    
+
     Date date = new Date();
     String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
@@ -181,7 +185,8 @@ public class GRN extends javax.swing.JFrame {
             Transport.send(message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -313,7 +318,7 @@ public class GRN extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 153, 153));
         jButton2.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add New GRN");
+        jButton2.setText("Add To GRN");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton2MouseEntered(evt);
@@ -452,6 +457,11 @@ public class GRN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -534,7 +544,7 @@ public class GRN extends javax.swing.JFrame {
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jFormattedTextField4, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
@@ -559,8 +569,10 @@ public class GRN extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
+        jDateChooser1.setForeground(new java.awt.Color(255, 255, 255));
         jDateChooser1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
+        jDateChooser2.setForeground(new java.awt.Color(255, 255, 255));
         jDateChooser2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/GRN/icons8-note-30.png"))); // NOI18N
@@ -612,12 +624,12 @@ public class GRN extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3))
+                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,39 +641,35 @@ public class GRN extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                        .addComponent(jFormattedTextField1)
+                                        .addComponent(jFormattedTextField2)
+                                        .addComponent(jFormattedTextField3)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel6))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel8)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel10)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel12)
-                                                .addComponent(jLabel6)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jFormattedTextField2)
-                                            .addComponent(jFormattedTextField3)
-                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jFormattedTextField1)))
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
                         .addComponent(jLabel31)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
+                        .addGap(278, 278, 278)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -812,6 +820,7 @@ public class GRN extends javax.swing.JFrame {
             String sell_price = jFormattedTextField3.getText();
             Date mfd = jDateChooser1.getDate();
             Date exp = jDateChooser2.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             String supMobile = jTextField3.getText();
             String supName = jLabel17.getText();
@@ -846,16 +855,17 @@ public class GRN extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please Enter Manufacture Date", "warning", JOptionPane.WARNING_MESSAGE);
             } else if (exp == null) {
                 JOptionPane.showMessageDialog(this, "Please Enter Expired Date", "warning", JOptionPane.WARNING_MESSAGE);
-            } else if (mfd != null && exp != null) {
-                if (mfd.compareTo(exp) >= 0) {
-                    JOptionPane.showMessageDialog(this, "Stock in Date must be earlier than Stock out Date", "Warning", JOptionPane.WARNING_MESSAGE);
-                }
+            } else if (mfd != null && exp != null && mfd.compareTo(exp) >= 0) {
+                JOptionPane.showMessageDialog(this, "Stock In Date must be earlier than Stock Out Date", "Warning", JOptionPane.WARNING_MESSAGE);
+                return; // Exit to prevent further execution
             } else if (qty.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please Enter Quantity", "warning", JOptionPane.WARNING_MESSAGE);
 
             } else {
 
                 int rowCount = jTable1.getRowCount();
+                String formattedDate = sdf.format(mfd);
+                String formattedDate1 = sdf.format(exp);
 
                 boolean stockIdFound = false;
 
@@ -866,16 +876,20 @@ public class GRN extends javax.swing.JFrame {
                     String total2 = String.valueOf(jTable1.getValueAt(i, 11));
 
                     if (pid.equals(productId2)) {
-                        int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + pid, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                        int option = JOptionPane.showConfirmDialog(this,
+                                "Do you want to update the quantity of product: " + pname + "?",
+                                "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                         if (option == JOptionPane.YES_OPTION) {
                             jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 6);
                             jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(buy_price) * Double.parseDouble(qty), i, 11);
                             calculate1();
                             stockIdFound = true;
-                            break;
+                            break; // Exit the loop after updating the row
+                        } else if (option == JOptionPane.NO_OPTION) {
+                            stockIdFound = true; // Set this to true to prevent adding a new row
+                            break; // Exit the loop to avoid unintended behavior
                         }
-
                     }
                 }
 
@@ -890,8 +904,8 @@ public class GRN extends javax.swing.JFrame {
                     vector.add(qty);
                     vector.add(buy_price);
                     vector.add(sell_price);
-                    vector.add(mfd);
-                    vector.add(exp);
+                    vector.add(formattedDate);
+                    vector.add(formattedDate1);
 
                     double itemTotal = Double.parseDouble(buy_price) * Double.parseDouble(qty);
                     vector.add(String.valueOf(itemTotal));
@@ -907,7 +921,6 @@ public class GRN extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -953,8 +966,8 @@ public class GRN extends javax.swing.JFrame {
                     ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `stock` WHERE"
                             + "`product_id`='" + proid + "' AND"
                             + "`price`='" + sellp + "' AND"
-                            + "`mfd`='" + sdf.format(sin) + "' AND"
-                            + "`exp`='" + sdf.format(sout) + "'");
+                            + "`mfd`='" + sin + "' AND"
+                            + "`exp`='" + sout + "'");
 
                     String sid = "";
 
@@ -973,13 +986,13 @@ public class GRN extends javax.swing.JFrame {
 
                         MySQL.executeIUD("INSERT INTO `stock` (`product_id`,`qty`,`price`,`mfd`,`exp`)"
                                 + "VALUES ('" + proid + "','" + qtys + "','" + sellp + "',"
-                                + "'" + sdf.format(sin) + "','" + sdf.format(sout) + "')");
+                                + "'" + sin + "','" + sout + "')");
 
                         ResultSet resultSet2 = MySQL.executeSearch("SELECT * FROM `stock` WHERE"
                                 + "`product_id`='" + proid + "' AND"
                                 + "`price`='" + sellp + "' AND"
-                                + "`mfd`='" + sdf.format(sin) + "' AND"
-                                + "`exp`='" + sdf.format(sout) + "'");
+                                + "`mfd`='" + sin + "' AND"
+                                + "`exp`='" + sout + "'");
 
                         if (resultSet2.next()) {
                             sid = resultSet2.getString("id");
@@ -1046,6 +1059,8 @@ public class GRN extends javax.swing.JFrame {
 
                 reset();
             }
+            
+            reset();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1135,6 +1150,34 @@ public class GRN extends javax.swing.JFrame {
         jFormattedTextField1.grabFocus();
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            // Get the selected row
+            int row1 = jTable1.getSelectedRow();
+
+            // Check if a valid row is selected
+            if (row1 != -1) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this row?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Get the table's model
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                    // Remove the selected row
+                    model.removeRow(row1);
+
+                    // Optional: Show a success message
+                    JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                    calculate1();
+                }
+            } else {
+                // Show a warning if no row is selected
+                JOptionPane.showMessageDialog(this, "Please select a valid row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
 
@@ -1221,7 +1264,7 @@ public class GRN extends javax.swing.JFrame {
         jLabel29.setText("");
         jLabel30.setText("");
         jLabel32.setText("");
-
+        generateGRNId();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 

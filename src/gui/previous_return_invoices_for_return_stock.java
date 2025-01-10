@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import java.util.logging.*;
 
 public class previous_return_invoices_for_return_stock extends javax.swing.JFrame {
 
@@ -61,7 +62,6 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
 
             String query = "SELECT * FROM `return_invoice` INNER JOIN `employee` ON `return_invoice`.`employee_email` = `employee`.`email` "
                     + " INNER JOIN `customer` ON `return_invoice`.`customer_mobile` = `customer`.`mobile` "
-                    + " INNER JOIN `payment_method` ON `return_invoice`.`payment_method_id` = `payment_method`.`id`"
                     + " INNER JOIN `return_method` ON `return_invoice`.`return_method_id` = `return_method`.`id`"
                     + " WHERE `return_method`.`id` = '2' ";
 
@@ -104,13 +104,13 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             }
 
             if (min_price > 0 && max_price == 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' ";
 
             } else if (min_price == 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` <= '" + max_price + "' ";
 
             } else if (min_price > 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
             }
 
             Date start = null;
@@ -148,9 +148,9 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             } else if (sort.equals("Date DESC")) {
                 query += "`return_invoice`.`date` DESC";
             } else if (sort.equals("Paid amount ASC")) {
-                query += "`return_invoice`.`paidamount` ASC";
+                query += "`return_invoice`.`total` ASC";
             } else if (sort.equals("Paid amount DESC")) {
-                query += "`return_invoice`.`paidamount` DESC";
+                query += "`return_invoice`.`total` DESC";
             }
 
             ResultSet rs = MySQL.executeSearch(query);
@@ -163,8 +163,7 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
                 v.add(rs.getString("return_invoice.id"));
                 v.add(rs.getString("customer.mobile"));
                 v.add(rs.getString("return_invoice.date"));
-                v.add(rs.getString("return_invoice.paidamount"));
-                v.add(rs.getString("payment_method.name"));
+                v.add(rs.getString("return_invoice.total"));
                 v.add(rs.getString("return_method.name"));
                 v.add(rs.getString("return_invoice.employee_email"));
 
@@ -172,7 +171,8 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -213,7 +213,8 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -341,11 +342,11 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
 
             },
             new String [] {
-                "ID", "Customer Mobile", "Date", "Paid Amount", "Payment Method", "Return_method", "Employee email"
+                "ID", "Customer Mobile", "Date", "Paid Amount", "Return_method", "Employee email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -579,7 +580,8 @@ public class previous_return_invoices_for_return_stock extends javax.swing.JFram
                 loadInvoice(id);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked

@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.util.logging.*;
 
 public class CustomerRegistration extends javax.swing.JFrame {
 
@@ -65,7 +66,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -375,7 +377,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String mobile = jTextField1.getText();
+        String mobile = jTextField1.getText();
         String fName = jTextField2.getText();
         String lName = jTextField3.getText();
         String email = jTextField4.getText();
@@ -416,13 +418,14 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 reset();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                String mobile = jTextField1.getText();
+        String mobile = jTextField1.getText();
         String fname = jTextField2.getText();
         String lname = jTextField3.getText();
         String email = jTextField4.getText();
@@ -462,7 +465,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
 
         }
@@ -515,6 +519,22 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
         }
 
+        if (evt.getClickCount() == 3) {
+
+            try {
+
+                int row1 = jTable1.getSelectedRow();
+                String mobile1 = String.valueOf(jTable1.getValueAt(row1, 0));
+
+                previous_invoices_Related_customer pirc = new previous_invoices_Related_customer(mobile1);
+                pirc.setVisible(true);
+
+            } catch (Exception e) {
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
+            }
+        }
+
         try {
 
             ResultSet resultSet = MySQL.executeSearch("SELECT COUNT(id) FROM `invoice` WHERE `customer_mobile` = '" + mobile + "'");
@@ -525,7 +545,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 

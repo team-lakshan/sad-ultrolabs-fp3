@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class previous_return_stock extends javax.swing.JFrame {
 
@@ -62,14 +63,13 @@ public class previous_return_stock extends javax.swing.JFrame {
             } else {
                 query += "WHERE ";
             }
-            
+
             String Stock_id = "";
-                    
+
             if (!jTextField3.getText().isEmpty()) {
                 Stock_id = String.valueOf(jTextField3.getText());
                 query += "`return_stock`.`id`  LIKE '%" + Stock_id + "%' ";
             }
-
 
             String mobile = "";
 
@@ -164,7 +164,8 @@ public class previous_return_stock extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -519,8 +520,9 @@ public class previous_return_stock extends javax.swing.JFrame {
                 dtrs.setVisible(true);
                 //this.dispose();
 
-            } catch (ParseException ex) {
-                Logger.getLogger(previous_return_stock.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -559,20 +561,21 @@ public class previous_return_stock extends javax.swing.JFrame {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-       jButton2.setForeground(Color.black);
+        jButton2.setForeground(Color.black);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-      jButton2.setForeground(Color.white);
+        jButton2.setForeground(Color.white);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-       jButton6.setForeground(Color.black);
+        jButton6.setForeground(Color.black);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
@@ -580,7 +583,7 @@ public class previous_return_stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-       jButton5.setForeground(Color.black);
+        jButton5.setForeground(Color.black);
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
@@ -588,7 +591,7 @@ public class previous_return_stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-     jButton1.setForeground(Color.black);
+        jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
