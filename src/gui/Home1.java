@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
@@ -20,6 +23,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 import util.MySQL;
+import java.util.logging.*;
 
 public class Home1 extends javax.swing.JFrame {
 
@@ -121,7 +125,8 @@ public class Home1 extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -150,6 +155,7 @@ public class Home1 extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jButton21 = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -391,6 +397,7 @@ public class Home1 extends javax.swing.JFrame {
 
         jButton20.setBackground(new java.awt.Color(0, 153, 153));
         jButton20.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jButton20.setForeground(new java.awt.Color(255, 255, 255));
         jButton20.setText("Attendance");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -452,24 +459,39 @@ public class Home1 extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("date");
 
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/home/log out.png"))); // NOI18N
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(148, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(jButton21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jLabel15)
+                .addGap(56, 56, 56)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15))))
                 .addContainerGap())
         );
 
@@ -1452,6 +1474,9 @@ public class Home1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(new StringSelection(""), null);
+
         Invoice invoice = new Invoice();
         invoice.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -1488,8 +1513,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1497,7 +1521,8 @@ public class Home1 extends javax.swing.JFrame {
 
             //JasperExportManager.exportReportToPdfFile(jasperPrint,"src/report_pdf/product.pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -1514,8 +1539,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1523,7 +1547,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1538,8 +1563,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+           Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1547,7 +1571,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -1563,8 +1588,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+           Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1572,7 +1596,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -1588,8 +1613,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1597,7 +1621,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -1614,8 +1639,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1623,7 +1647,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -1639,8 +1664,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1648,7 +1672,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -1664,16 +1689,16 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
-
+            Connection connection = MySQL.getConnection();
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
             JasperViewer.viewReport(jasperPrint, false);
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -1689,8 +1714,7 @@ public class Home1 extends javax.swing.JFrame {
             parameters.put("Parameter2", jLabel13.getText());
             parameters.put("Parameter3", dateTime);
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://100.29.104.161:3306/nawwa-pos", "nawwa", "nawwa911@Zx");
+            Connection connection = MySQL.getConnection();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(path, parameters, connection);
 
@@ -1698,7 +1722,8 @@ public class Home1 extends javax.swing.JFrame {
 
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"com_pdf");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1706,6 +1731,12 @@ public class Home1 extends javax.swing.JFrame {
         attendence at = new attendence();
         at.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        SignIn signIn = new SignIn();
+        signIn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton21ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1719,8 +1750,10 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

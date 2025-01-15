@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.util.logging.*;
 
 public class EmployeeRegistration extends javax.swing.JFrame {
 
@@ -60,7 +61,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             jComboBox2.setModel(comboModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -77,7 +79,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             jComboBox1.setModel(comboModel);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -99,7 +102,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                 tableModel.addRow(vector);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -132,6 +136,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -554,7 +559,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Plese Enter Valid Mobile Number....", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Plese Enter Password....", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (!password.matches("^(?=.[a-z])(?=.[A-Z])(?=.*\\d)[A-Za-z\\d]{8,16}$")) {
+        } else if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,16}$")) {
             JOptionPane.showMessageDialog(this, "Length: 8 to 16 characters. At least one lowercase letter. At least one uppercase letter. At least one digit.", "warning", JOptionPane.WARNING_MESSAGE);
         } else if (gender.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Plese Select Your Gender...", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -577,7 +582,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
 
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
 
         }
@@ -615,8 +621,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Plese Enter Valid Mobile Number....", "Warning", JOptionPane.WARNING_MESSAGE);
             } else if (password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Plese Enter Password....", "Warning", JOptionPane.WARNING_MESSAGE);
-            } else if (password.length() < 8) {
-                JOptionPane.showMessageDialog(this, "Your Password character lessthan for 8 characters..", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,16}$")) {
+                JOptionPane.showMessageDialog(this, "Length: 8 to 16 characters. At least one lowercase letter. At least one uppercase letter. At least one digit.", "warning", JOptionPane.WARNING_MESSAGE);
             } else if (gender.equals("Select")) {
                 JOptionPane.showMessageDialog(this, "Plese Select Your Gender...", "Warning", JOptionPane.WARNING_MESSAGE);
             } else if (type.equals("Select")) {
@@ -645,7 +651,8 @@ public class EmployeeRegistration extends javax.swing.JFrame {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Logger logger = SignIn.getLoggerObjet();
+                    logger.log(Level.WARNING, "Wrong Operation", e);
                 }
             }
 
@@ -741,7 +748,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
             previous_invoices_Related_employee pire = new previous_invoices_Related_employee(email2);
             pire.setVisible(true);
         } else {
-         JOptionPane.showMessageDialog(this, "Please select an employee first", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select an employee first", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed

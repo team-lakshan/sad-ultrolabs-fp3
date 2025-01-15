@@ -15,6 +15,7 @@ import jakarta.mail.internet.MimeMultipart;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,6 +39,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class Return_damaged_stock extends javax.swing.JFrame {
 
@@ -60,7 +62,8 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             jComboBox1.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -129,7 +132,8 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             Transport.send(message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -551,27 +555,24 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                 .addGap(42, 42, 42)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(10, 10, 10))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, Short.MAX_VALUE)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, 0)
+                                .addGap(63, 63, 63)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -619,7 +620,9 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(442, 442, 442)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(254, 254, 254)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -636,9 +639,10 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -648,10 +652,10 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel30)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -727,6 +731,11 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -789,7 +798,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 153, 153));
         jButton5.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Previous return and refund Invoices");
+        jButton5.setText("Previous refund Invoices & Stocks");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton5MouseEntered(evt);
@@ -828,9 +837,9 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(printInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(printInvoiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -930,10 +939,18 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             String cname = jLabel8.getText();
             String avqty = jLabel27.getText();
 
+            // String rinvoid = "";
             ResultSet rs3 = MySQL.executeSearch("SELECT * FROM `grn` INNER JOIN `grn_item` ON "
                     + " `grn`.`id` = `grn_item`.`grn_id` INNER JOIN `stock` ON"
                     + " `stock`.`id` = `grn_item`.`stock_id` WHERE `stock`.`id` = '" + stockID + "'");
 
+//            ResultSet rs4 = MySQL.executeSearch("SELECT * FROM `return_stock`");
+//            if (rs4.next()) {
+//                rinvoid = rs4.getString("return_invoice_id");
+//                if (rinvoid == null) {
+//                    rinvoid = ""; // Ensure it's not null
+//                }
+//            }
             if (snum.isEmpty() && cname.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please select a supplier", "Warning", JOptionPane.WARNING_MESSAGE);
             } else if (stockID.isEmpty() && brand.isEmpty() && productName.isEmpty()) {
@@ -951,61 +968,95 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                     return;
                 } else {
 
-                    ResultSet resultSet = MySQL.executeSearch("SELECT * FROM `return_stock` WHERE `stock_id` = '" + stockID + "'");
+                    if (return_invo_id != null && !return_invo_id.isEmpty()) {
+                        // Assuming rinvoid holds the value to be checked
+                        String rinvoids = jLabel33.getText(); // Example: Getting the value from a JLabel
 
-                    if (resultSet.next()) {
-                        JOptionPane.showMessageDialog(this, "Return invoice with damage product is allready refunded by supplier", "Warning", JOptionPane.WARNING_MESSAGE);
+                        // Query to check if rinvoid exists in the return_invoice_id column
+                        String query = "SELECT * FROM return_stock WHERE return_invoice_id = ?";
+                        PreparedStatement pstmt = MySQL.prepareStatement(query);
+                        pstmt.setString(1, rinvoids);
+
+                        ResultSet rs = pstmt.executeQuery();
+
+                        // Check if the result set has rows
+                        if (rs.next()) {
+                            // If rinvoid exists in the return_invoice_id column, show a message
+                            JOptionPane.showMessageDialog(
+                                    this,
+                                    "This returned invoice is already being refunded by the supplier!",
+                                    "Warning",
+                                    JOptionPane.WARNING_MESSAGE
+                            );
+                            return;
+                        }
                     } else {
 
-                        int rowCount = jTable1.getRowCount();
+                        ResultSet resultSet = MySQL.executeSearch("SELECT * FROM return_stock rs JOIN return_stock_item rsi ON rs.id = rsi.return_stock_id WHERE rs.return_invoice_id IS NULL AND rsi.stock_id = '" + stockID + "'");
+                        if (resultSet.next()) {
+                            JOptionPane.showMessageDialog(this, "Return invoice with damage product is allready refunded by supplier!!!", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else {
 
-                        boolean stockIdFound = false;
+                            int rowCount = jTable1.getRowCount();
 
-                        for (int i = 0; i < rowCount; i++) {
+                            boolean stockIdFound = false;
 
-                            String stockId2 = String.valueOf(jTable1.getValueAt(i, 0));
-                            String qty2 = String.valueOf(jTable1.getValueAt(i, 3));
-                            String total2 = String.valueOf(jTable1.getValueAt(i, 7));
+                            for (int i = 0; i < rowCount; i++) {
 
-                            if (stockID.equals(stockId2)) {
-                                int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                                String stockId2 = String.valueOf(jTable1.getValueAt(i, 0));
+                                String qty2 = String.valueOf(jTable1.getValueAt(i, 3));
+                                String total2 = String.valueOf(jTable1.getValueAt(i, 7));
 
-                                if (option == JOptionPane.YES_OPTION) {
-                                    jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
-                                    jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
-                                    calculate1();
-                                    stockIdFound = true;
-                                    break;
+                                if (stockID.equals(stockId2)) {
+                                    int option = JOptionPane.showConfirmDialog(this, "Do you Want to Updete the Quantity of Product : " + productName, "Massage", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                                    if (option == JOptionPane.YES_OPTION) {
+                                        if (qty.isEmpty()) {
+                                            JOptionPane.showMessageDialog(this, "Please Enter Quantity ", "warning", JOptionPane.WARNING_MESSAGE);
+                                        } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
+                                            JOptionPane.showMessageDialog(this, "brought quantity was less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+                                        } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
+                                            JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+                                        } else {
+                                            jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
+                                            jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
+                                            calculate1();
+                                            stockIdFound = true;
+                                            break;
+                                        }
+                                    } else if (option == JOptionPane.NO_OPTION) {
+                                        stockIdFound = true; // Set this to true to prevent adding a new row
+                                        break; // Exit the loop to avoid unintended behavior
+                                    }
                                 }
+                            }
 
+                            if (!stockIdFound) {
+                                Vector vector = new Vector();
+                                vector.add(stockID);
+                                vector.add(brand);
+                                vector.add(productName);
+                                vector.add(qty);
+                                vector.add(sellingPrice);
+                                vector.add(mfd);
+                                vector.add(exp);
+
+                                double itemTotal = Double.parseDouble(sellingPrice) * Double.parseDouble(qty);
+                                vector.add(String.valueOf(itemTotal));
+
+                                DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+                                dtm.addRow(vector);
+
+                                calculate1();
                             }
                         }
-
-                        if (!stockIdFound) {
-                            Vector vector = new Vector();
-                            vector.add(stockID);
-                            vector.add(brand);
-                            vector.add(productName);
-                            vector.add(qty);
-                            vector.add(sellingPrice);
-                            vector.add(mfd);
-                            vector.add(exp);
-
-                            double itemTotal = Double.parseDouble(sellingPrice) * Double.parseDouble(qty);
-                            vector.add(String.valueOf(itemTotal));
-
-                            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-                            dtm.addRow(vector);
-
-                            calculate1();
-                        }
                     }
-
                 }
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1049,7 +1100,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             } else {
                 // insert to invoice
                 MySQL.executeIUD("INSERT INTO `return_stock` VALUES('" + invoiceID + "','" + employeeEmail + "','" + suplierMobile + "','"
-                        + dateTime + "','" + paidAmount + "','" + paymentMethodID + "', '" + return_invo_id + "', '" + stockID + "')");
+                        + dateTime + "','" + paidAmount + "','" + paymentMethodID + "', '" + return_invo_id + "')");
 
                 int rowCount = jTable1.getRowCount();
                 for (int i = 0; i < rowCount; i++) {
@@ -1062,8 +1113,10 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                             + "VALUES('" + qty + "','" + invoiceID + "','" + stockid + "')");
 
                     // stock update
-                    MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`-" + qty
-                            + " WHERE `id`='" + stockid + "'");
+                    if (return_invo_id.isEmpty()) {
+                        MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`-" + qty
+                                + " WHERE `id`='" + stockid + "'");
+                    }
 
                 }
 
@@ -1100,7 +1153,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
                 appPassword = rs.getString("app_pass");
             }
 
-            if (!appPassword.isEmpty()) {
+            if (appPassword != null && !appPassword.isEmpty()) {
 
                 if (supplierEmail.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "The Supplier does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -1124,7 +1177,8 @@ public class Return_damaged_stock extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_printInvoiceButtonActionPerformed
@@ -1202,6 +1256,34 @@ public class Return_damaged_stock extends javax.swing.JFrame {
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
         jButton5.setForeground(Color.white);
     }//GEN-LAST:event_jButton5MouseExited
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            // Get the selected row
+            int row1 = jTable1.getSelectedRow();
+
+            // Check if a valid row is selected
+            if (row1 != -1) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this row?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Get the table's model
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                    // Remove the selected row
+                    model.removeRow(row1);
+
+                    // Optional: Show a success message
+                    JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                    calculate1();
+                }
+            } else {
+                // Show a warning if no row is selected
+                JOptionPane.showMessageDialog(this, "Please select a valid row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();
@@ -1284,7 +1366,7 @@ public class Return_damaged_stock extends javax.swing.JFrame {
         jLabel35.setText("");
         jFormattedTextField1.setText("");
         jLabel23.setText("");
-
+        jLabel33.setText("");
         totalField.setText("");
         jComboBox1.setSelectedIndex(0);
         paymentField.setText("");

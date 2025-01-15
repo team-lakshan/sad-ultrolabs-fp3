@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.util.logging.*;
 
 public class SupplierRegistration extends javax.swing.JFrame {
 
@@ -84,7 +85,8 @@ public class SupplierRegistration extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -482,7 +484,8 @@ public class SupplierRegistration extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
 
         }
@@ -544,7 +547,8 @@ public class SupplierRegistration extends javax.swing.JFrame {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
 
         }
@@ -617,15 +621,19 @@ public class SupplierRegistration extends javax.swing.JFrame {
             if (evt.getClickCount() == 3) {
 
                 int row1 = jTable1.getSelectedRow();
-                String mobile1 = String.valueOf(jTable1.getValueAt(row1, 0));
+                String mobile = String.valueOf(jTable1.getValueAt(row1, 0));
+                String name = String.valueOf(jTable1.getValueAt(row1, 1));
+                String email = String.valueOf(jTable1.getValueAt(row1, 3));
+                String company = String.valueOf(jTable1.getValueAt(row1, 4));
 
-                Previous_GRN_Related_Supplier pgrs = new Previous_GRN_Related_Supplier(companyId, companyId, mobile1);
+                Previous_GRN_Related_Supplier pgrs = new Previous_GRN_Related_Supplier(email, name, company, mobile);
                 pgrs.setVisible(true);
 
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jTable1MouseClicked

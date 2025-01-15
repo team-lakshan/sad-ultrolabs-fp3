@@ -18,6 +18,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class detailed_return_stock extends javax.swing.JDialog {
 
@@ -84,7 +85,8 @@ public class detailed_return_stock extends javax.swing.JDialog {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -331,7 +333,8 @@ public class detailed_return_stock extends javax.swing.JDialog {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

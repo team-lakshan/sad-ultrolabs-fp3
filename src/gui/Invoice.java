@@ -26,6 +26,11 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.util.Properties;
 import java.io.File;
 import java.sql.SQLException;
@@ -36,6 +41,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import java.util.logging.*;
 
 public class Invoice extends javax.swing.JFrame {
 
@@ -57,7 +64,8 @@ public class Invoice extends javax.swing.JFrame {
             jComboBox1.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -126,7 +134,8 @@ public class Invoice extends javax.swing.JFrame {
             Transport.send(message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -238,10 +247,11 @@ public class Invoice extends javax.swing.JFrame {
                                     jLabel19.setText(mfd);
                                     jLabel21.setText(exp);
                                     jLabel15.setText(price);
-                                    jLabel27.setText(qty);                                    
-                                } 
+                                    jLabel27.setText(qty);
+                                }
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                Logger logger = SignIn.getLoggerObjet();
+                                logger.log(Level.WARNING, "Wrong Operation", e);
                             }
 
                             // Remove the copied text from the clipboard by clearing it
@@ -255,7 +265,8 @@ public class Invoice extends javax.swing.JFrame {
                     Thread.sleep(500);
 
                 } catch (UnsupportedFlavorException | java.io.IOException | InterruptedException e) {
-                    e.printStackTrace();
+                    Logger logger = SignIn.getLoggerObjet();
+                    logger.log(Level.WARNING, "Wrong Operation", e);
                 }
             }
         }).start();
@@ -819,6 +830,11 @@ public class Invoice extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -885,7 +901,7 @@ public class Invoice extends javax.swing.JFrame {
         printInvoiceButton.setBackground(new java.awt.Color(0, 153, 153));
         printInvoiceButton.setFont(new java.awt.Font("DL-Paras.", 1, 14)); // NOI18N
         printInvoiceButton.setForeground(new java.awt.Color(255, 255, 255));
-        printInvoiceButton.setText("print");
+        printInvoiceButton.setText("Print Invoice");
         printInvoiceButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 printInvoiceButtonMouseEntered(evt);
@@ -1062,7 +1078,7 @@ public class Invoice extends javax.swing.JFrame {
         } else if (qty.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Quantity field cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
-            JOptionPane.showMessageDialog(this, "brought quantity was less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "available quantity is less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
             JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -1081,13 +1097,24 @@ public class Invoice extends javax.swing.JFrame {
                     int option = JOptionPane.showConfirmDialog(this,
                             "Do you want to update the quantity of product: " + productName + "?",
                             "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    int option = JOptionPane.showConfirmDialog(this,
+                            "Do you want to update the quantity of product: " + productName + "?",
+                            "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                     if (option == JOptionPane.YES_OPTION) {
-                        jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
-                        jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
-                        calculate1();
-                        stockIdFound = true;
-                        break; // Exit the loop after updating the row
+                        if (qty.isEmpty()) {
+                            JOptionPane.showMessageDialog(this, "Quantity field cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
+                            JOptionPane.showMessageDialog(this, "available quantity is less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
+                            JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
+                            jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
+                            calculate1();
+                            stockIdFound = true;
+                            break; // Exit the loop after updating the row
+                        }
                     } else if (option == JOptionPane.NO_OPTION) {
                         stockIdFound = true; // Set this to true to prevent adding a new row
                         break; // Exit the loop to avoid unintended behavior
@@ -1223,6 +1250,7 @@ public class Invoice extends javax.swing.JFrame {
 
                 JasperViewer.viewReport(jasperPrint, false);
                 JasperExportManager.exportReportToPdfFile(jasperPrint, "src/report_pdf/invoice.pdf");
+                //JasperPrintManager.printReport(jasperPrint, false);
 
             }
 
@@ -1237,7 +1265,7 @@ public class Invoice extends javax.swing.JFrame {
                 appPassword = rs.getString("app_pass");
             }
 
-            if (!appPassword.isEmpty()) {
+            if (appPassword != null && !appPassword.isEmpty()) {
 
                 if (customerEmail.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -1261,7 +1289,8 @@ public class Invoice extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_printInvoiceButtonActionPerformed
@@ -1324,6 +1353,34 @@ public class Invoice extends javax.swing.JFrame {
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
         jButton5.setForeground(Color.white);
     }//GEN-LAST:event_jButton5MouseExited
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            // Get the selected row
+            int row1 = jTable1.getSelectedRow();
+
+            // Check if a valid row is selected
+            if (row1 != -1) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this row?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Get the table's model
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                    // Remove the selected row
+                    model.removeRow(row1);
+
+                    // Optional: Show a success message
+                    JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                    calculate1();
+                }
+            } else {
+                // Show a warning if no row is selected
+                JOptionPane.showMessageDialog(this, "Please select a valid row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();

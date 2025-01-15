@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class previous_invoices_Related_customer extends javax.swing.JFrame {
 
@@ -33,8 +34,7 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
     String newDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
     private String cusmobile;
-    
-    
+
     public previous_invoices_Related_customer(String mobile) {
         initComponents();
         this.cusmobile = mobile;
@@ -67,8 +67,6 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
             } else {
                 query += "WHERE ";
             }
-
-            
 
             double min_price = 0;
             double max_price = 0;
@@ -154,7 +152,8 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -440,8 +439,9 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
                 dti.setVisible(true);
                 //this.dispose();
 
-            } catch (ParseException ex) {
-                Logger.getLogger(previous_invoices_Related_customer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -456,7 +456,7 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-       jButton6.setForeground(Color.black);
+        jButton6.setForeground(Color.black);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
@@ -468,15 +468,15 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-         jButton5.setForeground(Color.white);
+        jButton5.setForeground(Color.white);
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-          jButton2.setForeground(Color.black);
+        jButton2.setForeground(Color.black);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-          jButton2.setForeground(Color.white);
+        jButton2.setForeground(Color.white);
     }//GEN-LAST:event_jButton2MouseExited
 
 
@@ -509,6 +509,6 @@ public class previous_invoices_Related_customer extends javax.swing.JFrame {
         jFormattedTextField2.setText("0");
         jDateChooser1.setDate(null);
         jDateChooser2.setDate(null);
-        
+
     }
 }

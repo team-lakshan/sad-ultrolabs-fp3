@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -10,6 +13,7 @@ import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import util.MySQL;
+import java.util.logging.*;
 
 public class Home2 extends javax.swing.JFrame {
 
@@ -111,7 +115,8 @@ public class Home2 extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -136,9 +141,11 @@ public class Home2 extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jButton21 = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -302,6 +309,7 @@ public class Home2 extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/home/icons8-medical-history-40.png"))); // NOI18N
         jLabel4.setText("Reports   ");
         jLabel4.setEnabled(false);
+        jLabel4.setFocusable(false);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -376,6 +384,7 @@ public class Home2 extends javax.swing.JFrame {
 
         jButton20.setBackground(new java.awt.Color(0, 153, 153));
         jButton20.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jButton20.setForeground(new java.awt.Color(255, 255, 255));
         jButton20.setText("Attendance");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,12 +443,21 @@ public class Home2 extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("DL-Paras.", 1, 24)); // NOI18N
         jLabel15.setText("UL DressMart - Your Official Clothing partner");
 
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/home/log out.png"))); // NOI18N
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(jButton21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(78, 78, 78)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,11 +465,16 @@ public class Home2 extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15))))
                 .addContainerGap())
         );
 
@@ -1342,16 +1365,16 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jLabel4.setBackground(new Color(51, 51, 51));
-        jPanel6.setBackground(new Color(51, 51, 51));
-        jPanel11.setBackground(new Color(51, 51, 51));
-
-        jPanel12.setBackground(new Color(0, 153, 153));
-        jPanel9.setBackground(new Color(0, 153, 153));
-        jPanel10.setBackground(new Color(0, 153, 153));
-        jPanel8.setBackground(new Color(0, 153, 153));
-
-        jTabbedPane2.setSelectedIndex(3);
+//        jLabel4.setBackground(new Color(51, 51, 51));
+//        jPanel6.setBackground(new Color(51, 51, 51));
+//        jPanel11.setBackground(new Color(51, 51, 51));
+//
+//        jPanel12.setBackground(new Color(0, 153, 153));
+//        jPanel9.setBackground(new Color(0, 153, 153));
+//        jPanel10.setBackground(new Color(0, 153, 153));
+//        jPanel8.setBackground(new Color(0, 153, 153));
+//
+//        jTabbedPane2.setSelectedIndex(3);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -1388,6 +1411,8 @@ public class Home2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(new StringSelection(""), null);
         Invoice invoice = new Invoice();
         invoice.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -1418,6 +1443,12 @@ public class Home2 extends javax.swing.JFrame {
         at.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        SignIn signIn = new SignIn();
+        signIn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton21ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1431,6 +1462,7 @@ public class Home2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

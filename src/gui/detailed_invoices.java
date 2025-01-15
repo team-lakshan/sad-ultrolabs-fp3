@@ -17,6 +17,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class detailed_invoices extends javax.swing.JDialog {
 
@@ -40,7 +41,7 @@ public class detailed_invoices extends javax.swing.JDialog {
         loadInvoice();
 
     }
-    
+
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
         header.setFont(new Font("Consolas", Font.BOLD, 14));
@@ -86,7 +87,8 @@ public class detailed_invoices extends javax.swing.JDialog {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -351,18 +353,19 @@ public class detailed_invoices extends javax.swing.JDialog {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-       jButton1.setForeground(Color.black);
+        jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-         jButton1.setForeground(Color.white);
+        jButton1.setForeground(Color.white);
     }//GEN-LAST:event_jButton1MouseExited
 
 

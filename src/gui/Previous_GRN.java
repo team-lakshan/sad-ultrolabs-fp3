@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 import util.MySQL;
+import java.util.logging.*;
 
 public class Previous_GRN extends javax.swing.JFrame {
 
@@ -37,7 +38,7 @@ public class Previous_GRN extends javax.swing.JFrame {
         header();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
     }
-    
+
     private void header() {
         JTableHeader header = jTable1.getTableHeader();
         header.setFont(new Font("Consolas", Font.BOLD, 14));
@@ -71,7 +72,8 @@ public class Previous_GRN extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -279,7 +281,8 @@ public class Previous_GRN extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -294,13 +297,7 @@ public class Previous_GRN extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-//        String mobile = jTextField2.getText();
-//
-//        loadPreviousGRN("SELECT * FROM `grn` WHERE `supplier_mobile` LIKE '%" + mobile + "%'");
-//
-//        jTextField2.setText(mobile);
-        
-        
+
         String mobile = "";
 
         if (!jTextField2.getText().isEmpty()) {
@@ -317,7 +314,7 @@ public class Previous_GRN extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         try {
-            
+
             String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             String path = "src/reports/PreviousGRNs.jasper";
             //InputStream path = this.getClass().getResourceAsStream("src/reportnew/invoice1.jasper");
@@ -333,7 +330,8 @@ public class Previous_GRN extends javax.swing.JFrame {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -342,26 +340,17 @@ public class Previous_GRN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-          jButton3.setForeground(Color.white);
+        jButton3.setForeground(Color.white);
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-       jButton1.setForeground(Color.black);
+        jButton1.setForeground(Color.black);
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
         jButton1.setForeground(Color.white);
     }//GEN-LAST:event_jButton1MouseExited
 
-//    public static void main(String args[]) {
-//        FlatGitHubDarkIJTheme.setup();
-//
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Previous_GRN().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

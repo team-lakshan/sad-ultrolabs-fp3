@@ -10,8 +10,16 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.*;
 
 public class SignIn extends javax.swing.JFrame {
+
+    private static final Logger logger = Logger.getLogger(SignIn.class.getName());
+    private static FileHandler handler;
 
     private static String employeeEmail;
 
@@ -27,9 +35,44 @@ public class SignIn extends javax.swing.JFrame {
         initComponents();
         jTextField1.grabFocus();
         setIconImage(new ImageIcon("src/resources/icon.jpg").getImage());
+        initializeLogging();
     }
-    
-    
+
+    private void initializeLogging() {
+        String homePath = System.getProperty("user.home");
+        String folderPath = homePath
+                + File.separator + "OneDrive"
+                + File.separator + "Documents"
+                + File.separator + "NetBeansProjects"
+                + File.separator + "sad-ultrolabs-fp3"
+                + File.separator + "src"
+                + File.separator + "logs";
+        File newFolder = new File(folderPath);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
+
+        if (newFolder.exists()) {
+            String fileName = sdf.format(new Date());
+            if (handler == null) {
+                try {
+                    SignIn.handler = new FileHandler(folderPath + "/" + fileName + ".txt");
+                    handler.setFormatter(new SimpleFormatter());
+                    logger.addHandler(handler);
+                    logger.setLevel(Level.ALL);
+                    logger.info("Log File Created Successful");
+
+                } catch (IOException e) {
+                    logger.log(Level.WARNING, "Log File Created Unsuccessful", e);
+                }
+                return;
+            }
+            newFolder.mkdirs();
+        }
+    }
+
+    public static Logger getLoggerObjet() {
+        return SignIn.logger;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -181,7 +224,7 @@ public class SignIn extends javax.swing.JFrame {
             try {
                 ResultSet rs = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' ");
 
-                if (rs.next()) {              
+                if (rs.next()) {
 
                     ResultSet rs1 = MySQL.executeSearch("SELECT * FROM `employee` WHERE `email` = '" + email + "' AND `password` = '" + password + "' AND `employee_type_id` = '2' ");
 
@@ -206,13 +249,12 @@ public class SignIn extends javax.swing.JFrame {
                         setEmployeeEmail(email);
                     }
 
-
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid email or Password", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
 

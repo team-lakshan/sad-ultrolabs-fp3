@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import util.MySQL;
+import java.util.logging.*;
 
 public class AddressView extends javax.swing.JDialog {
 
@@ -68,7 +69,8 @@ public class AddressView extends javax.swing.JDialog {
             }
             jTable2.setModel(tableModel);
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -85,6 +87,8 @@ public class AddressView extends javax.swing.JDialog {
             DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
             jComboBox3.setModel(comboModel);
         } catch (Exception e) {
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -101,6 +105,8 @@ public class AddressView extends javax.swing.JDialog {
             DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
             jComboBox2.setModel(comboModel);
         } catch (Exception e) {
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -117,6 +123,8 @@ public class AddressView extends javax.swing.JDialog {
             DefaultComboBoxModel comboModel = new DefaultComboBoxModel(vector);
             jComboBox1.setModel(comboModel);
         } catch (Exception e) {
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -456,7 +464,8 @@ public class AddressView extends javax.swing.JDialog {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -507,7 +516,8 @@ public class AddressView extends javax.swing.JDialog {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -538,7 +548,8 @@ public class AddressView extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Succesfully Remove Address Data...", "Information", JOptionPane.INFORMATION_MESSAGE);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed

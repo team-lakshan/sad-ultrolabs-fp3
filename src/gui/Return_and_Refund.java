@@ -40,6 +40,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.logging.*;
 
 public class Return_and_Refund extends javax.swing.JFrame {
 
@@ -63,7 +64,8 @@ public class Return_and_Refund extends javax.swing.JFrame {
             jComboBox2.setModel(model);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -132,7 +134,8 @@ public class Return_and_Refund extends javax.swing.JFrame {
             Transport.send(message);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }
 
@@ -708,6 +711,11 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -965,7 +973,9 @@ public class Return_and_Refund extends javax.swing.JFrame {
                             + "VALUES('" + qty + "','" + invoiceID + "','" + stockID + "')");
 
                     // stock update
-                    MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`+" + qty + " WHERE `id`='" + stockID + "'");
+                    if ("Return and Refund".equals(returnType)) {
+                        MySQL.executeIUD("UPDATE `stock` SET `qty`=`qty`+" + qty + " WHERE `id`='" + stockID + "'");
+                    }
                 }
 
                 double points = Double.parseDouble(totalField.getText());
@@ -1001,23 +1011,39 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 String customermobile = jLabel7.getText();
                 String appPassword = "";
                 String filePath = "src/report_pdf/returnInvoice.pdf";
+                String customerEmail = jLabel35.getText();
+                String customermobile = jLabel7.getText();
+                String appPassword = "";
+                String filePath = "src/report_pdf/returnInvoice.pdf";
 
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
                 ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
 
                 if (rs.next()) {
                     appPassword = rs.getString("app_pass");
                 }
+                if (rs.next()) {
+                    appPassword = rs.getString("app_pass");
+                }
 
-                if (!appPassword.isEmpty()) {
+                if (appPassword != null && !appPassword.isEmpty()) {
 
+                    if (customerEmail.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
                     if (customerEmail.isEmpty()) {
                         JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
 
                     } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                             + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+                    } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
+                            + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
 
                         JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
 
+                    } else if (appPassword.length() < 19 || appPassword.length() > 19) {
+                        System.out.println("appPassword's length is less than 19 or larger than 19.");
+                    } else {
                     } else if (appPassword.length() < 19 || appPassword.length() > 19) {
                         System.out.println("appPassword's length is less than 19 or larger than 19.");
                     } else {
@@ -1025,15 +1051,22 @@ public class Return_and_Refund extends javax.swing.JFrame {
                         sendEmailWithAttachment(customerEmail, filePath, appPassword);
                         reset();
                     }
+                        sendEmailWithAttachment(customerEmail, filePath, appPassword);
+                        reset();
+                    }
 
                 } else {
+                } else {
 
+                    reset();
+                }
                     reset();
                 }
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_printInvoiceButtonActionPerformed
@@ -1104,10 +1137,11 @@ public class Return_and_Refund extends javax.swing.JFrame {
             String cnum = jLabel7.getText();
             String cname = jLabel8.getText();
             String avqty = jLabel27.getText();
-            
+
             String invoid = "";
 
             ResultSet rs3 = MySQL.executeSearch("SELECT * FROM `invoice` WHERE `invoice`.`id` = '" + invoice + "'");
+            
             ResultSet rs4 = MySQL.executeSearch("SELECT * FROM `return_invoice`");
             if (rs4.next()) {
                 invoid = rs4.getString("invoice_id");
@@ -1128,7 +1162,7 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 String cusmo = rs3.getString("customer_mobile");
 
                 if (!cusmo.equals(cnum)) {
-                    JOptionPane.showMessageDialog(this, "This invoice number is not related with supplier", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "This invoice number is not related with customer", "Warning", JOptionPane.WARNING_MESSAGE);
                     return;
                 } else if (invoid.equals(invoice1)) {
 
@@ -1151,11 +1185,20 @@ public class Return_and_Refund extends javax.swing.JFrame {
                                     "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
                             if (option == JOptionPane.YES_OPTION) {
-                                jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
-                                jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
-                                calculate1();
-                                stockIdFound = true;
-                                break; // Exit the loop after updating the row
+
+                                if (qty.isEmpty()) {
+                                    JOptionPane.showMessageDialog(this, "Please Enter Quantity ", "warning", JOptionPane.WARNING_MESSAGE);
+                                } else if (Double.parseDouble(jLabel27.getText()) < Double.parseDouble(jFormattedTextField1.getText())) {
+                                    JOptionPane.showMessageDialog(this, "brought quantity was less than the entered quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+                                } else if (Double.parseDouble(jFormattedTextField1.getText()) <= 0) {
+                                    JOptionPane.showMessageDialog(this, "quantity must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+                                } else {
+                                    jTable1.setValueAt(Double.parseDouble(qty2) + Double.parseDouble(qty), i, 3);
+                                    jTable1.setValueAt(Double.parseDouble(total2) + Double.parseDouble(sellingPrice) * Double.parseDouble(qty), i, 7);
+                                    calculate1();
+                                    stockIdFound = true;
+                                    break; // Exit the loop after updating the row
+                                }
                             } else if (option == JOptionPane.NO_OPTION) {
                                 stockIdFound = true; // Set this to true to prevent adding a new row
                                 break; // Exit the loop to avoid unintended behavior
@@ -1185,13 +1228,42 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this, "There is no invoice with thin id in invoice table", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "There is No Invoice With this ID in the Invoice table", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(Return_and_Refund.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            // Get the selected row
+            int row1 = jTable1.getSelectedRow();
+
+            // Check if a valid row is selected
+            if (row1 != -1) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this row?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Get the table's model
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                    // Remove the selected row
+                    model.removeRow(row1);
+
+                    // Optional: Show a success message
+                    JOptionPane.showMessageDialog(this, "Row deleted successfully!");
+                    calculate1();
+                }
+            } else {
+                // Show a warning if no row is selected
+                JOptionPane.showMessageDialog(this, "Please select a valid row to delete.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
         FlatGitHubDarkIJTheme.setup();

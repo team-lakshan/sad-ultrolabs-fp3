@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import java.util.logging.*;
 
 public class previous_return_refund extends javax.swing.JFrame {
 
@@ -98,13 +99,13 @@ public class previous_return_refund extends javax.swing.JFrame {
             }
 
             if (min_price > 0 && max_price == 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' ";
 
             } else if (min_price == 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` <= '" + max_price + "' ";
 
             } else if (min_price > 0 && max_price > 0) {
-                query += "`return_invoice`.`paidamount` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
+                query += "`return_invoice`.`total` >= '" + min_price + "' AND `return_invoice`.`paidamount` <= '" + max_price + "' ";
             }
 
             Date start = null;
@@ -142,9 +143,9 @@ public class previous_return_refund extends javax.swing.JFrame {
             } else if (sort.equals("Date DESC")) {
                 query += "`return_invoice`.`date` DESC";
             } else if (sort.equals("Paid amount ASC")) {
-                query += "`return_invoice`.`paidamount` ASC";
+                query += "`return_invoice`.`total` ASC";
             } else if (sort.equals("Paid amount DESC")) {
-                query += "`return_invoice`.`paidamount` DESC";
+                query += "`return_invoice`.`total` DESC";
             }
 
             ResultSet rs = MySQL.executeSearch(query);
@@ -165,7 +166,8 @@ public class previous_return_refund extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
 
     }
@@ -539,8 +541,9 @@ public class previous_return_refund extends javax.swing.JFrame {
                 dtr.setVisible(true);
                 //this.dispose();
 
-            } catch (ParseException ex) {
-                Logger.getLogger(previous_return_refund.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                Logger logger = SignIn.getLoggerObjet();
+                logger.log(Level.WARNING, "Wrong Operation", e);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -580,7 +583,8 @@ public class previous_return_refund extends javax.swing.JFrame {
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = SignIn.getLoggerObjet();
+            logger.log(Level.WARNING, "Wrong Operation", e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

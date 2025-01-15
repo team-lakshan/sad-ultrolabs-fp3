@@ -1,0 +1,2 @@
+Jan 02, 2025 3:24:57 PM gui.SignIn initializeLogging
+INFO: Log File Created Successful
