@@ -137,6 +137,7 @@ public class EmployeeRegistration extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();

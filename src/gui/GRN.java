@@ -869,7 +869,7 @@ public class GRN extends javax.swing.JFrame {
 
                 boolean stockIdFound = false;
 
-                for (int i = 0; i < rowCount; i++) {
+                 for (int i = 0; i < rowCount; i++) {
 
                     String productId2 = String.valueOf(jTable1.getValueAt(i, 0));
                     String qty2 = String.valueOf(jTable1.getValueAt(i, 6));

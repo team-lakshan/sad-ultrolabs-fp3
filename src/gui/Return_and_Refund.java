@@ -1011,9 +1011,17 @@ public class Return_and_Refund extends javax.swing.JFrame {
                 String customermobile = jLabel7.getText();
                 String appPassword = "";
                 String filePath = "src/report_pdf/returnInvoice.pdf";
+                String customerEmail = jLabel35.getText();
+                String customermobile = jLabel7.getText();
+                String appPassword = "";
+                String filePath = "src/report_pdf/returnInvoice.pdf";
 
                 ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
+                ResultSet rs = MySQL.executeSearch("SELECT * FROM `customer` WHERE mobile = '" + customermobile + "'");
 
+                if (rs.next()) {
+                    appPassword = rs.getString("app_pass");
+                }
                 if (rs.next()) {
                     appPassword = rs.getString("app_pass");
                 }
@@ -1022,12 +1030,20 @@ public class Return_and_Refund extends javax.swing.JFrame {
 
                     if (customerEmail.isEmpty()) {
                         JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
+                    if (customerEmail.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "The customer does not have a email", "Warning", JOptionPane.WARNING_MESSAGE);
 
+                    } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
+                            + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
                     } else if (!customerEmail.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                             + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
 
                         JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Invalid customer email", "Warning", JOptionPane.WARNING_MESSAGE);
 
+                    } else if (appPassword.length() < 19 || appPassword.length() > 19) {
+                        System.out.println("appPassword's length is less than 19 or larger than 19.");
+                    } else {
                     } else if (appPassword.length() < 19 || appPassword.length() > 19) {
                         System.out.println("appPassword's length is less than 19 or larger than 19.");
                     } else {
@@ -1035,9 +1051,15 @@ public class Return_and_Refund extends javax.swing.JFrame {
                         sendEmailWithAttachment(customerEmail, filePath, appPassword);
                         reset();
                     }
+                        sendEmailWithAttachment(customerEmail, filePath, appPassword);
+                        reset();
+                    }
 
                 } else {
+                } else {
 
+                    reset();
+                }
                     reset();
                 }
             }

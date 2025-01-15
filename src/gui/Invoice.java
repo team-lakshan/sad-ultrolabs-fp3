@@ -26,8 +26,16 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.util.Properties;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -1086,6 +1094,9 @@ public class Invoice extends javax.swing.JFrame {
                 String total2 = String.valueOf(jTable1.getValueAt(i, 7));
 
                 if (stockID.equals(stockId2)) {
+                    int option = JOptionPane.showConfirmDialog(this,
+                            "Do you want to update the quantity of product: " + productName + "?",
+                            "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     int option = JOptionPane.showConfirmDialog(this,
                             "Do you want to update the quantity of product: " + productName + "?",
                             "Message", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);

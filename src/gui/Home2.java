@@ -141,6 +141,7 @@ public class Home2 extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
